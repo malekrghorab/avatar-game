@@ -237,8 +237,8 @@ const options = {
             style: "glasses",
             variants: [
                 { name: "Black", color: "#292929" },
-                { name: "Blue", color: "#5278D9" },
-                { name: "Red", color: "#C95353" }
+                { name: "Silver", color: "#9CA2A9" },
+                { name: "Blue", color: "#496B91" }
             ]
         },
 
@@ -246,10 +246,10 @@ const options = {
             name: "Cap",
             style: "cap",
             variants: [
-                { name: "Blue", color: "#4C6FD1" },
                 { name: "Black", color: "#292929" },
+                { name: "Blue", color: "#46658F" },
                 { name: "Red", color: "#C95353" },
-                { name: "Green", color: "#5E9465" }
+                { name: "Green", color: "#4D6957" }
             ]
         },
 
@@ -269,8 +269,9 @@ const options = {
             style: "headphones",
             variants: [
                 { name: "Black", color: "#3A3A3A" },
-                { name: "Blue", color: "#526ED0" },
-                { name: "Red", color: "#C95353" }
+                { name: "White", color: "#D9DCE0" },
+                { name: "Blue", color: "#4B6791" },
+                { name: "Red", color: "#B94A4A" }
             ]
         }
     ]
@@ -371,42 +372,42 @@ function svgElement(content) {
             <defs>
 
                 <linearGradient id="skinVolume" x1="0" y1="0" x2="0.9" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(skinColor, 24)}"/>
-                    <stop offset="38%" stop-color="${skinColor}"/>
-                    <stop offset="76%" stop-color="${shadeColor(skinColor, -8)}"/>
-                    <stop offset="100%" stop-color="${shadeColor(skinColor, -30)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(skinColor, 36)}"/>
+                    <stop offset="34%" stop-color="${shadeColor(skinColor, 8)}"/>
+                    <stop offset="70%" stop-color="${shadeColor(skinColor, -10)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(skinColor, -42)}"/>
                 </linearGradient>
 
                 <linearGradient id="hairVolume" x1="0" y1="0" x2="0.8" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(hairColor, 35)}"/>
-                    <stop offset="35%" stop-color="${shadeColor(hairColor, 12)}"/>
-                    <stop offset="72%" stop-color="${hairColor}"/>
-                    <stop offset="100%" stop-color="${shadeColor(hairColor, -32)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(hairColor, 58)}"/>
+                    <stop offset="32%" stop-color="${shadeColor(hairColor, 24)}"/>
+                    <stop offset="68%" stop-color="${hairColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(hairColor, -48)}"/>
                 </linearGradient>
 
                 <linearGradient id="clothVolume" x1="0" y1="0" x2="0.8" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(topColor, 28)}"/>
-                    <stop offset="36%" stop-color="${shadeColor(topColor, 10)}"/>
-                    <stop offset="70%" stop-color="${topColor}"/>
-                    <stop offset="100%" stop-color="${shadeColor(topColor, -28)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(topColor, 48)}"/>
+                    <stop offset="34%" stop-color="${shadeColor(topColor, 16)}"/>
+                    <stop offset="68%" stop-color="${shadeColor(topColor, -8)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(topColor, -42)}"/>
                 </linearGradient>
 
                 <linearGradient id="bottomVolume" x1="0" y1="0" x2="0.8" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(bottomColor, 22)}"/>
-                    <stop offset="44%" stop-color="${bottomColor}"/>
-                    <stop offset="100%" stop-color="${shadeColor(bottomColor, -26)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(bottomColor, 34)}"/>
+                    <stop offset="42%" stop-color="${shadeColor(bottomColor, 6)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(bottomColor, -38)}"/>
                 </linearGradient>
 
                 <linearGradient id="shoeVolume" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(shoeColor, 24)}"/>
-                    <stop offset="64%" stop-color="${shoeColor}"/>
-                    <stop offset="100%" stop-color="${shadeColor(shoeColor, -28)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(shoeColor, 38)}"/>
+                    <stop offset="58%" stop-color="${shadeColor(shoeColor, 4)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(shoeColor, -38)}"/>
                 </linearGradient>
 
                 <linearGradient id="accessoryVolume" x1="0" y1="0" x2="0.8" y2="1">
-                    <stop offset="0%" stop-color="${shadeColor(accessoryColor, 30)}"/>
-                    <stop offset="42%" stop-color="${accessoryColor}"/>
-                    <stop offset="100%" stop-color="${shadeColor(accessoryColor, -30)}"/>
+                    <stop offset="0%" stop-color="${shadeColor(accessoryColor, 48)}"/>
+                    <stop offset="40%" stop-color="${shadeColor(accessoryColor, 8)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(accessoryColor, -42)}"/>
                 </linearGradient>
 
                 <linearGradient id="lensVolume" x1="0" y1="0" x2="0.7" y2="1">
@@ -1082,6 +1083,7 @@ function drawFace(face, skin) {
             fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
+            filter="url(#raised)"
         />
 
         <ellipse
