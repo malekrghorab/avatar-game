@@ -1,105 +1,373 @@
 // ========================================
 // AVATAR GAME
+// Nested customization system
 // ========================================
 
-// ---------- CURRENT SELECTION ----------
+
+// ========================================
+// CURRENT SELECTION
+// ========================================
 
 const selected = {
-    body: 0,
-    face: 0,
-    hair: 0,
-    eyes: 0,
-    mouth: 0,
-    tops: 0,
-    bottoms: 0,
-    shoes: 0,
-    accessories: 0
+    body: {
+        type: 0,
+        variant: 0
+    },
+
+    face: {
+        type: 0,
+        variant: 0
+    },
+
+    hair: {
+        type: 0,
+        variant: 0
+    },
+
+    eyes: {
+        type: 0,
+        variant: 0
+    },
+
+    mouth: {
+        type: 0,
+        variant: 0
+    },
+
+    tops: {
+        type: 0,
+        variant: 0
+    },
+
+    bottoms: {
+        type: 0,
+        variant: 0
+    },
+
+    shoes: {
+        type: 0,
+        variant: 0
+    },
+
+    accessories: {
+        type: 0,
+        variant: 0
+    }
 };
 
 
-// ---------- AVATAR OPTIONS ----------
+// ========================================
+// CUSTOMIZATION DATA
+// ========================================
 
 const options = {
 
     body: [
-        { name: "Classic", skin: "#F2C6A0" },
-        { name: "Warm", skin: "#DFA77D" },
-        { name: "Deep", skin: "#A96F4F" },
-        { name: "Light", skin: "#FFD9B8" }
+        {
+            name: "Skin Tone",
+            variants: [
+                { name: "Light", color: "#FFD9B8" },
+                { name: "Classic", color: "#F2C6A0" },
+                { name: "Warm", color: "#DFA77D" },
+                { name: "Deep", color: "#A96F4F" }
+            ]
+        }
     ],
+
 
     face: [
-        { name: "Round", shape: "round" },
-        { name: "Soft", shape: "soft" },
-        { name: "Wide", shape: "wide" }
+        {
+            name: "Face Shape",
+            variants: [
+                { name: "Round", shape: "round" },
+                { name: "Soft", shape: "soft" },
+                { name: "Wide", shape: "wide" }
+            ]
+        }
     ],
+
 
     hair: [
-        { name: "Messy", color: "#2C211C", style: "messy" },
-        { name: "Short", color: "#4A2F20", style: "short" },
-        { name: "Fluffy", color: "#171717", style: "fluffy" },
-        { name: "Blonde", color: "#D6A84F", style: "short" }
+        {
+            name: "Hairstyle",
+            variants: [
+                {
+                    name: "Messy",
+                    style: "messy",
+                    color: "#2C211C"
+                },
+                {
+                    name: "Short",
+                    style: "short",
+                    color: "#4A2F20"
+                },
+                {
+                    name: "Fluffy",
+                    style: "fluffy",
+                    color: "#171717"
+                },
+                {
+                    name: "Blonde",
+                    style: "short",
+                    color: "#D6A84F"
+                }
+            ]
+        }
     ],
+
 
     eyes: [
-        { name: "Normal", style: "normal" },
-        { name: "Happy", style: "happy" },
-        { name: "Sleepy", style: "sleepy" },
-        { name: "Big", style: "big" }
+        {
+            name: "Eye Style",
+            variants: [
+                { name: "Normal", style: "normal" },
+                { name: "Happy", style: "happy" },
+                { name: "Sleepy", style: "sleepy" },
+                { name: "Big", style: "big" }
+            ]
+        }
     ],
+
 
     mouth: [
-        { name: "Smile", style: "smile" },
-        { name: "Small", style: "small" },
-        { name: "Open", style: "open" },
-        { name: "Neutral", style: "neutral" }
+        {
+            name: "Mouth Style",
+            variants: [
+                { name: "Smile", style: "smile" },
+                { name: "Small", style: "small" },
+                { name: "Open", style: "open" },
+                { name: "Neutral", style: "neutral" }
+            ]
+        }
     ],
+
+
+    // ------------------------------------
+    // TOPS
+    // ------------------------------------
 
     tops: [
-        { name: "Blue Hoodie", color: "#5278D9", style: "hoodie" },
-        { name: "Green Shirt", color: "#65A86B", style: "shirt" },
-        { name: "Red Sweater", color: "#D95B5B", style: "sweater" },
-        { name: "Purple Hoodie", color: "#8B63C7", style: "hoodie" }
+
+        {
+            name: "Shirts",
+            style: "shirt",
+
+            variants: [
+                { name: "White", color: "#F7F7F7" },
+                { name: "Black", color: "#292929" },
+                { name: "Red", color: "#D95B5B" },
+                { name: "Blue", color: "#5278D9" },
+                { name: "Green", color: "#65A86B" },
+                { name: "Purple", color: "#8B63C7" }
+            ]
+        },
+
+        {
+            name: "Hoodies",
+            style: "hoodie",
+
+            variants: [
+                { name: "White", color: "#F3F4F5" },
+                { name: "Black", color: "#292B30" },
+                { name: "Red", color: "#D95454" },
+                { name: "Blue", color: "#5278D9" },
+                { name: "Green", color: "#5E9B69" },
+                { name: "Purple", color: "#8061B8" }
+            ]
+        },
+
+        {
+            name: "Sweaters",
+            style: "sweater",
+
+            variants: [
+                { name: "Cream", color: "#E8DCC8" },
+                { name: "Black", color: "#303238" },
+                { name: "Red", color: "#C95050" },
+                { name: "Blue", color: "#587BC2" },
+                { name: "Green", color: "#63966A" }
+            ]
+        },
+
+        {
+            name: "Jackets",
+            style: "jacket",
+
+            variants: [
+                { name: "Black", color: "#292D35" },
+                { name: "Blue", color: "#476CA8" },
+                { name: "Brown", color: "#8B6549" },
+                { name: "Red", color: "#A94343" }
+            ]
+        }
     ],
+
+
+    // ------------------------------------
+    // BOTTOMS
+    // ------------------------------------
 
     bottoms: [
-        { name: "Blue Jeans", color: "#4269A8", style: "pants" },
-        { name: "Black Pants", color: "#30333A", style: "pants" },
-        { name: "Brown Shorts", color: "#9A7049", style: "shorts" }
+
+        {
+            name: "Jeans",
+            style: "pants",
+
+            variants: [
+                { name: "Light Blue", color: "#6D91C5" },
+                { name: "Blue", color: "#4269A8" },
+                { name: "Dark Blue", color: "#283F69" },
+                { name: "Black", color: "#30333A" }
+            ]
+        },
+
+        {
+            name: "Shorts",
+            style: "shorts",
+
+            variants: [
+                { name: "Black", color: "#30333A" },
+                { name: "Blue", color: "#4269A8" },
+                { name: "Brown", color: "#9A7049" },
+                { name: "Green", color: "#638A62" }
+            ]
+        }
     ],
+
+
+    // ------------------------------------
+    // SHOES
+    // ------------------------------------
 
     shoes: [
-        { name: "Sneakers", color: "#F4F4F4", accent: "#68748A" },
-        { name: "Black Shoes", color: "#292929", accent: "#555555" },
-        { name: "Blue Shoes", color: "#4E72D4", accent: "#DCE5FF" }
+
+        {
+            name: "Sneakers",
+            style: "sneakers",
+
+            variants: [
+                {
+                    name: "White",
+                    color: "#F4F4F4",
+                    accent: "#68748A"
+                },
+                {
+                    name: "Black",
+                    color: "#292929",
+                    accent: "#555555"
+                },
+                {
+                    name: "Blue",
+                    color: "#4E72D4",
+                    accent: "#DCE5FF"
+                },
+                {
+                    name: "Red",
+                    color: "#C95353",
+                    accent: "#FFE0E0"
+                }
+            ]
+        },
+
+        {
+            name: "Boots",
+            style: "boots",
+
+            variants: [
+                {
+                    name: "Black",
+                    color: "#292929",
+                    accent: "#555555"
+                },
+                {
+                    name: "Brown",
+                    color: "#704B35",
+                    accent: "#B88964"
+                }
+            ]
+        }
     ],
 
+
+    // ------------------------------------
+    // ACCESSORIES
+    // ------------------------------------
+
     accessories: [
-        { name: "None", style: "none" },
-        { name: "Glasses", style: "glasses" },
-        { name: "Cap", style: "cap" },
-        { name: "Headphones", style: "headphones" }
+
+        {
+            name: "None",
+            style: "none",
+            variants: [
+                { name: "None" }
+            ]
+        },
+
+        {
+            name: "Glasses",
+            style: "glasses",
+            variants: [
+                { name: "Black", color: "#292929" },
+                { name: "Blue", color: "#5278D9" },
+                { name: "Red", color: "#C95353" }
+            ]
+        },
+
+        {
+            name: "Cap",
+            style: "cap",
+            variants: [
+                { name: "Blue", color: "#4C6FD1" },
+                { name: "Black", color: "#292929" },
+                { name: "Red", color: "#C95353" },
+                { name: "Green", color: "#5E9465" }
+            ]
+        },
+
+        {
+            name: "Headphones",
+            style: "headphones",
+            variants: [
+                { name: "Black", color: "#3A3A3A" },
+                { name: "Blue", color: "#526ED0" },
+                { name: "Red", color: "#C95353" }
+            ]
+        }
     ]
 };
 
 
-// ---------- DOM ELEMENTS ----------
+// ========================================
+// DOM ELEMENTS
+// ========================================
 
 const avatar = document.getElementById("avatar");
 const itemsContainer = document.getElementById("items");
 const categoryTitle = document.getElementById("category-title");
-const categoryButtons = document.querySelectorAll(".category-button");
 
-const nameInput = document.getElementById("avatar-name");
-const randomizeButton = document.getElementById("randomize-button");
-const saveButton = document.getElementById("save-button");
+const categoryButtons =
+    document.querySelectorAll(".category-button");
+
+const nameInput =
+    document.getElementById("avatar-name");
+
+const randomizeButton =
+    document.getElementById("randomize-button");
+
+const saveButton =
+    document.getElementById("save-button");
 
 let currentCategory = "body";
 
+let menuLevel = "types";
 
-// ---------- SVG HELPERS ----------
+
+// ========================================
+// SVG
+// ========================================
 
 function svgElement(content) {
+
     return `
         <svg
             viewBox="0 0 400 600"
@@ -112,19 +380,62 @@ function svgElement(content) {
 }
 
 
-// ---------- DRAW AVATAR ----------
+// ========================================
+// DRAW AVATAR
+// ========================================
 
 function drawAvatar() {
 
-    const body = options.body[selected.body];
-    const face = options.face[selected.face];
-    const hair = options.hair[selected.hair];
-    const eyes = options.eyes[selected.eyes];
-    const mouth = options.mouth[selected.mouth];
-    const top = options.tops[selected.tops];
-    const bottom = options.bottoms[selected.bottoms];
-    const shoes = options.shoes[selected.shoes];
-    const accessory = options.accessories[selected.accessories];
+    const bodyType =
+        options.body[selected.body.type];
+
+    const body =
+        bodyType.variants[selected.body.variant];
+
+    const faceType =
+        options.face[selected.face.type];
+
+    const face =
+        faceType.variants[selected.face.variant];
+
+    const hairType =
+        options.hair[selected.hair.type];
+
+    const hair =
+        hairType.variants[selected.hair.variant];
+
+    const eyes =
+        options.eyes[selected.eyes.type]
+            .variants[selected.eyes.variant];
+
+    const mouth =
+        options.mouth[selected.mouth.type]
+            .variants[selected.mouth.variant];
+
+    const topType =
+        options.tops[selected.tops.type];
+
+    const top =
+        topType.variants[selected.tops.variant];
+
+    const bottomType =
+        options.bottoms[selected.bottoms.type];
+
+    const bottom =
+        bottomType.variants[selected.bottoms.variant];
+
+    const shoeType =
+        options.shoes[selected.shoes.type];
+
+    const shoes =
+        shoeType.variants[selected.shoes.variant];
+
+    const accessoryType =
+        options.accessories[selected.accessories.type];
+
+    const accessory =
+        accessoryType.variants[selected.accessories.variant];
+
 
     avatar.innerHTML = svgElement(`
 
@@ -137,18 +448,21 @@ function drawAvatar() {
             fill="rgba(80,110,130,0.16)"
         />
 
+
         <!-- BACK HAIR -->
         ${drawBackHair(hair)}
 
+
         <!-- LEGS -->
         <g>
+
             <rect
                 x="142"
                 y="430"
                 width="42"
                 height="82"
                 rx="20"
-                fill="${body.skin}"
+                fill="${body.color}"
             />
 
             <rect
@@ -157,28 +471,34 @@ function drawAvatar() {
                 width="42"
                 height="82"
                 rx="20"
-                fill="${body.skin}"
+                fill="${body.color}"
             />
+
         </g>
 
+
         <!-- SHOES -->
-        ${drawShoes(shoes)}
+        ${drawShoes(shoes, shoeType.style)}
+
 
         <!-- BOTTOMS -->
-        ${drawBottoms(bottom, body.skin)}
+        ${drawBottoms(bottom, bottomType.style)}
 
-        <!-- TORSO / TOP -->
-        ${drawTop(top)}
+
+        <!-- TOP -->
+        ${drawTop(top, topType.style)}
+
 
         <!-- ARMS -->
         <g>
+
             <rect
                 x="96"
                 y="315"
                 width="48"
                 height="135"
                 rx="24"
-                fill="${body.skin}"
+                fill="${body.color}"
                 transform="rotate(8 120 315)"
             />
 
@@ -188,10 +508,12 @@ function drawAvatar() {
                 width="48"
                 height="135"
                 rx="24"
-                fill="${body.skin}"
+                fill="${body.color}"
                 transform="rotate(-8 280 315)"
             />
+
         </g>
+
 
         <!-- NECK -->
         <rect
@@ -200,32 +522,44 @@ function drawAvatar() {
             width="50"
             height="55"
             rx="20"
-            fill="${body.skin}"
+            fill="${body.color}"
         />
 
+
         <!-- FACE -->
-        ${drawFace(face, body.skin)}
+        ${drawFace(face, body.color)}
+
 
         <!-- EYES -->
         ${drawEyes(eyes)}
 
+
         <!-- MOUTH -->
         ${drawMouth(mouth)}
+
 
         <!-- FRONT HAIR -->
         ${drawFrontHair(hair)}
 
+
         <!-- ACCESSORY -->
-        ${drawAccessory(accessory)}
+        ${drawAccessory(
+            accessory,
+            accessoryType.style
+        )}
 
     `);
 
-    avatar.querySelector("svg").style.width = "100%";
-    avatar.querySelector("svg").style.height = "100%";
+    const svg = avatar.querySelector("svg");
+
+    svg.style.width = "100%";
+    svg.style.height = "100%";
 }
 
 
-// ---------- FACE ----------
+// ========================================
+// FACE
+// ========================================
 
 function drawFace(face, skin) {
 
@@ -256,11 +590,14 @@ function drawFace(face, skin) {
 }
 
 
-// ---------- HAIR ----------
+// ========================================
+// HAIR
+// ========================================
 
 function drawBackHair(hair) {
 
     if (hair.style === "messy") {
+
         return `
             <path
                 d="
@@ -279,7 +616,9 @@ function drawBackHair(hair) {
         `;
     }
 
+
     if (hair.style === "fluffy") {
+
         return `
             <path
                 d="
@@ -297,6 +636,7 @@ function drawBackHair(hair) {
             />
         `;
     }
+
 
     return `
         <path
@@ -318,6 +658,7 @@ function drawBackHair(hair) {
 function drawFrontHair(hair) {
 
     if (hair.style === "messy") {
+
         return `
             <path
                 d="
@@ -334,7 +675,9 @@ function drawFrontHair(hair) {
         `;
     }
 
+
     if (hair.style === "fluffy") {
+
         return `
             <path
                 d="
@@ -350,6 +693,7 @@ function drawFrontHair(hair) {
             />
         `;
     }
+
 
     return `
         <path
@@ -367,11 +711,14 @@ function drawFrontHair(hair) {
 }
 
 
-// ---------- EYES ----------
+// ========================================
+// EYES
+// ========================================
 
 function drawEyes(eyes) {
 
     if (eyes.style === "happy") {
+
         return `
             <path
                 d="M155 225 Q170 210 185 225"
@@ -391,7 +738,9 @@ function drawEyes(eyes) {
         `;
     }
 
+
     if (eyes.style === "sleepy") {
+
         return `
             <path
                 d="M155 225 Q170 235 185 225"
@@ -411,7 +760,9 @@ function drawEyes(eyes) {
         `;
     }
 
+
     if (eyes.style === "big") {
+
         return `
             <circle cx="170" cy="225" r="18" fill="#302B2A"/>
             <circle cx="230" cy="225" r="18" fill="#302B2A"/>
@@ -421,21 +772,49 @@ function drawEyes(eyes) {
         `;
     }
 
-    return `
-        <ellipse cx="170" cy="225" rx="12" ry="17" fill="#302B2A"/>
-        <ellipse cx="230" cy="225" rx="12" ry="17" fill="#302B2A"/>
 
-        <circle cx="166" cy="220" r="4" fill="white"/>
-        <circle cx="226" cy="220" r="4" fill="white"/>
+    return `
+        <ellipse
+            cx="170"
+            cy="225"
+            rx="12"
+            ry="17"
+            fill="#302B2A"
+        />
+
+        <ellipse
+            cx="230"
+            cy="225"
+            rx="12"
+            ry="17"
+            fill="#302B2A"
+        />
+
+        <circle
+            cx="166"
+            cy="220"
+            r="4"
+            fill="white"
+        />
+
+        <circle
+            cx="226"
+            cy="220"
+            r="4"
+            fill="white"
+        />
     `;
 }
 
 
-// ---------- MOUTH ----------
+// ========================================
+// MOUTH
+// ========================================
 
 function drawMouth(mouth) {
 
     if (mouth.style === "smile") {
+
         return `
             <path
                 d="M175 260 Q200 280 225 260"
@@ -447,7 +826,9 @@ function drawMouth(mouth) {
         `;
     }
 
+
     if (mouth.style === "open") {
+
         return `
             <ellipse
                 cx="200"
@@ -459,7 +840,9 @@ function drawMouth(mouth) {
         `;
     }
 
+
     if (mouth.style === "neutral") {
+
         return `
             <line
                 x1="185"
@@ -473,6 +856,7 @@ function drawMouth(mouth) {
         `;
     }
 
+
     return `
         <path
             d="M190 263 Q200 269 210 263"
@@ -485,11 +869,14 @@ function drawMouth(mouth) {
 }
 
 
-// ---------- TOPS ----------
+// ========================================
+// TOPS
+// ========================================
 
-function drawTop(top) {
+function drawTop(top, style) {
 
-    if (top.style === "hoodie") {
+    if (style === "hoodie") {
+
         return `
             <path
                 d="
@@ -515,10 +902,30 @@ function drawTop(top) {
                 stroke="rgba(255,255,255,0.35)"
                 stroke-width="7"
             />
+
+            <line
+                x1="185"
+                y1="350"
+                x2="185"
+                y2="420"
+                stroke="rgba(0,0,0,0.15)"
+                stroke-width="4"
+            />
+
+            <line
+                x1="215"
+                y1="350"
+                x2="215"
+                y2="420"
+                stroke="rgba(0,0,0,0.15)"
+                stroke-width="4"
+            />
         `;
     }
 
-    if (top.style === "sweater") {
+
+    if (style === "sweater") {
+
         return `
             <path
                 d="
@@ -539,6 +946,40 @@ function drawTop(top) {
             />
         `;
     }
+
+
+    if (style === "jacket") {
+
+        return `
+            <path
+                d="
+                    M145 310
+                    L115 340
+                    L135 455
+                    L265 455
+                    L285 340
+                    L255 310
+                    L225 300
+                    L200 325
+                    L175 300 Z
+                "
+                fill="${top.color}"
+                stroke="#343434"
+                stroke-width="5"
+                stroke-linejoin="round"
+            />
+
+            <line
+                x1="200"
+                y1="325"
+                x2="200"
+                y2="450"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="4"
+            />
+        `;
+    }
+
 
     return `
         <path
@@ -562,11 +1003,14 @@ function drawTop(top) {
 }
 
 
-// ---------- BOTTOMS ----------
+// ========================================
+// BOTTOMS
+// ========================================
 
-function drawBottoms(bottom, skin) {
+function drawBottoms(bottom, style) {
 
-    if (bottom.style === "shorts") {
+    if (style === "shorts") {
+
         return `
             <path
                 d="
@@ -584,6 +1028,7 @@ function drawBottoms(bottom, skin) {
             />
         `;
     }
+
 
     return `
         <path
@@ -604,9 +1049,60 @@ function drawBottoms(bottom, skin) {
 }
 
 
-// ---------- SHOES ----------
+// ========================================
+// SHOES
+// ========================================
 
-function drawShoes(shoes) {
+function drawShoes(shoes, style) {
+
+    if (style === "boots") {
+
+        return `
+            <path
+                d="
+                    M135 485
+                    L185 485
+                    L185 525
+                    L120 525
+                    Q115 500 135 485 Z
+                "
+                fill="${shoes.color}"
+                stroke="#343434"
+                stroke-width="5"
+            />
+
+            <path
+                d="
+                    M215 485
+                    L265 485
+                    Q285 500 280 525
+                    L215 525 Z
+                "
+                fill="${shoes.color}"
+                stroke="#343434"
+                stroke-width="5"
+            />
+
+            <line
+                x1="125"
+                y1="510"
+                x2="180"
+                y2="510"
+                stroke="${shoes.accent}"
+                stroke-width="6"
+            />
+
+            <line
+                x1="220"
+                y1="510"
+                x2="275"
+                y2="510"
+                stroke="${shoes.accent}"
+                stroke-width="6"
+            />
+        `;
+    }
+
 
     return `
         <path
@@ -651,15 +1147,18 @@ function drawShoes(shoes) {
 }
 
 
-// ---------- ACCESSORIES ----------
+// ========================================
+// ACCESSORIES
+// ========================================
 
-function drawAccessory(accessory) {
+function drawAccessory(accessory, style) {
 
-    if (accessory.style === "glasses") {
+    if (style === "glasses") {
+
         return `
             <g
                 fill="rgba(255,255,255,0.25)"
-                stroke="#343434"
+                stroke="${accessory.color || "#343434"}"
                 stroke-width="5"
             >
                 <circle cx="170" cy="225" r="27"/>
@@ -669,7 +1168,9 @@ function drawAccessory(accessory) {
         `;
     }
 
-    if (accessory.style === "cap") {
+
+    if (style === "cap") {
+
         return `
             <path
                 d="
@@ -679,7 +1180,7 @@ function drawAccessory(accessory) {
                     Q235 150 200 155
                     Q165 150 130 170 Z
                 "
-                fill="#4C6FD1"
+                fill="${accessory.color}"
                 stroke="#343434"
                 stroke-width="5"
             />
@@ -690,14 +1191,16 @@ function drawAccessory(accessory) {
                     Q250 150 285 170
                     Q245 185 200 170 Z
                 "
-                fill="#405DB2"
+                fill="${accessory.color}"
                 stroke="#343434"
                 stroke-width="5"
             />
         `;
     }
 
-    if (accessory.style === "headphones") {
+
+    if (style === "headphones") {
+
         return `
             <path
                 d="
@@ -706,255 +1209,617 @@ function drawAccessory(accessory) {
                     Q275 115 275 220
                 "
                 fill="none"
-                stroke="#444444"
+                stroke="${accessory.color}"
                 stroke-width="14"
                 stroke-linecap="round"
             />
 
-            <rect x="112" y="205" width="28" height="55" rx="12" fill="#444444"/>
-            <rect x="260" y="205" width="28" height="55" rx="12" fill="#444444"/>
+            <rect
+                x="112"
+                y="205"
+                width="28"
+                height="55"
+                rx="12"
+                fill="${accessory.color}"
+            />
+
+            <rect
+                x="260"
+                y="205"
+                width="28"
+                height="55"
+                rx="12"
+                fill="${accessory.color}"
+            />
         `;
     }
+
 
     return "";
 }
 
 
-// ---------- ITEM GRID ----------
+// ========================================
+// MINI PREVIEW SVG
+// ========================================
 
-function renderItems(category) {
+function miniPreview(category, type, variant) {
+
+    const color =
+        variant.color || "#777";
+
+    let artwork = "";
+
+
+    if (
+        category === "tops" ||
+        category === "bottoms"
+    ) {
+
+        artwork = `
+            <path
+                d="
+                    M18 8
+                    L10 15
+                    L13 38
+                    L35 38
+                    L38 15
+                    L30 8
+                    L24 14
+                    L18 8 Z
+                "
+                fill="${color}"
+                stroke="#454545"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "shoes") {
+
+        artwork = `
+            <path
+                d="
+                    M7 28
+                    Q15 23 22 28
+                    L22 35
+                    L6 35
+                    Q4 31 7 28 Z
+                "
+                fill="${color}"
+                stroke="#454545"
+                stroke-width="2"
+            />
+
+            <path
+                d="
+                    M28 28
+                    Q35 23 42 28
+                    Q45 31 44 35
+                    L28 35 Z
+                "
+                fill="${color}"
+                stroke="#454545"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "hair") {
+
+        artwork = `
+            <path
+                d="
+                    M7 31
+                    Q5 9 25 7
+                    Q45 9 43 31
+                    Q34 24 25 26
+                    Q16 24 7 31 Z
+                "
+                fill="${variant.color}"
+                stroke="#454545"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "body") {
+
+        artwork = `
+            <circle
+                cx="25"
+                cy="25"
+                r="16"
+                fill="${color}"
+                stroke="#454545"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "face") {
+
+        artwork = `
+            <ellipse
+                cx="25"
+                cy="25"
+                rx="16"
+                ry="17"
+                fill="#F2C6A0"
+                stroke="#454545"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "eyes") {
+
+        artwork = `
+            <circle cx="18" cy="25" r="4" fill="#292929"/>
+            <circle cx="32" cy="25" r="4" fill="#292929"/>
+        `;
+    }
+
+
+    else if (category === "mouth") {
+
+        artwork = `
+            <path
+                d="M18 27 Q25 34 32 27"
+                fill="none"
+                stroke="#633E3A"
+                stroke-width="3"
+                stroke-linecap="round"
+            />
+        `;
+    }
+
+
+    else if (category === "accessories") {
+
+        if (type.style === "glasses") {
+
+            artwork = `
+                <circle
+                    cx="18"
+                    cy="25"
+                    r="7"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="3"
+                />
+
+                <circle
+                    cx="32"
+                    cy="25"
+                    r="7"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="3"
+                />
+
+                <line
+                    x1="25"
+                    y1="25"
+                    x2="25"
+                    y2="25"
+                    stroke="${color}"
+                    stroke-width="3"
+                />
+            `;
+        }
+
+        else if (type.style === "cap") {
+
+            artwork = `
+                <path
+                    d="
+                        M8 23
+                        Q12 8 25 8
+                        Q38 8 42 23
+                        Q25 17 8 23 Z
+                    "
+                    fill="${color}"
+                    stroke="#454545"
+                    stroke-width="2"
+                />
+            `;
+        }
+
+        else if (type.style === "headphones") {
+
+            artwork = `
+                <path
+                    d="M10 27 Q10 8 25 8 Q40 8 40 27"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="5"
+                />
+
+                <rect
+                    x="7"
+                    y="23"
+                    width="6"
+                    height="11"
+                    rx="3"
+                    fill="${color}"
+                />
+
+                <rect
+                    x="37"
+                    y="23"
+                    width="6"
+                    height="11"
+                    rx="3"
+                    fill="${color}"
+                />
+            `;
+        }
+
+        else {
+
+            artwork = `
+                <text
+                    x="25"
+                    y="31"
+                    text-anchor="middle"
+                    font-size="22"
+                    fill="#777"
+                >—</text>
+            `;
+        }
+    }
+
+
+    return `
+        <svg
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+            width="42"
+            height="42"
+        >
+            ${artwork}
+        </svg>
+    `;
+}
+
+
+// ========================================
+// MAIN MENU
+// ========================================
+
+function renderTypeMenu(category) {
+
+    menuLevel = "types";
 
     currentCategory = category;
 
-    const categoryData = options[category];
-
     categoryTitle.textContent =
-        category.charAt(0).toUpperCase() + category.slice(1);
+        category.charAt(0).toUpperCase() +
+        category.slice(1);
 
     itemsContainer.innerHTML = "";
 
-    categoryData.forEach((item, index) => {
 
-        const button = document.createElement("button");
+    options[category].forEach((type, index) => {
+
+        const button =
+            document.createElement("button");
 
         button.className = "item-button";
 
-        if (selected[category] === index) {
+
+        if (
+            selected[category].type === index
+        ) {
             button.classList.add("selected");
         }
 
+
+        const previewVariant =
+            type.variants[selected[category].variant]
+            || type.variants[0];
+
+
         button.innerHTML = `
+
             <div class="item-preview">
-                ${getItemPreview(category, item)}
+
+                ${miniPreview(
+                    category,
+                    type,
+                    previewVariant
+                )}
+
             </div>
 
-            <span>${item.name}</span>
+            <span>${type.name}</span>
+
         `;
+
 
         button.addEventListener("click", () => {
 
-            selected[category] = index;
+            selected[category].type = index;
+
+            selected[category].variant = 0;
 
             drawAvatar();
-            renderItems(category);
+
+            renderVariantMenu(category);
         });
+
 
         itemsContainer.appendChild(button);
     });
 }
 
 
-// ---------- ITEM PREVIEWS ----------
+// ========================================
+// VARIANT / COLOR MENU
+// ========================================
 
-function getItemPreview(category, item) {
+function renderVariantMenu(category) {
 
-    if (category === "body") {
-        return `
-            <span
-                style="
-                    width:28px;
-                    height:28px;
-                    display:block;
-                    border-radius:50%;
-                    background:${item.skin};
-                    border:2px solid #777;
-                "
-            ></span>
-        `;
-    }
+    menuLevel = "variants";
 
-    if (category === "hair") {
-        return `
-            <span
-                style="
-                    width:30px;
-                    height:22px;
-                    display:block;
-                    border-radius:50% 50% 35% 35%;
-                    background:${item.color};
-                "
-            ></span>
-        `;
-    }
+    const type =
+        options[category][selected[category].type];
 
-    if (category === "tops") {
-        return `
-            <span
-                style="
-                    width:30px;
-                    height:28px;
-                    display:block;
-                    border-radius:8px;
-                    background:${item.color};
-                "
-            ></span>
-        `;
-    }
 
-    if (category === "bottoms") {
-        return `
-            <span
-                style="
-                    width:28px;
-                    height:28px;
-                    display:block;
-                    border-radius:5px;
-                    background:${item.color};
-                "
-            ></span>
-        `;
-    }
+    categoryTitle.textContent =
+        `${type.name}`;
 
-    if (category === "shoes") {
-        return `
-            <span
-                style="
-                    width:32px;
-                    height:16px;
-                    display:block;
-                    border-radius:8px;
-                    background:${item.color};
-                    border:2px solid #555;
-                "
-            ></span>
-        `;
-    }
 
-    if (category === "accessories") {
+    itemsContainer.innerHTML = "";
 
-        if (item.style === "glasses") {
-            return "👓";
+
+    // BACK BUTTON
+
+    const backButton =
+        document.createElement("button");
+
+    backButton.className =
+        "item-button";
+
+    backButton.innerHTML = `
+
+        <div class="item-preview">
+            ←
+        </div>
+
+        <span>Back</span>
+
+    `;
+
+
+    backButton.addEventListener(
+        "click",
+        () => renderTypeMenu(category)
+    );
+
+
+    itemsContainer.appendChild(backButton);
+
+
+    // VARIANTS
+
+    type.variants.forEach(
+        (variant, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "item-button";
+
+
+            if (
+                selected[category].variant === index
+            ) {
+                button.classList.add("selected");
+            }
+
+
+            button.innerHTML = `
+
+                <div class="item-preview">
+
+                    ${miniPreview(
+                        category,
+                        type,
+                        variant
+                    )}
+
+                </div>
+
+                <span>${variant.name}</span>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selected[category].variant =
+                        index;
+
+                    drawAvatar();
+
+                    renderVariantMenu(category);
+                }
+            );
+
+
+            itemsContainer.appendChild(button);
         }
-
-        if (item.style === "cap") {
-            return "🧢";
-        }
-
-        if (item.style === "headphones") {
-            return "🎧";
-        }
-
-        return "—";
-    }
-
-    if (category === "eyes") {
-        return "👁";
-    }
-
-    if (category === "mouth") {
-        return "☺";
-    }
-
-    if (category === "face") {
-        return "●";
-    }
-
-    return "?";
+    );
 }
 
 
-// ---------- CATEGORY BUTTONS ----------
+// ========================================
+// CATEGORY BUTTONS
+// ========================================
 
 categoryButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        categoryButtons.forEach(otherButton => {
-            otherButton.classList.remove("active");
-        });
+        categoryButtons.forEach(
+            otherButton => {
+                otherButton.classList.remove(
+                    "active"
+                );
+            }
+        );
+
 
         button.classList.add("active");
 
-        renderItems(button.dataset.category);
+
+        currentCategory =
+            button.dataset.category;
+
+
+        renderTypeMenu(currentCategory);
     });
 });
 
 
-// ---------- RANDOMIZE ----------
+// ========================================
+// RANDOMIZE
+// ========================================
 
-randomizeButton.addEventListener("click", () => {
+randomizeButton.addEventListener(
+    "click",
+    () => {
 
-    Object.keys(options).forEach(category => {
+        Object.keys(options).forEach(
+            category => {
 
-        selected[category] =
-            Math.floor(Math.random() * options[category].length);
-    });
-
-    drawAvatar();
-    renderItems(currentCategory);
-});
+                selected[category].type =
+                    Math.floor(
+                        Math.random() *
+                        options[category].length
+                    );
 
 
-// ---------- SAVE AVATAR ----------
+                const type =
+                    options[category][
+                        selected[category].type
+                    ];
 
-saveButton.addEventListener("click", () => {
 
-    const svg = avatar.querySelector("svg");
+                selected[category].variant =
+                    Math.floor(
+                        Math.random() *
+                        type.variants.length
+                    );
+            }
+        );
 
-    if (!svg) {
-        return;
+
+        drawAvatar();
+
+        renderTypeMenu(currentCategory);
     }
-
-    const serializer = new XMLSerializer();
-
-    const svgString = serializer.serializeToString(svg);
-
-    const blob = new Blob(
-        [svgString],
-        { type: "image/svg+xml;charset=utf-8" }
-    );
-
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-
-    const avatarName =
-        nameInput.value.trim() || "my-avatar";
-
-    link.href = url;
-    link.download = `${avatarName}.svg`;
-
-    link.click();
-
-    URL.revokeObjectURL(url);
-});
+);
 
 
-// ---------- NAME MEMORY ----------
+// ========================================
+// SAVE AVATAR
+// ========================================
+
+saveButton.addEventListener(
+    "click",
+    () => {
+
+        const svg =
+            avatar.querySelector("svg");
+
+
+        if (!svg) {
+            return;
+        }
+
+
+        const serializer =
+            new XMLSerializer();
+
+
+        const svgString =
+            serializer.serializeToString(svg);
+
+
+        const blob =
+            new Blob(
+                [svgString],
+                {
+                    type:
+                        "image/svg+xml;charset=utf-8"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        const avatarName =
+            nameInput.value.trim() ||
+            "my-avatar";
+
+
+        link.href = url;
+
+        link.download =
+            `${avatarName}.svg`;
+
+
+        link.click();
+
+
+        URL.revokeObjectURL(url);
+    }
+);
+
+
+// ========================================
+// NAME MEMORY
+// ========================================
 
 nameInput.value =
-    localStorage.getItem("avatarName") || "";
-
-nameInput.addEventListener("input", () => {
-
-    localStorage.setItem(
-        "avatarName",
-        nameInput.value
-    );
-});
+    localStorage.getItem(
+        "avatarName"
+    ) || "";
 
 
-// ---------- START ----------
+nameInput.addEventListener(
+    "input",
+    () => {
+
+        localStorage.setItem(
+            "avatarName",
+            nameInput.value
+        );
+    }
+);
+
+
+// ========================================
+// START GAME
+// ========================================
 
 drawAvatar();
-renderItems("body");
+
+renderTypeMenu("body");
