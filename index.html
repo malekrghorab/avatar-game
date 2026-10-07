@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Avatar Game</h1>
+
+        <div class="name-area">
+            <label for="avatar-name">Name</label>
+            <input id="avatar-name" type="text" placeholder="Your avatar's name">
+        </div>
+
+        <button id="randomize-button">Randomize</button>
+        <button id="save-button">Save Avatar</button>
+    </header>
+
+    <main>
+
+        <section class="categories">
+            <h2>Customize</h2>
+
+            <button class="category-button active" data-category="body">Body</button>
+            <button class="category-button" data-category="face">Face</button>
+            <button class="category-button" data-category="hair">Hair</button>
+            <button class="category-button" data-category="eyes">Eyes</button>
+            <button class="category-button" data-category="mouth">Mouth</button>
+            <button class="category-button" data-category="tops">Tops</button>
+            <button class="category-button" data-category="bottoms">Bottoms</button>
+            <button class="category-button" data-category="shoes">Shoes</button>
+            <button class="category-button" data-category="accessories">Accessories</button>
+        </section>
+
+        <section class="avatar-area">
+
+            <div id="avatar">
+                <!-- Avatar will be built here -->
+            </div>
+
+        </section>
+
+        <section class="items-area">
+            <h2 id="category-title">Body</h2>
+
+            <div id="items">
+                <!-- Items will appear here -->
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
