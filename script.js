@@ -1,7 +1,7 @@
 // ========================================
 // AVATAR GAME
 // POLISHED 2.5D AVATAR ENGINE
-// SLEEVES + ACCESSORY HAIR FIX
+// HEAD + HAIR + ACCESSORY OVERHAUL
 // ========================================
 
 const selected = {
@@ -16,1092 +16,1022 @@ const selected = {
     accessories: { type: 0, variant: 0 }
 };
 
+
+// ========================================
+// OPTIONS
+// ========================================
+
 const options = {
+
     body: [
-        { name: "Light", variants: ["Light"] },
-        { name: "Warm", variants: ["Warm"] },
-        { name: "Tan", variants: ["Tan"] },
-        { name: "Deep", variants: ["Deep"] }
+        {
+            name: "Body",
+            variants: [
+                { name: "Light", color: "#F3C9A9" },
+                { name: "Warm", color: "#DFA982" },
+                { name: "Tan", color: "#BE805B" },
+                { name: "Deep", color: "#87563F" }
+            ]
+        }
     ],
 
     face: [
-        { name: "Round", variants: ["Round"] },
-        { name: "Soft", variants: ["Soft"] },
-        { name: "Warm", variants: ["Warm"] }
+        {
+            name: "Face",
+            variants: [
+                { name: "Round", color: "#F3C9A9" },
+                { name: "Soft", color: "#E9B992" },
+                { name: "Warm", color: "#D49A72" }
+            ]
+        }
     ],
 
     hair: [
-        { name: "Short", variants: ["Black", "Brown", "Blonde", "Blue"] },
-        { name: "Fluffy", variants: ["Black", "Brown", "Blonde", "Blue"] },
-        { name: "Wavy", variants: ["Black", "Brown", "Blonde", "Blue"] },
-        { name: "Long", variants: ["Black", "Brown", "Blonde", "Blue"] }
+        {
+            name: "Short",
+            variants: [
+                { name: "Black", color: "#17191E" },
+                { name: "Brown", color: "#4A3026" },
+                { name: "Dark Brown", color: "#30211C" },
+                { name: "Blonde", color: "#C99B52" },
+                { name: "White", color: "#E7E8EA" }
+            ]
+        },
+        {
+            name: "Fluffy",
+            variants: [
+                { name: "Black", color: "#17191E" },
+                { name: "Brown", color: "#4A3026" },
+                { name: "Blonde", color: "#C99B52" },
+                { name: "White", color: "#E7E8EA" }
+            ]
+        },
+        {
+            name: "Wavy",
+            variants: [
+                { name: "Black", color: "#17191E" },
+                { name: "Brown", color: "#4A3026" },
+                { name: "Blonde", color: "#C99B52" },
+                { name: "White", color: "#E7E8EA" }
+            ]
+        },
+        {
+            name: "Long",
+            variants: [
+                { name: "Black", color: "#17191E" },
+                { name: "Brown", color: "#4A3026" },
+                { name: "Blonde", color: "#C99B52" },
+                { name: "White", color: "#E7E8EA" }
+            ]
+        }
     ],
 
     eyes: [
-        { name: "Brown", variants: ["Brown"] },
-        { name: "Blue", variants: ["Blue"] },
-        { name: "Green", variants: ["Green"] },
-        { name: "Gray", variants: ["Gray"] }
+        {
+            name: "Eyes",
+            variants: [
+                { name: "Brown", color: "#543629" },
+                { name: "Blue", color: "#4E83C4" },
+                { name: "Green", color: "#5E9564" },
+                { name: "Gray", color: "#737C86" }
+            ]
+        }
     ],
 
     mouth: [
-        { name: "Smile", variants: ["Smile"] },
-        { name: "Small", variants: ["Small"] },
-        { name: "Neutral", variants: ["Neutral"] }
+        {
+            name: "Mouth",
+            variants: [
+                { name: "Smile", color: "#A95F62" },
+                { name: "Small", color: "#8D5557" },
+                { name: "Neutral", color: "#744A4B" }
+            ]
+        }
     ],
 
     tops: [
-        { name: "Shirts", variants: ["Red", "Blue", "Green", "White", "Black"] },
-        { name: "Hoodies", variants: ["Red", "Blue", "Green", "Purple", "Black"] },
-        { name: "Sweaters", variants: ["Cream", "Blue", "Green", "Gray", "Black"] },
-        { name: "Jackets", variants: ["Blue", "Black", "Brown", "Green"] }
+        {
+            name: "Shirts",
+            variants: [
+                { name: "Red", color: "#D94A4A" },
+                { name: "Blue", color: "#4F79C7" },
+                { name: "Green", color: "#4E9364" },
+                { name: "Black", color: "#25272C" },
+                { name: "White", color: "#E8E8E8" }
+            ]
+        },
+        {
+            name: "Hoodies",
+            variants: [
+                { name: "Red", color: "#C74747" },
+                { name: "Blue", color: "#526FAE" },
+                { name: "Green", color: "#4F805F" },
+                { name: "Black", color: "#25272C" },
+                { name: "Purple", color: "#7759A8" }
+            ]
+        },
+        {
+            name: "Sweaters",
+            variants: [
+                { name: "Red", color: "#B94C4C" },
+                { name: "Blue", color: "#526E9C" },
+                { name: "Green", color: "#56806A" },
+                { name: "Cream", color: "#D8C7A7" }
+            ]
+        },
+        {
+            name: "Jackets",
+            variants: [
+                { name: "Black", color: "#262A30" },
+                { name: "Blue", color: "#405E86" },
+                { name: "Brown", color: "#725541" },
+                { name: "Green", color: "#4E6657" }
+            ]
+        }
     ],
 
     bottoms: [
-        { name: "Jeans", variants: ["Blue", "Dark Blue", "Black"] },
-        { name: "Shorts", variants: ["Black", "Blue", "Gray", "Khaki"] }
+        {
+            name: "Jeans",
+            variants: [
+                { name: "Blue", color: "#4D6E9D" },
+                { name: "Dark", color: "#303D52" },
+                { name: "Black", color: "#26282C" },
+                { name: "Light", color: "#7593B8" }
+            ]
+        },
+        {
+            name: "Shorts",
+            variants: [
+                { name: "Black", color: "#292B30" },
+                { name: "Blue", color: "#4F719D" },
+                { name: "Green", color: "#536E5B" },
+                { name: "Brown", color: "#765A45" }
+            ]
+        }
     ],
 
     shoes: [
-        { name: "Sneakers", variants: ["White", "Black", "Red", "Blue"] },
-        { name: "Boots", variants: ["Black", "Brown", "Tan"] }
+        {
+            name: "Sneakers",
+            variants: [
+                { name: "White", color: "#E9EAEC" },
+                { name: "Black", color: "#25272C" },
+                { name: "Red", color: "#C94C4C" },
+                { name: "Blue", color: "#4D6FA9" }
+            ]
+        },
+        {
+            name: "Boots",
+            variants: [
+                { name: "Brown", color: "#76533D" },
+                { name: "Black", color: "#292A2D" },
+                { name: "Tan", color: "#A4754F" }
+            ]
+        }
     ],
 
     accessories: [
-        { name: "None", variants: ["None"] },
-        { name: "Glasses", variants: ["Black", "Blue", "Round"] },
-        { name: "Cap", variants: ["Black", "Blue", "Red", "Green"] },
-        { name: "Beanie", variants: ["Black", "Gray", "Blue", "Red"] },
-        { name: "Headphones", variants: ["Black", "White", "Blue", "Red"] }
+        {
+            name: "None",
+            variants: [
+                { name: "None", color: "#FFFFFF" }
+            ]
+        },
+        {
+            name: "Glasses",
+            variants: [
+                { name: "Black", color: "#202226" },
+                { name: "Silver", color: "#9CA2A9" },
+                { name: "Blue", color: "#496B91" }
+            ]
+        },
+        {
+            name: "Cap",
+            variants: [
+                { name: "Black", color: "#25272B" },
+                { name: "Blue", color: "#46658F" },
+                { name: "Red", color: "#B84949" },
+                { name: "Green", color: "#4D6957" }
+            ]
+        },
+        {
+            name: "Beanie",
+            variants: [
+                { name: "Black", color: "#292A2E" },
+                { name: "Gray", color: "#70747A" },
+                { name: "Blue", color: "#506887" },
+                { name: "Red", color: "#A94848" }
+            ]
+        },
+        {
+            name: "Headphones",
+            variants: [
+                { name: "Black", color: "#202226" },
+                { name: "White", color: "#D9DCE0" },
+                { name: "Blue", color: "#4B6791" },
+                { name: "Red", color: "#B94A4A" }
+            ]
+        }
     ]
 };
 
-const skinColors = {
-    Light: "#F7D2B5",
-    Warm: "#EAB895",
-    Tan: "#C98D68",
-    Deep: "#8E5A3D"
-};
 
-const hairColors = {
-    Black: "#17191F",
-    Brown: "#4A2C22",
-    Blonde: "#D9AE55",
-    Blue: "#355D91"
-};
+// ========================================
+// DOM
+// ========================================
 
-const eyeColors = {
-    Brown: "#493024",
-    Blue: "#4E88C5",
-    Green: "#4F916B",
-    Gray: "#737C86"
-};
+const avatar = document.getElementById("avatar");
+const itemsContainer = document.getElementById("items");
+const categoryTitle = document.getElementById("category-title");
+const categoryButtons = document.querySelectorAll(".category-button");
+const randomizeButton = document.getElementById("randomize-button");
+const saveButton = document.getElementById("save-button");
+const nameInput = document.getElementById("avatar-name");
 
-const topColors = {
-    Red: "#C84D55",
-    Blue: "#4C76B8",
-    Green: "#57906C",
-    White: "#EDEDED",
-    Black: "#252A32",
-    Purple: "#7864A8",
-    Cream: "#D9C9A7",
-    Gray: "#777E88",
-    Brown: "#76533F"
-};
+let currentCategory = "body";
 
-const bottomColors = {
-    Blue: "#466A9E",
-    "Dark Blue": "#304C78",
-    Black: "#282D35",
-    Gray: "#7C838C",
-    Khaki: "#A99A72"
-};
 
-const shoeColors = {
-    White: "#F2F3F4",
-    Black: "#22252B",
-    Red: "#B94A52",
-    Blue: "#4B6EA8",
-    Brown: "#704D3C",
-    Tan: "#A87855"
-};
+// ========================================
+// SVG HELPERS
+// ========================================
 
 function esc(value) {
     return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 }
 
-function current(category) {
-    return options[category][selected[category].type];
+function hexToRgb(hex) {
+    hex = hex.replace("#", "");
+
+    if (hex.length === 3) {
+        hex = hex.split("").map(x => x + x).join("");
+    }
+
+    return {
+        r: parseInt(hex.substring(0, 2), 16),
+        g: parseInt(hex.substring(2, 4), 16),
+        b: parseInt(hex.substring(4, 6), 16)
+    };
 }
 
-function currentVariant(category) {
-    return current(category).variants[selected[category].variant];
+function rgbToHex(r, g, b) {
+    return "#" + [r, g, b]
+        .map(v => Math.max(0, Math.min(255, Math.round(v)))
+        .toString(16).padStart(2, "0"))
+        .join("");
 }
 
-function createSVG(content) {
+function shadeColor(hex, amount) {
+    const rgb = hexToRgb(hex);
+
+    return rgbToHex(
+        rgb.r + amount,
+        rgb.g + amount,
+        rgb.b + amount
+    );
+}
+
+function getColor(category) {
+    const type = options[category][selected[category].type];
+    return type.variants[selected[category].variant].color;
+}
+
+
+// ========================================
+// MAIN SVG
+// ========================================
+
+function createSVG() {
     return `
     <svg
-        viewBox="0 0 360 560"
+        id="avatar-svg"
+        viewBox="0 0 360 600"
         xmlns="http://www.w3.org/2000/svg"
-        role="img"
+        width="340"
+        height="560"
         aria-label="Avatar"
     >
+
         <defs>
 
-            <linearGradient id="skinGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="${skinColors[currentVariant("body")]}"/>
-                <stop offset="65%" stop-color="${skinColors[currentVariant("body")]}"/>
-                <stop offset="100%" stop-color="#B77B5C"/>
+            <linearGradient id="skinGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+                <stop offset="0%" stop-color="#FFF0E1"/>
+                <stop offset="48%" stop-color="${getColor("body")}"/>
+                <stop offset="100%" stop-color="${shadeColor(getColor("body"), -22)}"/>
             </linearGradient>
 
-            <linearGradient id="hairGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="${hairColors[currentVariant("hair")]}"/>
-                <stop offset="100%" stop-color="#101217"/>
+            <linearGradient id="skinShadow"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".20"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity=".12"/>
             </linearGradient>
 
-            <linearGradient id="topGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="${topColors[currentVariant("tops")]}"/>
-                <stop offset="100%" stop-color="#30343C"/>
+            <linearGradient id="hairGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+                <stop offset="0%" stop-color="${shadeColor(getColor("hair"), 20)}"/>
+                <stop offset="45%" stop-color="${getColor("hair")}"/>
+                <stop offset="100%" stop-color="${shadeColor(getColor("hair"), -25)}"/>
             </linearGradient>
 
-            <linearGradient id="bottomGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="${bottomColors[currentVariant("bottoms")]}"/>
-                <stop offset="100%" stop-color="#252A32"/>
+            <linearGradient id="clothGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+                <stop offset="0%" stop-color="${shadeColor(getColor("tops"), 20)}"/>
+                <stop offset="50%" stop-color="${getColor("tops")}"/>
+                <stop offset="100%" stop-color="${shadeColor(getColor("tops"), -22)}"/>
             </linearGradient>
 
-            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+            <linearGradient id="bottomGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+                <stop offset="0%" stop-color="${shadeColor(getColor("bottoms"), 18)}"/>
+                <stop offset="50%" stop-color="${getColor("bottoms")}"/>
+                <stop offset="100%" stop-color="${shadeColor(getColor("bottoms"), -22)}"/>
+            </linearGradient>
+
+            <linearGradient id="shoeGradient"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1">
+                <stop offset="0%" stop-color="${shadeColor(getColor("shoes"), 15)}"/>
+                <stop offset="100%" stop-color="${shadeColor(getColor("shoes"), -18)}"/>
+            </linearGradient>
+
+            <filter id="avatarShadow"
+                x="-30%"
+                y="-30%"
+                width="160%"
+                height="170%">
                 <feDropShadow
                     dx="0"
                     dy="7"
                     stdDeviation="7"
-                    flood-color="#253746"
-                    flood-opacity="0.18"
-                />
+                    flood-color="#23384A"
+                    flood-opacity=".16"/>
             </filter>
 
-            <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%">
+            <filter id="softShadow"
+                x="-30%"
+                y="-30%"
+                width="160%"
+                height="170%">
                 <feDropShadow
                     dx="0"
                     dy="3"
                     stdDeviation="3"
-                    flood-color="#202B35"
-                    flood-opacity="0.18"
-                />
+                    flood-color="#000000"
+                    flood-opacity=".16"/>
             </filter>
-
-            <clipPath id="headClip">
-                <path d="
-                    M180 104
-                    C145 104 123 128 122 166
-                    L125 214
-                    C127 251 148 274 180 274
-                    C212 274 233 251 235 214
-                    L238 166
-                    C237 128 215 104 180 104
-                    Z
-                "/>
-            </clipPath>
 
         </defs>
 
         <!-- Ground shadow -->
         <ellipse
             cx="180"
-            cy="529"
-            rx="91"
-            ry="15"
-            fill="#667987"
-            opacity="0.18"
+            cy="565"
+            rx="92"
+            ry="14"
+            fill="#526B7A"
+            opacity=".13"
         />
 
-        ${content}
-    </svg>`;
-}
+        <!-- BODY / LEGS -->
+        ${drawLegs()}
 
-/* ========================================
-   LEGS
-======================================== */
+        <!-- SHOES -->
+        ${drawShoes()}
 
-function drawLegs() {
-    const bottom = current("bottoms").name;
+        <!-- BACK HAIR -->
+        ${drawBackHair()}
 
-    if (bottom === "Shorts") {
-        return `
-            <path
-                d="M139 399 L177 399 L174 468 L137 468 Z"
-                fill="url(#bottomGradient)"
-            />
+        <!-- TORSO -->
+        ${drawTop()}
 
-            <path
-                d="M183 399 L221 399 L223 468 L186 468 Z"
-                fill="url(#bottomGradient)"
-            />
+        <!-- ARMS -->
+        ${drawArms()}
 
-            <path
-                d="M139 399 L177 399 L174 412 L140 412 Z"
-                fill="#252B34"
-                opacity=".25"
-            />
+        <!-- NECK -->
+        ${drawNeck()}
 
-            <path
-                d="M183 399 L221 399 L221 412 L186 412 Z"
-                fill="#252B34"
-                opacity=".25"
-            />
+        <!-- HEAD -->
+        ${drawHead()}
 
-            <path
-                d="M145 414 C153 419 164 419 173 414"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".12"
-            />
+        <!-- EARS -->
+        ${drawEars()}
 
-            <path
-                d="M187 414 C196 419 207 419 218 414"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".12"
-            />
-        `;
-    }
+        <!-- FACE -->
+        ${drawFace()}
 
-    return `
-        <path
-            d="M141 394
-               C151 390 168 391 177 396
-               L176 476
-               C167 484 150 484 140 477
-               Z"
-            fill="url(#bottomGradient)"
-        />
+        <!-- FRONT HAIR -->
+        ${drawFrontHair()}
 
-        <path
-            d="M183 396
-               C192 391 209 390 219 394
-               L220 477
-               C210 484 193 484 184 476
-               Z"
-            fill="url(#bottomGradient)"
-        />
+        <!-- ACCESSORIES -->
+        ${drawAccessory()}
 
-        <path
-            d="M146 407 C155 412 166 413 174 408"
-            fill="none"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".10"
-        />
-
-        <path
-            d="M186 408 C194 413 206 412 215 407"
-            fill="none"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".10"
-        />
+    </svg>
     `;
 }
 
-/* ========================================
-   SHOES
-======================================== */
+
+// ========================================
+// LEGS
+// ========================================
+
+function drawLegs() {
+    const bottom = getColor("bottoms");
+
+    return `
+        <g filter="url(#softShadow)">
+
+            <path
+                d="M126 418
+                   C126 458 127 501 128 533
+                   L161 533
+                   C164 492 166 452 165 420
+                   Z"
+                fill="url(#bottomGradient)"
+            />
+
+            <path
+                d="M195 420
+                   C194 455 196 495 198 533
+                   L231 533
+                   C232 493 234 453 232 418
+                   Z"
+                fill="url(#bottomGradient)"
+            />
+
+            <path
+                d="M130 437
+                   C140 444 151 446 162 442"
+                fill="none"
+                stroke="${shadeColor(bottom, -30)}"
+                stroke-width="3"
+                opacity=".45"
+            />
+
+            <path
+                d="M198 440
+                   C208 446 220 446 230 441"
+                fill="none"
+                stroke="${shadeColor(bottom, -30)}"
+                stroke-width="3"
+                opacity=".45"
+            />
+
+        </g>
+    `;
+}
+
+
+// ========================================
+// SHOES
+// ========================================
 
 function drawShoes() {
-    const type = current("shoes").name;
-    const color = shoeColors[currentVariant("shoes")];
+    const shoe = getColor("shoes");
+    const type = options.shoes[selected.shoes.type].name;
 
     if (type === "Boots") {
         return `
-            <path
-                d="M137 466
-                   C147 470 163 470 176 466
-                   L177 497
-                   C170 507 151 508 137 502
-                   Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
+            <g filter="url(#avatarShadow)">
 
-            <path
-                d="M183 466
-                   C196 470 212 470 222 466
-                   L223 502
-                   C209 508 190 507 183 497
-                   Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
+                <path
+                    d="M123 525
+                       C123 518 129 514 137 515
+                       L161 517
+                       C166 521 167 535 164 545
+                       L164 552
+                       L116 552
+                       C114 542 116 531 123 525 Z"
+                    fill="url(#shoeGradient)"
+                />
 
-            <path
-                d="M136 498
-                   C148 503 164 503 177 497
-                   L177 508
-                   L133 508
-                   C131 504 132 501 136 498 Z"
-                fill="#202329"
-            />
+                <path
+                    d="M195 517
+                       C201 514 222 514 230 518
+                       C236 525 239 539 237 552
+                       L190 552
+                       L190 544
+                       C190 533 191 523 195 517 Z"
+                    fill="url(#shoeGradient)"
+                />
 
-            <path
-                d="M183 497
-                   C196 503 212 503 224 498
-                   C228 501 229 504 227 508
-                   L183 508 Z"
-                fill="#202329"
-            />
+                <path
+                    d="M119 541 L164 541"
+                    stroke="${shadeColor(shoe, -30)}"
+                    stroke-width="3"
+                    opacity=".55"
+                />
+
+                <path
+                    d="M192 541 L237 541"
+                    stroke="${shadeColor(shoe, -30)}"
+                    stroke-width="3"
+                    opacity=".55"
+                />
+
+            </g>
         `;
     }
 
     return `
-        <path
-            d="M137 468
-               C148 464 164 465 176 471
-               L178 491
-               C169 500 147 502 133 495
-               C131 487 133 477 137 468 Z"
-            fill="${color}"
-            filter="url(#smallShadow)"
-        />
+        <g filter="url(#avatarShadow)">
 
-        <path
-            d="M183 471
-               C195 465 212 464 223 468
-               C227 477 229 487 227 495
-               C213 502 191 500 182 491 Z"
-            fill="${color}"
-            filter="url(#smallShadow)"
-        />
-
-        <path
-            d="M135 489
-               C147 493 164 493 177 487
-               L178 497
-               C164 504 143 503 133 496 Z"
-            fill="#F6F6F4"
-            opacity=".95"
-        />
-
-        <path
-            d="M182 487
-               C196 493 213 493 225 489
-               L227 496
-               C217 503 196 504 182 497 Z"
-            fill="#F6F6F4"
-            opacity=".95"
-        />
-
-        <path
-            d="M145 477 L166 478"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".35"
-            stroke-linecap="round"
-        />
-
-        <path
-            d="M194 478 L215 477"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".35"
-            stroke-linecap="round"
-        />
-    `;
-}
-
-/* ========================================
-   BACK HAIR
-======================================== */
-
-function drawBackHair() {
-    const style = current("hair").name;
-    const color = hairColors[currentVariant("hair")];
-
-    if (style === "Long") {
-        return `
             <path
-                d="M120 170
-                   C109 119 132 83 180 82
-                   C228 83 251 119 240 170
-                   L237 263
-                   C229 285 218 294 205 296
-                   L155 296
-                   C141 294 130 285 123 263
-                   Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
-        `;
-    }
-
-    if (style === "Wavy") {
-        return `
-            <path
-                d="M119 175
-                   C109 118 136 82 180 82
-                   C224 82 251 118 241 175
-                   L238 251
-                   C229 264 218 269 207 267
-                   L153 267
-                   C139 268 128 261 122 249
-                   Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
-        `;
-    }
-
-    return `
-        <path
-            d="M120 169
-               C113 116 136 82 180 82
-               C224 82 247 116 240 169
-               L234 222
-               C224 237 211 242 201 241
-               L159 241
-               C145 241 134 234 126 220
-               Z"
-            fill="${color}"
-            filter="url(#smallShadow)"
-        />
-    `;
-}
-
-/* ========================================
-   ARMS
-   Skin is deliberately behind clothing.
-   Sleeves cover the upper arms.
-======================================== */
-
-function drawArms() {
-    const skin = "url(#skinGradient)";
-
-    return `
-        <!-- left arm skin underneath sleeve -->
-        <path
-            d="M101 322
-               C91 334 88 354 89 374
-               L91 401
-               C92 412 99 418 107 416
-               C115 414 118 407 116 397
-               L114 361
-               C114 348 119 337 124 331
-               Z"
-            fill="${skin}"
-        />
-
-        <!-- right arm skin underneath sleeve -->
-        <path
-            d="M236 331
-               C241 337 246 348 246 361
-               L244 397
-               C242 407 245 414 253 416
-               C261 418 268 412 269 401
-               L271 374
-               C272 354 269 334 259 322
-               Z"
-            fill="${skin}"
-        />
-    `;
-}
-
-/* ========================================
-   TOPS + SLEEVES
-======================================== */
-
-function drawTop() {
-    const type = current("tops").name;
-    const color = topColors[currentVariant("tops")];
-
-    if (type === "Shirts") {
-        return `
-            <!-- torso -->
-            <path
-                d="M124 306
-                   C137 296 151 291 163 289
-                   L197 289
-                   C209 291 223 296 236 306
-                   L252 400
-                   C231 410 129 410 108 400
-                   Z"
-                fill="url(#topGradient)"
-                filter="url(#smallShadow)"
-            />
-
-            <!-- short sleeves -->
-            <path
-                d="M124 306
-                   C113 310 103 317 97 326
-                   L94 353
-                   C101 360 112 362 122 358
-                   L130 326
-                   Z"
-                fill="${color}"
+                d="M119 523
+                   C126 518 145 517 160 522
+                   C166 527 168 537 166 547
+                   C152 553 132 553 116 548
+                   C114 538 115 529 119 523 Z"
+                fill="url(#shoeGradient)"
             />
 
             <path
-                d="M236 306
-                   C247 310 257 317 263 326
-                   L266 353
-                   C259 360 248 362 238 358
-                   L230 326
-                   Z"
-                fill="${color}"
-            />
-
-            <!-- sleeve cuffs -->
-            <path
-                d="M95 348 C103 353 113 354 122 350 L120 361 C111 365 101 363 94 357 Z"
-                fill="#30343C"
-                opacity=".5"
+                d="M194 522
+                   C207 517 227 518 235 524
+                   C239 531 241 541 239 548
+                   C224 553 204 553 190 547
+                   C189 537 190 528 194 522 Z"
+                fill="url(#shoeGradient)"
             />
 
             <path
-                d="M238 350 C247 354 257 353 265 348 L266 357 C259 363 249 365 240 361 Z"
-                fill="#30343C"
-                opacity=".5"
-            />
-
-            <!-- collar -->
-            <path
-                d="M158 291
-                   C163 305 171 311 180 311
-                   C189 311 197 305 202 291"
-                fill="none"
-                stroke="#242932"
-                stroke-width="8"
-                opacity=".6"
-            />
-
-            <path
-                d="M139 335 C155 340 170 342 180 342"
+                d="M119 539
+                   C132 544 151 544 165 539"
                 fill="none"
                 stroke="#FFFFFF"
-                stroke-width="4"
-                opacity=".10"
-                stroke-linecap="round"
+                stroke-width="5"
+                opacity=".65"
             />
+
+            <path
+                d="M193 539
+                   C206 544 225 544 238 539"
+                fill="none"
+                stroke="#FFFFFF"
+                stroke-width="5"
+                opacity=".65"
+            />
+
+        </g>
+    `;
+}
+
+
+// ========================================
+// BACK HAIR
+// ========================================
+
+function drawBackHair() {
+    const hair = getColor("hair");
+    const type = options.hair[selected.hair.type].name;
+
+    // Long hair gets a controlled silhouette behind the head.
+    if (type === "Long") {
+        return `
+            <g filter="url(#softShadow)">
+
+                <path
+                    d="M103 176
+                       C95 132 112 94 145 79
+                       C171 67 204 70 226 89
+                       C252 111 260 146 253 184
+                       L249 334
+                       C247 356 232 372 216 372
+                       L213 294
+                       L147 294
+                       L144 372
+                       C126 369 111 355 108 334
+                       Z"
+                    fill="url(#hairGradient)"
+                />
+
+                <path
+                    d="M117 149
+                       C111 115 132 91 159 83"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    opacity=".10"
+                />
+
+                <path
+                    d="M236 129
+                       C247 165 244 224 239 290"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                    opacity=".13"
+                />
+
+            </g>
         `;
     }
+
+    return `
+        <g>
+            <path
+                d="M104 174
+                   C98 128 118 94 150 80
+                   C178 67 211 76 231 99
+                   C248 119 254 147 249 181
+                   L241 242
+                   L119 242
+                   Z"
+                fill="url(#hairGradient)"
+            />
+        </g>
+    `;
+}
+
+
+// ========================================
+// TOP
+// ========================================
+
+function drawTop() {
+    const type = options.tops[selected.tops.type].name;
 
     if (type === "Hoodies") {
         return `
-            <!-- torso -->
-            <path
-                d="M123 305
-                   C136 295 151 289 163 288
-                   L197 288
-                   C209 289 224 295 237 305
-                   L253 404
-                   C229 414 131 414 107 404
-                   Z"
-                fill="url(#topGradient)"
-                filter="url(#smallShadow)"
-            />
+            <g filter="url(#avatarShadow)">
 
-            <!-- long left sleeve -->
-            <path
-                d="M124 304
-                   C112 309 102 318 97 329
-                   L91 390
-                   C96 400 106 405 117 401
-                   L128 340
-                   L137 317
-                   Z"
-                fill="${color}"
-            />
+                <path
+                    d="M119 297
+                       C126 281 140 273 156 270
+                       L204 270
+                       C220 273 234 281 241 297
+                       L259 405
+                       C240 423 214 430 180 430
+                       C146 430 120 423 101 405
+                       Z"
+                    fill="url(#clothGradient)"
+                />
 
-            <!-- long right sleeve -->
-            <path
-                d="M236 304
-                   C248 309 258 318 263 329
-                   L269 390
-                   C264 400 254 405 243 401
-                   L232 340
-                   L223 317
-                   Z"
-                fill="${color}"
-            />
+                <!-- hood -->
+                <path
+                    d="M147 275
+                       C147 258 160 249 180 249
+                       C200 249 213 258 213 275
+                       C204 288 193 294 180 294
+                       C167 294 156 288 147 275 Z"
+                    fill="${shadeColor(getColor("tops"), -18)}"
+                />
 
-            <!-- cuffs -->
-            <path
-                d="M91 386
-                   C99 391 108 393 118 389
-                   L117 402
-                   C107 407 97 403 91 397 Z"
-                fill="#262B33"
-                opacity=".65"
-            />
+                <!-- hoodie pocket -->
+                <path
+                    d="M145 365
+                       C159 359 201 359 215 365
+                       L210 395
+                       C194 401 166 401 150 395 Z"
+                    fill="${shadeColor(getColor("tops"), -12)}"
+                    opacity=".75"
+                />
 
-            <path
-                d="M242 389
-                   C252 393 261 391 269 386
-                   L269 397
-                   C263 403 253 407 243 402 Z"
-                fill="#262B33"
-                opacity=".65"
-            />
+                <!-- folds -->
+                <path
+                    d="M131 312 C142 326 144 343 143 360"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="5"
+                    opacity=".13"
+                    stroke-linecap="round"
+                />
 
-            <!-- hood -->
-            <path
-                d="M151 293
-                   C154 277 166 269 180 269
-                   C194 269 206 277 209 293
-                   L198 311
-                   C192 318 168 318 162 311 Z"
-                fill="${color}"
-                opacity=".9"
-            />
+                <path
+                    d="M229 312 C218 326 216 343 217 360"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="5"
+                    opacity=".12"
+                    stroke-linecap="round"
+                />
 
-            <!-- hood opening -->
-            <path
-                d="M161 291
-                   C168 299 192 299 199 291"
-                fill="none"
-                stroke="#252A31"
-                stroke-width="6"
-                opacity=".7"
-            />
+            </g>
+        `;
+    }
 
-            <!-- pocket -->
-            <path
-                d="M147 369
-                   C158 376 202 376 213 369
-                   L207 397
-                   C194 402 166 402 153 397 Z"
-                fill="#22272F"
-                opacity=".32"
-            />
+    if (type === "Jackets") {
+        return `
+            <g filter="url(#avatarShadow)">
 
-            <!-- drawstrings -->
-            <path
-                d="M166 296 L165 320"
-                stroke="#E9E9E9"
-                stroke-width="3"
-                opacity=".6"
-            />
+                <path
+                    d="M120 295
+                       C130 280 143 273 158 270
+                       L202 270
+                       C217 273 230 280 240 295
+                       L256 405
+                       C238 423 211 430 180 430
+                       C149 430 122 423 104 405
+                       Z"
+                    fill="url(#clothGradient)"
+                />
 
-            <path
-                d="M194 296 L195 320"
-                stroke="#E9E9E9"
-                stroke-width="3"
-                opacity=".6"
-            />
+                <path
+                    d="M180 287 L180 423"
+                    stroke="${shadeColor(getColor("tops"), -35)}"
+                    stroke-width="3"
+                    opacity=".65"
+                />
+
+                <path
+                    d="M143 287 L161 304 L154 351"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="5"
+                    opacity=".13"
+                />
+
+                <path
+                    d="M217 287 L199 304 L206 351"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="5"
+                    opacity=".13"
+                />
+
+            </g>
         `;
     }
 
     if (type === "Sweaters") {
         return `
-            <path
-                d="M123 304
-                   C136 295 151 289 163 288
-                   L197 288
-                   C209 289 224 295 237 304
-                   L253 403
-                   C229 413 131 413 107 403
-                   Z"
-                fill="url(#topGradient)"
-                filter="url(#smallShadow)"
-            />
+            <g filter="url(#avatarShadow)">
 
-            <!-- sweater sleeves -->
-            <path
-                d="M124 303
-                   C111 310 101 319 96 331
-                   L91 391
-                   C97 401 108 404 118 400
-                   L130 338
-                   L138 315 Z"
-                fill="${color}"
-            />
+                <path
+                    d="M120 296
+                       C132 279 145 272 158 270
+                       L202 270
+                       C215 272 228 279 240 296
+                       L253 405
+                       C233 422 210 429 180 429
+                       C150 429 127 422 107 405
+                       Z"
+                    fill="url(#clothGradient)"
+                />
 
-            <path
-                d="M236 303
-                   C249 310 259 319 264 331
-                   L269 391
-                   C263 401 252 404 242 400
-                   L230 338
-                   L222 315 Z"
-                fill="${color}"
-            />
+                <path
+                    d="M153 274
+                       C157 288 168 294 180 294
+                       C192 294 203 288 207 274"
+                    fill="none"
+                    stroke="${shadeColor(getColor("tops"), -28)}"
+                    stroke-width="9"
+                    opacity=".65"
+                />
 
-            <!-- ribbed cuffs -->
-            <path
-                d="M91 387 C100 393 109 394 118 389 L117 402 C107 407 97 403 91 397 Z"
-                fill="#565C65"
-                opacity=".65"
-            />
+                <path
+                    d="M130 320 C145 328 151 347 150 370"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="4"
+                    opacity=".12"
+                />
 
-            <path
-                d="M242 389 C251 394 260 393 269 387 L269 397 C263 403 253 407 243 402 Z"
-                fill="#565C65"
-                opacity=".65"
-            />
+                <path
+                    d="M230 320 C215 328 209 347 210 370"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="4"
+                    opacity=".10"
+                />
 
-            <!-- collar -->
-            <path
-                d="M155 291
-                   C159 305 168 311 180 311
-                   C192 311 201 305 205 291"
-                fill="none"
-                stroke="#555B63"
-                stroke-width="8"
-                opacity=".75"
-            />
-
-            <!-- fabric folds -->
-            <path
-                d="M138 328 C151 335 163 337 174 338"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".10"
-                stroke-linecap="round"
-            />
-
-            <path
-                d="M222 328 C209 335 197 337 186 338"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".10"
-                stroke-linecap="round"
-            />
+            </g>
         `;
     }
 
-    // Jackets
+    // Shirts
     return `
-        <!-- jacket torso -->
-        <path
-            d="M123 304
-               C136 294 151 289 163 288
-               L197 288
-               C209 289 224 294 237 304
-               L253 403
-               C229 413 131 413 107 403
-               Z"
-            fill="url(#topGradient)"
-            filter="url(#smallShadow)"
-        />
+        <g filter="url(#avatarShadow)">
 
-        <!-- structured sleeves -->
-        <path
-            d="M124 304
-               C112 309 101 318 96 331
-               L91 391
-               C97 401 108 404 118 400
-               L130 337
-               L139 313 Z"
-            fill="${color}"
-        />
+            <path
+                d="M121 297
+                   C132 280 144 273 158 270
+                   L202 270
+                   C216 273 228 280 239 297
+                   L253 405
+                   C233 422 209 429 180 429
+                   C151 429 127 422 107 405
+                   Z"
+                fill="url(#clothGradient)"
+            />
 
-        <path
-            d="M236 304
-               C248 309 259 318 264 331
-               L269 391
-               C263 401 252 404 242 400
-               L230 337
-               L221 313 Z"
-            fill="${color}"
-        />
+            <path
+                d="M153 272
+                   C158 286 168 292 180 292
+                   C192 292 202 286 207 272"
+                fill="none"
+                stroke="${shadeColor(getColor("tops"), -25)}"
+                stroke-width="8"
+                opacity=".55"
+            />
 
-        <!-- cuffs -->
-        <path
-            d="M91 386 C100 392 109 393 118 389 L117 402 C107 407 97 403 91 397 Z"
-            fill="#20242A"
-        />
+            <path
+                d="M129 312
+                   C141 320 146 337 145 353"
+                fill="none"
+                stroke="#FFFFFF"
+                stroke-width="5"
+                opacity=".12"
+                stroke-linecap="round"
+            />
 
-        <path
-            d="M242 389 C251 393 260 392 269 386 L269 397 C263 403 253 407 243 402 Z"
-            fill="#20242A"
-        />
+            <path
+                d="M231 312
+                   C219 320 214 337 215 353"
+                fill="none"
+                stroke="#000000"
+                stroke-width="5"
+                opacity=".10"
+                stroke-linecap="round"
+            />
 
-        <!-- zipper -->
-        <path
-            d="M180 301 L180 404"
-            stroke="#D9DDE0"
-            stroke-width="4"
-            opacity=".75"
-        />
-
-        <!-- jacket panels -->
-        <path
-            d="M148 306 C155 331 157 369 154 399"
-            fill="none"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".08"
-        />
-
-        <path
-            d="M212 306 C205 331 203 369 206 399"
-            fill="none"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".08"
-        />
-
-        <!-- collar -->
-        <path
-            d="M159 289 L180 310 L201 289"
-            fill="none"
-            stroke="#252A31"
-            stroke-width="8"
-            stroke-linejoin="round"
-        />
+        </g>
     `;
 }
 
-/* ========================================
-   NECK
-======================================== */
+
+// ========================================
+// ARMS
+// ========================================
+
+function drawArms() {
+    const skin = getColor("body");
+
+    return `
+        <g filter="url(#softShadow)">
+
+            <path
+                d="M116 299
+                   C104 305 96 318 95 334
+                   L88 391
+                   C87 405 94 414 104 415
+                   C114 416 120 408 121 397
+                   L130 337
+                   C132 321 127 307 116 299 Z"
+                fill="url(#skinGradient)"
+            />
+
+            <path
+                d="M244 299
+                   C256 305 264 318 265 334
+                   L272 391
+                   C273 405 266 414 256 415
+                   C246 416 240 408 239 397
+                   L230 337
+                   C228 321 233 307 244 299 Z"
+                fill="url(#skinGradient)"
+            />
+
+            <path
+                d="M100 348 C108 351 116 351 124 347"
+                fill="none"
+                stroke="#000000"
+                stroke-width="4"
+                opacity=".10"
+            />
+
+            <path
+                d="M260 348 C252 351 244 351 236 347"
+                fill="none"
+                stroke="#000000"
+                stroke-width="4"
+                opacity=".10"
+            />
+
+        </g>
+    `;
+}
+
+
+// ========================================
+// NECK
+// ========================================
 
 function drawNeck() {
     return `
         <path
-            d="M160 260
-               L200 260
-               L202 303
-               C191 311 169 311 158 303
+            d="M157 254
+               L203 254
+               L207 288
+               C199 297 190 301 180 301
+               C170 301 161 297 153 288
                Z"
             fill="url(#skinGradient)"
         />
     `;
 }
 
-/* ========================================
-   HEAD
-======================================== */
+
+// ========================================
+// HEAD
+// ========================================
 
 function drawHead() {
-    const faceType = current("face").name;
-
-    let path;
-
-    if (faceType === "Soft") {
-        path = `
-            M180 104
-            C145 104 123 128 122 166
-            L126 217
-            C130 252 150 273 180 275
-            C210 273 230 252 234 217
-            L238 166
-            C237 128 215 104 180 104 Z
-        `;
-    } else if (faceType === "Warm") {
-        path = `
-            M180 105
-            C147 105 124 130 123 166
-            L126 218
-            C129 250 149 272 180 273
-            C211 272 231 250 234 218
-            L237 166
-            C236 130 213 105 180 105 Z
-        `;
-    } else {
-        path = `
-            M180 104
-            C145 104 123 128 122 166
-            L125 214
-            C127 251 148 274 180 274
-            C212 274 233 251 235 214
-            L238 166
-            C237 128 215 104 180 104 Z
-        `;
-    }
+    /*
+       IMPORTANT:
+       The head is deliberately smaller than the previous version.
+       This gives hairstyles an actual skull to wrap around and gives
+       caps/beanies/headphones room to cover the hair naturally.
+    */
 
     return `
-        <path
-            d="${path}"
-            fill="url(#skinGradient)"
-            filter="url(#smallShadow)"
-        />
+        <g filter="url(#softShadow)">
 
-        <!-- subtle cheek shading -->
-        <ellipse
-            cx="145"
-            cy="214"
-            rx="19"
-            ry="12"
-            fill="#C97869"
-            opacity=".10"
-        />
+            <path
+                d="M180 104
 
-        <ellipse
-            cx="215"
-            cy="214"
-            rx="19"
-            ry="12"
-            fill="#C97869"
-            opacity=".10"
-        />
+                   C143 104 121 129 121 169
+
+                   L124 215
+
+                   C126 253 148 274 180 274
+
+                   C212 274 234 253 236 215
+
+                   L239 169
+
+                   C239 129 217 104 180 104 Z"
+
+                fill="url(#skinGradient)"
+            />
+
+            <!-- subtle face volume -->
+            <path
+                d="M132 182
+                   C128 220 143 256 177 266"
+                fill="none"
+                stroke="#FFFFFF"
+                stroke-width="7"
+                stroke-linecap="round"
+                opacity=".13"
+            />
+
+            <path
+                d="M229 182
+                   C233 220 218 256 184 266"
+                fill="none"
+                stroke="#000000"
+                stroke-width="7"
+                stroke-linecap="round"
+                opacity=".08"
+            />
+
+        </g>
     `;
 }
 
-/* ========================================
-   EARS
-======================================== */
+
+// ========================================
+// EARS
+// ========================================
 
 function drawEars() {
     return `
         <ellipse
-            cx="124"
-            cy="192"
+            cx="123"
+            cy="194"
             rx="10"
-            ry="18"
+            ry="20"
             fill="url(#skinGradient)"
         />
 
         <ellipse
-            cx="236"
-            cy="192"
+            cx="237"
+            cy="194"
             rx="10"
-            ry="18"
+            ry="20"
             fill="url(#skinGradient)"
         />
-
-        <path
-            d="M124 186 C118 190 120 199 125 201"
-            fill="none"
-            stroke="#B7795B"
-            stroke-width="3"
-            opacity=".55"
-        />
-
-        <path
-            d="M236 186 C242 190 240 199 235 201"
-            fill="none"
-            stroke="#B7795B"
-            stroke-width="3"
-            opacity=".55"
-        />
     `;
 }
 
-/* ========================================
-   FACE
-======================================== */
 
-function drawBrows() {
-    return `
-        <path
-            d="M143 169 C151 164 160 164 167 168"
-            fill="none"
-            stroke="#4B3029"
-            stroke-width="4"
-            stroke-linecap="round"
-        />
-
-        <path
-            d="M193 168 C200 164 209 164 217 169"
-            fill="none"
-            stroke="#4B3029"
-            stroke-width="4"
-            stroke-linecap="round"
-        />
-    `;
-}
-
-function drawEyes() {
-    const color = eyeColors[currentVariant("eyes")];
-
-    return `
-        <ellipse
-            cx="156"
-            cy="188"
-            rx="10"
-            ry="7"
-            fill="#FFFFFF"
-        />
-
-        <ellipse
-            cx="204"
-            cy="188"
-            rx="10"
-            ry="7"
-            fill="#FFFFFF"
-        />
-
-        <ellipse
-            cx="157"
-            cy="188"
-            rx="5"
-            ry="6"
-            fill="${color}"
-        />
-
-        <ellipse
-            cx="203"
-            cy="188"
-            rx="5"
-            ry="6"
-            fill="${color}"
-        />
-
-        <circle cx="158" cy="186" r="2" fill="#FFFFFF"/>
-        <circle cx="204" cy="186" r="2" fill="#FFFFFF"/>
-    `;
-}
-
-function drawNose() {
-    return `
-        <path
-            d="M180 190
-               C177 201 176 208 180 211
-               C184 211 187 209 188 206"
-            fill="none"
-            stroke="#A66F55"
-            stroke-width="3"
-            stroke-linecap="round"
-            opacity=".7"
-        />
-    `;
-}
-
-function drawMouth() {
-    const type = current("mouth").name;
-
-    if (type === "Smile") {
-        return `
-            <path
-                d="M166 225
-                   C173 233 187 233 194 225"
-                fill="none"
-                stroke="#7D3E45"
-                stroke-width="4"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    if (type === "Small") {
-        return `
-            <path
-                d="M174 227
-                   C178 229 182 229 186 227"
-                fill="none"
-                stroke="#7D3E45"
-                stroke-width="4"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    return `
-        <path
-            d="M173 227 L187 227"
-            stroke="#7D3E45"
-            stroke-width="3"
-            stroke-linecap="round"
-        />
-    `;
-}
+// ========================================
+// FACE
+// ========================================
 
 function drawFace() {
     return `
@@ -1112,771 +1042,961 @@ function drawFace() {
     `;
 }
 
-/* ========================================
-   HAIR
-   IMPORTANT:
-   Accessories change the visible hair.
-======================================== */
+function drawBrows() {
+    return `
+        <path
+            d="M143 170
+               C151 165 159 165 166 169"
+            fill="none"
+            stroke="#4C3430"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
 
-function drawFrontHair() {
-    const style = current("hair").name;
-    const color = hairColors[currentVariant("hair")];
-    const accessory = current("accessories").name;
+        <path
+            d="M194 169
+               C201 165 209 165 217 170"
+            fill="none"
+            stroke="#4C3430"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+    `;
+}
 
-    // No headwear: full hairstyle.
-    if (accessory === "None" || accessory === "Glasses") {
-        if (style === "Short") {
-            return `
-                <path
-                    d="M123 169
-                       C119 128 139 94 180 91
-                       C221 94 241 128 237 169
-                       C225 154 217 145 206 138
-                       C197 150 188 155 180 157
-                       C170 155 161 149 154 138
-                       C145 145 135 154 123 169 Z"
-                    fill="url(#hairGradient)"
-                />
+function drawEyes() {
+    const eye = getColor("eyes");
 
-                <path
-                    d="M136 126 C150 108 168 101 180 101"
-                    fill="none"
-                    stroke="#FFFFFF"
-                    stroke-width="5"
-                    opacity=".10"
-                    stroke-linecap="round"
-                />
-            `;
-        }
+    return `
+        <g>
 
-        if (style === "Fluffy") {
-            return `
-                <path
-                    d="M120 170
-                       C111 148 116 119 132 105
-                       C143 88 159 83 177 87
-                       C194 80 215 91 224 105
-                       C243 118 248 146 238 170
-                       C226 158 217 150 207 139
-                       C198 151 188 157 180 159
-                       C169 157 160 150 153 139
-                       C143 151 133 159 120 170 Z"
-                    fill="url(#hairGradient)"
-                />
-
-                <path
-                    d="M130 121
-                       C145 102 164 96 181 97
-                       C199 96 215 103 229 121"
-                    fill="none"
-                    stroke="#FFFFFF"
-                    stroke-width="5"
-                    opacity=".10"
-                    stroke-linecap="round"
-                />
-            `;
-        }
-
-        if (style === "Wavy") {
-            return `
-                <path
-                    d="M119 171
-                       C113 144 118 117 137 101
-                       C151 88 168 85 180 90
-                       C196 84 216 92 226 106
-                       C243 123 247 149 239 173
-                       C228 158 218 151 207 141
-                       C202 157 193 164 182 164
-                       C171 164 160 156 153 141
-                       C143 153 133 162 119 171 Z"
-                    fill="url(#hairGradient)"
-                />
-
-                <path
-                    d="M129 118 C145 99 161 96 177 98"
-                    fill="none"
-                    stroke="#FFFFFF"
-                    stroke-width="5"
-                    opacity=".09"
-                    stroke-linecap="round"
-                />
-            `;
-        }
-
-        return `
-            <path
-                d="M120 174
-                   C112 132 127 99 157 91
-                   C182 83 214 91 230 113
-                   C242 131 242 153 238 177
-                   L235 253
-                   C227 266 218 270 209 266
-                   L209 185
-                   C201 173 193 166 181 163
-                   C168 166 158 174 151 186
-                   L151 267
-                   C140 270 130 264 124 252
-                   Z"
-                fill="url(#hairGradient)"
+            <ellipse
+                cx="155"
+                cy="185"
+                rx="11"
+                ry="8"
+                fill="#FFFFFF"
             />
 
+            <ellipse
+                cx="205"
+                cy="185"
+                rx="11"
+                ry="8"
+                fill="#FFFFFF"
+            />
+
+            <ellipse
+                cx="156"
+                cy="185"
+                rx="5"
+                ry="6"
+                fill="${eye}"
+            />
+
+            <ellipse
+                cx="204"
+                cy="185"
+                rx="5"
+                ry="6"
+                fill="${eye}"
+            />
+
+            <circle
+                cx="157"
+                cy="183"
+                r="2"
+                fill="#FFFFFF"
+            />
+
+            <circle
+                cx="205"
+                cy="183"
+                r="2"
+                fill="#FFFFFF"
+            />
+
+        </g>
+    `;
+}
+
+function drawNose() {
+    return `
+        <path
+            d="M180 187
+               C176 202 175 208 180 211
+               C184 211 187 209 188 207"
+            fill="none"
+            stroke="${shadeColor(getColor("body"), -35)}"
+            stroke-width="3"
+            stroke-linecap="round"
+            opacity=".45"
+        />
+    `;
+}
+
+function drawMouth() {
+    const mouthType = options.mouth[selected.mouth.type].name;
+    const color = getColor("mouth");
+
+    if (mouthType === "Smile") {
+        return `
             <path
-                d="M133 119 C149 100 169 95 188 96"
+                d="M166 226
+                   C174 234 186 234 194 226"
                 fill="none"
-                stroke="#FFFFFF"
-                stroke-width="5"
-                opacity=".09"
+                stroke="${color}"
+                stroke-width="4"
                 stroke-linecap="round"
             />
         `;
     }
 
-    // ====================================
-    // CAP / BEANIE
-    // Only lower hair remains visible.
-    // ====================================
-
-    if (accessory === "Cap" || accessory === "Beanie") {
-        if (style === "Long") {
-            return `
-                <!-- side locks only -->
-                <path
-                    d="M126 174
-                       C126 158 130 146 138 139
-                       C135 169 136 205 139 251
-                       C136 268 131 277 126 281
-                       C120 264 120 220 126 174 Z"
-                    fill="url(#hairGradient)"
-                />
-
-                <path
-                    d="M234 174
-                       C234 158 230 146 222 139
-                       C225 169 224 205 221 251
-                       C224 268 229 277 234 281
-                       C240 264 240 220 234 174 Z"
-                    fill="url(#hairGradient)"
-                />
-            `;
-        }
-
+    if (mouthType === "Small") {
         return `
             <path
-                d="M126 170
-                   C125 157 130 145 139 138
-                   C136 161 137 190 141 216
-                   C137 227 132 232 126 231
-                   C122 214 122 190 126 170 Z"
+                d="M173 228
+                   C177 230 183 230 187 228"
+                fill="none"
+                stroke="${color}"
+                stroke-width="4"
+                stroke-linecap="round"
+            />
+        `;
+    }
+
+    return `
+        <path
+            d="M171 228 L189 228"
+            stroke="${color}"
+            stroke-width="4"
+            stroke-linecap="round"
+        />
+    `;
+}
+
+
+// ========================================
+// FRONT HAIR
+// ========================================
+
+function drawFrontHair() {
+    const hair = getColor("hair");
+    const type = options.hair[selected.hair.type].name;
+
+    if (type === "Long") {
+        return `
+            <g>
+
+                <!-- clean top mass -->
+                <path
+                    d="M105 158
+                       C103 117 126 85 163 76
+                       C196 68 228 83 246 113
+                       C254 127 257 145 253 164
+                       C240 151 228 142 214 139
+                       C197 135 190 144 180 151
+                       C167 139 153 134 137 140
+                       C124 145 115 152 105 158 Z"
+                    fill="url(#hairGradient)"
+                />
+
+                <!-- intentional front locks -->
+                <path
+                    d="M125 135
+                       C119 153 120 171 126 188
+                       C135 179 141 166 141 146
+                       C137 140 132 137 125 135 Z"
+                    fill="${hair}"
+                />
+
+                <path
+                    d="M215 137
+                       C220 155 219 171 213 187
+                       C204 178 199 165 199 146
+                       C203 141 209 138 215 137 Z"
+                    fill="${hair}"
+                />
+
+                <path
+                    d="M147 105
+                       C164 91 192 90 211 104"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="8"
+                    stroke-linecap="round"
+                    opacity=".10"
+                />
+
+            </g>
+        `;
+    }
+
+    if (type === "Fluffy") {
+        return `
+            <g>
+
+                <path
+                    d="M105 158
+                       C99 142 105 121 116 108
+                       C112 91 129 80 144 84
+                       C155 70 177 72 187 82
+                       C201 72 221 80 224 94
+                       C242 96 251 112 246 128
+                       C257 141 253 158 244 169
+                       C232 158 222 150 210 146
+                       C197 142 188 148 180 155
+                       C169 144 157 139 144 143
+                       C128 147 118 154 105 158 Z"
+                    fill="url(#hairGradient)"
+                />
+
+                <!-- controlled locks -->
+                <path
+                    d="M116 132 C113 148 117 164 126 175"
+                    fill="none"
+                    stroke="${shadeColor(hair, -15)}"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M244 130 C247 146 243 161 235 173"
+                    fill="none"
+                    stroke="${shadeColor(hair, -18)}"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M137 101
+                       C154 87 178 87 194 96"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    opacity=".11"
+                />
+
+            </g>
+        `;
+    }
+
+    if (type === "Wavy") {
+        return `
+            <g>
+
+                <path
+                    d="M106 159
+                       C101 137 108 111 127 96
+                       C143 82 161 79 180 82
+                       C199 79 217 85 232 99
+                       C249 115 256 138 249 160
+                       C238 149 226 142 214 141
+                       C200 140 190 147 180 155
+                       C169 146 158 141 145 141
+                       C131 142 118 150 106 159 Z"
+                    fill="url(#hairGradient)"
+                />
+
+                <path
+                    d="M121 113
+                       C130 105 139 103 147 107
+                       C153 111 153 119 147 124
+                       C141 129 133 128 127 124"
+                    fill="none"
+                    stroke="${shadeColor(hair, -18)}"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M153 98
+                       C163 91 174 92 180 99
+                       C186 106 184 114 177 119
+                       C169 124 160 120 157 114"
+                    fill="none"
+                    stroke="${shadeColor(hair, -14)}"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M190 100
+                       C200 94 211 98 216 106
+                       C221 114 218 122 211 126"
+                    fill="none"
+                    stroke="${shadeColor(hair, -18)}"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M132 103
+                       C153 89 182 87 205 101"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                    opacity=".10"
+                />
+
+            </g>
+        `;
+    }
+
+    // Short hair
+    return `
+        <g>
+
+            <path
+                d="M106 160
+                   C101 137 108 111 126 96
+                   C143 81 161 77 180 81
+                   C199 77 217 83 233 98
+                   C249 113 256 137 250 160
+                   C238 149 226 141 214 141
+                   C200 141 190 147 180 155
+                   C169 146 158 141 145 141
+                   C131 141 118 149 106 160 Z"
                 fill="url(#hairGradient)"
             />
 
+            <!-- deliberate side locks -->
             <path
-                d="M234 170
-                   C235 157 230 145 221 138
-                   C224 161 223 190 219 216
-                   C223 227 228 232 234 231
-                   C238 214 238 190 234 170 Z"
-                fill="url(#hairGradient)"
+                d="M108 151
+                   C106 165 111 177 120 187
+                   C127 177 130 164 127 149 Z"
+                fill="${shadeColor(hair, -12)}"
             />
+
+            <path
+                d="M252 151
+                   C254 165 249 177 240 187
+                   C233 177 230 164 233 149 Z"
+                fill="${shadeColor(hair, -15)}"
+            />
+
+            <!-- top highlight -->
+            <path
+                d="M131 105
+                   C150 89 179 87 204 99"
+                fill="none"
+                stroke="#FFFFFF"
+                stroke-width="8"
+                stroke-linecap="round"
+                opacity=".11"
+            />
+
+        </g>
+    `;
+}
+
+
+// ========================================
+// ACCESSORIES
+// ========================================
+
+function drawAccessory() {
+    const type = options.accessories[selected.accessories.type].name;
+    const color = getColor("accessories");
+
+    if (type === "None") {
+        return "";
+    }
+
+    if (type === "Glasses") {
+        return `
+            <g>
+
+                <rect
+                    x="136"
+                    y="173"
+                    width="35"
+                    height="24"
+                    rx="9"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="5"
+                />
+
+                <rect
+                    x="189"
+                    y="173"
+                    width="35"
+                    height="24"
+                    rx="9"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="5"
+                />
+
+                <path
+                    d="M171 180 C177 177 183 177 189 180"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="4"
+                />
+
+            </g>
+        `;
+    }
+
+    // ====================================
+    // CAP
+    // ====================================
+    if (type === "Cap") {
+        return `
+            <g filter="url(#softShadow)">
+
+                <!-- cap covers the top of the hair -->
+                <path
+                    d="M109 134
+                       C108 101 134 76 178 75
+                       C219 75 245 97 250 129
+                       C232 119 214 115 194 115
+                       C166 115 139 122 109 134 Z"
+                    fill="url(#hairGradient)"
+                    opacity="0"
+                />
+
+                <path
+                    d="M108 133
+                       C108 99 136 76 178 75
+                       C217 75 243 96 249 126
+                       C231 117 212 113 192 114
+                       C164 114 137 122 108 133 Z"
+                    fill="${color}"
+                />
+
+                <!-- cap brim -->
+                <path
+                    d="M108 128
+                       C132 117 159 113 189 113
+                       C213 113 235 117 251 126
+                       C258 130 256 137 248 138
+                       C226 132 207 130 188 130
+                       C157 130 132 135 109 142
+                       C102 141 101 134 108 128 Z"
+                    fill="${shadeColor(color, -18)}"
+                />
+
+                <!-- tiny amount of hair visible -->
+                <path
+                    d="M120 145
+                       C124 140 130 137 137 136"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M222 137
+                       C229 138 235 141 240 145"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                />
+
+            </g>
+        `;
+    }
+
+    // ====================================
+    // BEANIE
+    // ====================================
+    if (type === "Beanie") {
+        return `
+            <g filter="url(#softShadow)">
+
+                <!-- large beanie mass -->
+                <path
+                    d="M108 141
+                       C107 105 130 76 165 69
+                       C178 66 193 67 205 71
+                       C235 81 250 108 250 141
+                       L250 154
+                       C225 148 204 146 180 146
+                       C156 146 133 148 108 154 Z"
+                    fill="${color}"
+                />
+
+                <!-- folded lower rim -->
+                <path
+                    d="M108 140
+                       C135 134 157 132 180 132
+                       C203 132 226 134 250 140
+                       L250 157
+                       C226 151 203 149 180 149
+                       C157 149 133 151 108 157 Z"
+                    fill="${shadeColor(color, -18)}"
+                />
+
+                <!-- tiny hair peeking below -->
+                <path
+                    d="M120 158
+                       C123 153 128 150 135 149"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M225 149
+                       C232 150 237 153 240 158"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M139 92
+                       C157 77 186 74 208 86"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="8"
+                    stroke-linecap="round"
+                    opacity=".10"
+                />
+
+            </g>
         `;
     }
 
     // ====================================
     // HEADPHONES
-    // Hair stops below band.
     // ====================================
-
-    if (accessory === "Headphones") {
-        if (style === "Long") {
-            return `
-                <path
-                    d="M127 178
-                       C126 158 131 145 138 137
-                       L141 245
-                       C138 263 132 275 126 280
-                       C121 254 121 210 127 178 Z"
-                    fill="url(#hairGradient)"
-                />
-
-                <path
-                    d="M233 178
-                       C234 158 229 145 222 137
-                       L219 245
-                       C222 263 228 275 234 280
-                       C239 254 239 210 233 178 Z"
-                    fill="url(#hairGradient)"
-                />
-
-                <path
-                    d="M145 130
-                       C151 118 163 112 180 112
-                       C197 112 209 118 215 130
-                       L212 148
-                       C202 137 191 133 180 133
-                       C169 133 158 137 148 148 Z"
-                    fill="url(#hairGradient)"
-                />
-            `;
-        }
-
+    if (type === "Headphones") {
         return `
-            <!-- controlled top hair, below headphone band -->
-            <path
-                d="M127 170
-                   C125 148 133 128 147 119
-                   C157 112 169 109 180 110
-                   C191 109 203 112 213 119
-                   C227 128 235 148 233 170
-                   C223 159 214 153 205 148
-                   C198 157 189 162 180 163
-                   C171 162 162 157 155 148
-                   C146 153 137 159 127 170 Z"
-                fill="url(#hairGradient)"
-            />
+            <g filter="url(#softShadow)">
+
+                <!-- ear cups behind head -->
+                <circle
+                    cx="116"
+                    cy="194"
+                    r="22"
+                    fill="${shadeColor(color, -20)}"
+                />
+
+                <circle
+                    cx="244"
+                    cy="194"
+                    r="22"
+                    fill="${shadeColor(color, -20)}"
+                />
+
+                <circle
+                    cx="116"
+                    cy="194"
+                    r="14"
+                    fill="${color}"
+                />
+
+                <circle
+                    cx="244"
+                    cy="194"
+                    r="14"
+                    fill="${color}"
+                />
+
+                <!-- band -->
+                <path
+                    d="M112 177
+                       C113 111 139 82 180 82
+                       C221 82 247 111 248 177"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="15"
+                    stroke-linecap="round"
+                />
+
+                <!-- inner band highlight -->
+                <path
+                    d="M125 173
+                       C127 120 147 98 180 98
+                       C213 98 233 120 235 173"
+                    fill="none"
+                    stroke="${shadeColor(color, 25)}"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    opacity=".55"
+                />
+
+                <!-- visible hair is intentionally tucked BELOW the band -->
+                <path
+                    d="M122 174
+                       C125 164 129 158 136 153"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M238 174
+                       C235 164 231 158 224 153"
+                    fill="none"
+                    stroke="${getColor("hair")}"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                />
+
+            </g>
         `;
     }
 
     return "";
 }
 
-/* ========================================
-   ACCESSORIES
-======================================== */
 
-function drawAccessory() {
-    const type = current("accessories").name;
-    const variant = currentVariant("accessories");
-
-    if (type === "None") return "";
-
-    if (type === "Glasses") {
-        let frame = "#20242A";
-
-        if (variant === "Blue") frame = "#426A9F";
-        if (variant === "Round") frame = "#30343A";
-
-        if (variant === "Round") {
-            return `
-                <circle
-                    cx="155"
-                    cy="188"
-                    r="16"
-                    fill="none"
-                    stroke="${frame}"
-                    stroke-width="4"
-                />
-
-                <circle
-                    cx="205"
-                    cy="188"
-                    r="16"
-                    fill="none"
-                    stroke="${frame}"
-                    stroke-width="4"
-                />
-
-                <path
-                    d="M171 188 L189 188"
-                    stroke="${frame}"
-                    stroke-width="4"
-                />
-
-                <path
-                    d="M139 186 L130 183"
-                    stroke="${frame}"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                />
-
-                <path
-                    d="M221 186 L230 183"
-                    stroke="${frame}"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                />
-            `;
-        }
-
-        return `
-            <rect
-                x="139"
-                y="177"
-                width="34"
-                height="22"
-                rx="8"
-                fill="none"
-                stroke="${frame}"
-                stroke-width="4"
-            />
-
-            <rect
-                x="187"
-                y="177"
-                width="34"
-                height="22"
-                rx="8"
-                fill="none"
-                stroke="${frame}"
-                stroke-width="4"
-            />
-
-            <path
-                d="M173 187 L187 187"
-                stroke="${frame}"
-                stroke-width="4"
-            />
-
-            <path
-                d="M139 184 L130 181"
-                stroke="${frame}"
-                stroke-width="4"
-                stroke-linecap="round"
-            />
-
-            <path
-                d="M221 184 L230 181"
-                stroke="${frame}"
-                stroke-width="4"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    if (type === "Cap") {
-        const color = topColors[variant] || "#252A32";
-
-        return `
-            <!-- cap crown -->
-            <path
-                d="M126 151
-                   C126 116 147 94 180 94
-                   C213 94 234 116 234 151
-                   C220 144 204 140 180 140
-                   C156 140 140 144 126 151 Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
-
-            <!-- cap seam -->
-            <path
-                d="M180 95 C180 113 180 128 180 140"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".10"
-            />
-
-            <!-- brim -->
-            <path
-                d="M125 143
-                   C146 137 166 137 186 140
-                   C202 142 216 146 231 153
-                   C216 162 190 164 164 160
-                   C147 158 133 153 125 148 Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
-
-            <path
-                d="M130 148 C150 153 172 154 192 153"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                opacity=".10"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    if (type === "Beanie") {
-        const color = topColors[variant] || "#555D68";
-
-        return `
-            <!-- beanie -->
-            <path
-                d="M123 157
-                   C124 117 145 91 180 91
-                   C215 91 236 117 237 157
-                   C216 149 198 147 180 147
-                   C162 147 144 149 123 157 Z"
-                fill="${color}"
-                filter="url(#smallShadow)"
-            />
-
-            <!-- folded rim -->
-            <path
-                d="M122 146
-                   C150 139 209 139 238 146
-                   L236 163
-                   C206 155 153 155 124 163 Z"
-                fill="#252A31"
-                opacity=".55"
-            />
-
-            <!-- beanie highlight -->
-            <path
-                d="M145 111
-                   C156 100 168 97 180 97"
-                fill="none"
-                stroke="#FFFFFF"
-                stroke-width="5"
-                opacity=".10"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    // Headphones
-    const headphoneColor =
-        variant === "White"
-            ? "#E9ECEF"
-            : variant === "Blue"
-                ? "#4C76B8"
-                : variant === "Red"
-                    ? "#B94D57"
-                    : "#252A31";
-
-    const cupDark =
-        variant === "White"
-            ? "#B9C0C7"
-            : "#171A20";
-
-    return `
-        <!-- headphone band -->
-        <path
-            d="M127 177
-               C127 121 147 92 180 92
-               C213 92 233 121 233 177"
-            fill="none"
-            stroke="${headphoneColor}"
-            stroke-width="14"
-            stroke-linecap="round"
-            filter="url(#smallShadow)"
-        />
-
-        <!-- band highlight -->
-        <path
-            d="M136 145
-               C142 113 157 99 180 99
-               C203 99 218 113 224 145"
-            fill="none"
-            stroke="#FFFFFF"
-            stroke-width="4"
-            opacity=".12"
-            stroke-linecap="round"
-        />
-
-        <!-- left cup -->
-        <rect
-            x="113"
-            y="169"
-            width="25"
-            height="57"
-            rx="12"
-            fill="${cupDark}"
-            filter="url(#smallShadow)"
-        />
-
-        <rect
-            x="118"
-            y="174"
-            width="17"
-            height="47"
-            rx="8"
-            fill="${headphoneColor}"
-        />
-
-        <!-- right cup -->
-        <rect
-            x="222"
-            y="169"
-            width="25"
-            height="57"
-            rx="12"
-            fill="${cupDark}"
-            filter="url(#smallShadow)"
-        />
-
-        <rect
-            x="225"
-            y="174"
-            width="17"
-            height="47"
-            rx="8"
-            fill="${headphoneColor}"
-        />
-
-        <path
-            d="M122 184 L122 211"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".15"
-            stroke-linecap="round"
-        />
-
-        <path
-            d="M238 184 L238 211"
-            stroke="#FFFFFF"
-            stroke-width="3"
-            opacity=".15"
-            stroke-linecap="round"
-        />
-    `;
-}
-
-/* ========================================
-   AVATAR
-======================================== */
+// ========================================
+// DRAW AVATAR
+// ========================================
 
 function drawAvatar() {
-    const content = `
-        ${drawLegs()}
-        ${drawShoes()}
-
-        <!-- hair behind body -->
-        ${drawBackHair()}
-
-        <!-- skin arms first so sleeves cover them -->
-        ${drawArms()}
-
-        <!-- clothing owns the shoulders + sleeves -->
-        ${drawTop()}
-
-        ${drawNeck()}
-        ${drawHead()}
-        ${drawEars()}
-
-        <!-- face -->
-        ${drawFace()}
-
-        <!-- accessory-aware hairstyle -->
-        ${drawFrontHair()}
-
-        <!-- accessories -->
-        ${drawAccessory()}
-    `;
-
-    document.getElementById("avatar").innerHTML = createSVG(content);
+    avatar.innerHTML = createSVG();
 }
 
-/* ========================================
-   MINI PREVIEWS
-======================================== */
+
+// ========================================
+// MINI PREVIEW
+// ========================================
 
 function miniPreview(category, typeIndex, variantIndex) {
+
     const item = options[category][typeIndex];
     const variant = item.variants[variantIndex];
 
-    let visual = "";
+    const color = variant.color;
 
-    if (category === "body") {
-        visual = `
-            <circle
-                cx="40"
-                cy="32"
-                r="15"
-                fill="${skinColors[variant]}"
-            />
-        `;
-    }
+    if (category === "hair") {
+        return `
+            <svg viewBox="0 0 60 60">
 
-    else if (category === "face") {
-        visual = `
-            <circle
-                cx="40"
-                cy="32"
-                r="17"
-                fill="${skinColors[currentVariant("body")]}"
-            />
-            <circle cx="34" cy="30" r="2" fill="#333"/>
-            <circle cx="46" cy="30" r="2" fill="#333"/>
-        `;
-    }
-
-    else if (category === "hair") {
-        visual = `
-            <circle
-                cx="40"
-                cy="36"
-                r="15"
-                fill="#F0C4A5"
-            />
-            <path
-                d="M25 35 C23 18 31 12 40 12 C49 12 57 18 55 35 C50 29 45 26 40 26 C35 26 30 29 25 35Z"
-                fill="${hairColors[variant]}"
-            />
-        `;
-    }
-
-    else if (category === "eyes") {
-        visual = `
-            <ellipse cx="33" cy="32" rx="5" ry="4" fill="#fff"/>
-            <ellipse cx="47" cy="32" rx="5" ry="4" fill="#fff"/>
-            <circle cx="34" cy="32" r="2.5" fill="${eyeColors[variant]}"/>
-            <circle cx="46" cy="32" r="2.5" fill="${eyeColors[variant]}"/>
-        `;
-    }
-
-    else if (category === "mouth") {
-        visual = `
-            <path
-                d="${variant === "Smile"
-                    ? "M33 40 C37 44 43 44 47 40"
-                    : "M36 41 L44 41"}"
-                fill="none"
-                stroke="#7D3E45"
-                stroke-width="2"
-                stroke-linecap="round"
-            />
-        `;
-    }
-
-    else if (category === "tops") {
-        visual = `
-            <path
-                d="M23 25 C28 21 34 20 40 20 C46 20 52 21 57 25 L53 52 L27 52 Z"
-                fill="${topColors[variant]}"
-            />
-            <path
-                d="M27 25 L20 31 L18 43 L25 45"
-                fill="${topColors[variant]}"
-            />
-            <path
-                d="M53 25 L60 31 L62 43 L55 45"
-                fill="${topColors[variant]}"
-            />
-        `;
-    }
-
-    else if (category === "bottoms") {
-        visual = `
-            <path
-                d="M27 29 L39 29 L38 53 L27 53 Z"
-                fill="${bottomColors[variant]}"
-            />
-            <path
-                d="M41 29 L53 29 L53 53 L42 53 Z"
-                fill="${bottomColors[variant]}"
-            />
-        `;
-    }
-
-    else if (category === "shoes") {
-        visual = `
-            <path
-                d="M25 46 C30 44 36 45 39 48 L39 53 L23 53 C22 50 23 48 25 46Z"
-                fill="${shoeColors[variant]}"
-            />
-            <path
-                d="M41 48 C44 45 50 44 55 46 C57 48 58 50 57 53 L41 53Z"
-                fill="${shoeColors[variant]}"
-            />
-        `;
-    }
-
-    else if (category === "accessories") {
-        if (item.name === "Glasses") {
-            visual = `
-                <circle cx="32" cy="32" r="7" fill="none" stroke="#252A31" stroke-width="2"/>
-                <circle cx="48" cy="32" r="7" fill="none" stroke="#252A31" stroke-width="2"/>
-                <path d="M39 32 L41 32" stroke="#252A31" stroke-width="2"/>
-            `;
-        }
-
-        else if (item.name === "Cap") {
-            visual = `
-                <path
-                    d="M24 31 C25 18 31 13 40 13 C49 13 55 18 56 31 C46 27 34 27 24 31Z"
-                    fill="${topColors[variant] || "#252A31"}"
+                <circle
+                    cx="30"
+                    cy="33"
+                    r="19"
+                    fill="#EFC5A4"
                 />
-                <path
-                    d="M23 29 C34 27 47 28 58 33 C49 37 34 36 24 33Z"
-                    fill="${topColors[variant] || "#252A31"}"
-                />
-            `;
-        }
 
-        else if (item.name === "Beanie") {
-            visual = `
                 <path
-                    d="M24 31 C25 18 31 13 40 13 C49 13 55 18 56 31 C46 28 34 28 24 31Z"
-                    fill="${topColors[variant] || "#555D68"}"
+                    d="M12 33
+                       C10 16 18 8 30 8
+                       C43 8 50 17 48 33
+                       C43 27 37 24 30 27
+                       C23 24 17 27 12 33 Z"
+                    fill="${color}"
                 />
-                <path
-                    d="M23 29 C33 27 47 27 57 30 L56 36 C46 33 34 33 24 36Z"
-                    fill="#252A31"
-                    opacity=".6"
-                />
-            `;
-        }
 
-        else if (item.name === "Headphones") {
-            const c =
-                variant === "White"
-                    ? "#E9ECEF"
-                    : variant === "Blue"
-                        ? "#4C76B8"
-                        : variant === "Red"
-                            ? "#B94D57"
-                            : "#252A31";
-
-            visual = `
                 <path
-                    d="M25 34 C25 17 31 11 40 11 C49 11 55 17 55 34"
+                    d="M18 17 C25 11 35 11 42 16"
                     fill="none"
-                    stroke="${c}"
-                    stroke-width="4"
+                    stroke="#FFFFFF"
+                    stroke-width="3"
+                    opacity=".15"
+                    stroke-linecap="round"
                 />
-                <rect x="22" y="29" width="6" height="15" rx="3" fill="${c}"/>
-                <rect x="52" y="29" width="6" height="15" rx="3" fill="${c}"/>
+
+            </svg>
+        `;
+    }
+
+    if (category === "tops") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <path
+                    d="M14 20
+                       C19 15 23 14 30 14
+                       C37 14 41 15 46 20
+                       L51 51
+                       C40 56 20 56 9 51
+                       Z"
+                    fill="${color}"
+                />
+
+                <path
+                    d="M23 15
+                       C24 21 27 23 30 23
+                       C33 23 36 21 37 15"
+                    fill="none"
+                    stroke="#000000"
+                    stroke-width="3"
+                    opacity=".15"
+                />
+
+            </svg>
+        `;
+    }
+
+    if (category === "bottoms") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <path
+                    d="M12 14
+                       L48 14
+                       L45 53
+                       L32 53
+                       L30 31
+                       L28 53
+                       L15 53
+                       Z"
+                    fill="${color}"
+                />
+
+            </svg>
+        `;
+    }
+
+    if (category === "shoes") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <path
+                    d="M9 37
+                       C18 33 25 34 30 39
+                       C34 43 43 42 50 45
+                       L52 52
+                       L9 52
+                       Z"
+                    fill="${color}"
+                />
+
+            </svg>
+        `;
+    }
+
+    if (category === "accessories") {
+
+        if (item.name === "Glasses") {
+            return `
+                <svg viewBox="0 0 60 60">
+
+                    <circle
+                        cx="21"
+                        cy="30"
+                        r="10"
+                        fill="none"
+                        stroke="${color}"
+                        stroke-width="4"
+                    />
+
+                    <circle
+                        cx="39"
+                        cy="30"
+                        r="10"
+                        fill="none"
+                        stroke="${color}"
+                        stroke-width="4"
+                    />
+
+                    <path
+                        d="M31 30 L29 30"
+                        stroke="${color}"
+                        stroke-width="4"
+                    />
+
+                </svg>
             `;
         }
 
-        else {
-            visual = `
-                <circle cx="40" cy="34" r="15" fill="#E9EDF1"/>
-                <path d="M31 34 L49 34" stroke="#AEB7C0" stroke-width="3"/>
+        if (item.name === "Cap") {
+            return `
+                <svg viewBox="0 0 60 60">
+
+                    <circle
+                        cx="30"
+                        cy="35"
+                        r="18"
+                        fill="#EFC5A4"
+                    />
+
+                    <path
+                        d="M12 31
+                           C13 14 23 8 35 9
+                           C45 10 51 18 51 28
+                           C42 24 27 24 12 31 Z"
+                        fill="${color}"
+                    />
+
+                    <path
+                        d="M11 29 C27 25 42 25 52 29"
+                        stroke="${shadeColor(color, -20)}"
+                        stroke-width="6"
+                        fill="none"
+                    />
+
+                </svg>
             `;
         }
+
+        if (item.name === "Beanie") {
+            return `
+                <svg viewBox="0 0 60 60">
+
+                    <circle
+                        cx="30"
+                        cy="35"
+                        r="18"
+                        fill="#EFC5A4"
+                    />
+
+                    <path
+                        d="M12 34
+                           C12 16 21 8 30 8
+                           C40 8 49 17 48 34
+                           Z"
+                        fill="${color}"
+                    />
+
+                    <path
+                        d="M12 32 C25 29 38 29 48 32 L48 39 C36 36 24 36 12 39 Z"
+                        fill="${shadeColor(color, -18)}"
+                    />
+
+                </svg>
+            `;
+        }
+
+        if (item.name === "Headphones") {
+            return `
+                <svg viewBox="0 0 60 60">
+
+                    <path
+                        d="M13 35
+                           C13 15 21 8 30 8
+                           C39 8 47 15 47 35"
+                        fill="none"
+                        stroke="${color}"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                    />
+
+                    <circle
+                        cx="13"
+                        cy="37"
+                        r="8"
+                        fill="${color}"
+                    />
+
+                    <circle
+                        cx="47"
+                        cy="37"
+                        r="8"
+                        fill="${color}"
+                    />
+
+                </svg>
+            `;
+        }
+
+        return `
+            <svg viewBox="0 0 60 60"></svg>
+        `;
+    }
+
+    if (category === "body" || category === "face") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <circle
+                    cx="30"
+                    cy="30"
+                    r="22"
+                    fill="${color}"
+                />
+
+                <path
+                    d="M17 21 C23 15 37 15 43 21"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="4"
+                    opacity=".15"
+                />
+
+            </svg>
+        `;
+    }
+
+    if (category === "eyes") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <ellipse
+                    cx="21"
+                    cy="30"
+                    rx="9"
+                    ry="6"
+                    fill="#FFFFFF"
+                />
+
+                <ellipse
+                    cx="39"
+                    cy="30"
+                    rx="9"
+                    ry="6"
+                    fill="#FFFFFF"
+                />
+
+                <circle
+                    cx="22"
+                    cy="30"
+                    r="4"
+                    fill="${color}"
+                />
+
+                <circle
+                    cx="38"
+                    cy="30"
+                    r="4"
+                    fill="${color}"
+                />
+
+            </svg>
+        `;
+    }
+
+    if (category === "mouth") {
+        return `
+            <svg viewBox="0 0 60 60">
+
+                <path
+                    d="M20 34 C27 42 33 42 40 34"
+                    fill="none"
+                    stroke="${color}"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+        `;
     }
 
     return `
-        <svg
-            viewBox="0 0 80 65"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-        >
-            <rect
-                x="1"
-                y="1"
-                width="78"
-                height="63"
-                rx="12"
-                fill="#F5FAFD"
-            />
-            ${visual}
-        </svg>
+        <svg viewBox="0 0 60 60"></svg>
     `;
 }
 
-/* ========================================
-   CATEGORY MENU
-======================================== */
 
-let activeCategory = "body";
+// ========================================
+// TYPE MENU
+// ========================================
 
 function renderTypeMenu(category) {
-    activeCategory = category;
 
-    const title = document.getElementById("category-title");
-    const items = document.getElementById("items");
-
-    title.textContent =
+    categoryTitle.textContent =
         category.charAt(0).toUpperCase() + category.slice(1);
 
-    items.innerHTML = "";
+    itemsContainer.innerHTML = "";
 
-    options[category].forEach((item, typeIndex) => {
+    options[category].forEach((type, typeIndex) => {
+
         const button = document.createElement("button");
 
         button.className = "item-button";
@@ -1886,40 +2006,60 @@ function renderTypeMenu(category) {
         }
 
         button.innerHTML = `
-            <div class="preview">
+            <div class="mini-preview">
                 ${miniPreview(category, typeIndex, 0)}
             </div>
-            <span>${esc(item.name)}</span>
+
+            <span>${esc(type.name)}</span>
         `;
 
         button.addEventListener("click", () => {
+
             selected[category].type = typeIndex;
             selected[category].variant = 0;
 
             renderVariantMenu(category);
             drawAvatar();
+
         });
 
-        items.appendChild(button);
+        itemsContainer.appendChild(button);
     });
 }
 
-/* ========================================
-   VARIANT MENU
-======================================== */
+
+// ========================================
+// VARIANT MENU
+// ========================================
 
 function renderVariantMenu(category) {
-    const title = document.getElementById("category-title");
-    const items = document.getElementById("items");
 
-    const item = current(category);
+    const typeIndex = selected[category].type;
+    const type = options[category][typeIndex];
 
-    title.textContent =
-        `${category.charAt(0).toUpperCase() + category.slice(1)} → ${item.name}`;
+    categoryTitle.textContent =
+        `${category.charAt(0).toUpperCase() + category.slice(1)} — ${type.name}`;
 
-    items.innerHTML = "";
+    itemsContainer.innerHTML = "";
 
-    item.variants.forEach((variant, variantIndex) => {
+    const backButton = document.createElement("button");
+
+    backButton.className = "item-button";
+
+    backButton.innerHTML = `
+        <div class="mini-preview">←</div>
+        <span>Back</span>
+    `;
+
+    backButton.addEventListener("click", () => {
+        renderTypeMenu(category);
+    });
+
+    itemsContainer.appendChild(backButton);
+
+
+    type.variants.forEach((variant, variantIndex) => {
+
         const button = document.createElement("button");
 
         button.className = "item-button";
@@ -1929,198 +2069,146 @@ function renderVariantMenu(category) {
         }
 
         button.innerHTML = `
-            <div class="preview">
-                ${miniPreview(
-                    category,
-                    selected[category].type,
-                    variantIndex
-                )}
+            <div class="mini-preview">
+                ${miniPreview(category, typeIndex, variantIndex)}
             </div>
-            <span>${esc(variant)}</span>
+
+            <span>${esc(variant.name)}</span>
         `;
 
         button.addEventListener("click", () => {
+
             selected[category].variant = variantIndex;
 
             renderVariantMenu(category);
             drawAvatar();
+
         });
 
-        items.appendChild(button);
+        itemsContainer.appendChild(button);
     });
-
-    const backButton = document.createElement("button");
-
-    backButton.className = "back-button";
-    backButton.textContent = "← Back";
-
-    backButton.addEventListener("click", () => {
-        renderTypeMenu(category);
-    });
-
-    items.appendChild(backButton);
 }
 
-/* ========================================
-   CATEGORY BUTTONS
-======================================== */
 
-document.querySelectorAll(".category-button").forEach(button => {
+// ========================================
+// CATEGORY BUTTONS
+// ========================================
+
+categoryButtons.forEach(button => {
+
     button.addEventListener("click", () => {
-        document
-            .querySelectorAll(".category-button")
-            .forEach(btn => btn.classList.remove("active"));
+
+        categoryButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
 
         button.classList.add("active");
 
-        renderTypeMenu(button.dataset.category);
+        currentCategory = button.dataset.category;
+
+        renderTypeMenu(currentCategory);
+
     });
+
 });
 
-/* ========================================
-   RANDOMIZE
-======================================== */
 
-document
-    .getElementById("randomize-button")
-    .addEventListener("click", () => {
+// ========================================
+// RANDOMIZE
+// ========================================
 
-        Object.keys(options).forEach(category => {
-            selected[category].type =
-                Math.floor(Math.random() * options[category].length);
+randomizeButton.addEventListener("click", () => {
 
-            selected[category].variant =
-                Math.floor(
-                    Math.random() *
-                    options[category][selected[category].type].variants.length
-                );
-        });
+    Object.keys(options).forEach(category => {
 
-        renderTypeMenu(activeCategory);
-        drawAvatar();
+        const types = options[category];
+
+        const randomType =
+            Math.floor(Math.random() * types.length);
+
+        const randomVariant =
+            Math.floor(
+                Math.random() *
+                types[randomType].variants.length
+            );
+
+        selected[category].type = randomType;
+        selected[category].variant = randomVariant;
+
     });
 
-/* ========================================
-   SAVE AVATAR
-======================================== */
+    renderTypeMenu(currentCategory);
+    drawAvatar();
 
-document
-    .getElementById("save-button")
-    .addEventListener("click", () => {
+});
 
-        const svg = document.querySelector("#avatar svg");
 
-        if (!svg) return;
+// ========================================
+// SAVE AVATAR
+// ========================================
 
-        const nameInput = document.getElementById("avatar-name");
-        const name = nameInput.value.trim() || "My Avatar";
+saveButton.addEventListener("click", () => {
 
-        localStorage.setItem(
-            "avatarName",
-            name
-        );
+    const svg = document.getElementById("avatar-svg");
 
-        localStorage.setItem(
-            "avatarSettings",
-            JSON.stringify(selected)
-        );
+    if (!svg) return;
 
-        const serializer = new XMLSerializer();
-        const source = serializer.serializeToString(svg);
+    const serializer = new XMLSerializer();
 
-        const blob = new Blob(
-            [source],
-            {
-                type: "image/svg+xml;charset=utf-8"
-            }
-        );
+    const source = serializer.serializeToString(svg);
 
-        const url = URL.createObjectURL(blob);
+    const blob = new Blob(
+        [source],
+        { type: "image/svg+xml;charset=utf-8" }
+    );
 
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `${name.replace(/[^a-z0-9]/gi, "_")}.svg`;
+    const url = URL.createObjectURL(blob);
 
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+    const link = document.createElement("a");
 
-        setTimeout(() => {
-            URL.revokeObjectURL(url);
-        }, 1000);
-    });
+    const avatarName =
+        nameInput.value.trim() || "my-avatar";
 
-/* ========================================
-   LOAD SAVED DATA
-======================================== */
+    link.href = url;
+    link.download =
+        avatarName.replace(/[^a-z0-9-_]/gi, "_") +
+        ".svg";
 
-function loadSavedAvatar() {
-    const savedName = localStorage.getItem("avatarName");
-    const savedSettings = localStorage.getItem("avatarSettings");
+    document.body.appendChild(link);
 
-    if (savedName) {
-        document.getElementById("avatar-name").value = savedName;
-    }
+    link.click();
 
-    if (savedSettings) {
-        try {
-            const parsed = JSON.parse(savedSettings);
+    link.remove();
 
-            Object.keys(selected).forEach(category => {
-                if (
-                    parsed[category] &&
-                    typeof parsed[category].type === "number" &&
-                    typeof parsed[category].variant === "number"
-                ) {
-                    const maxType =
-                        options[category].length - 1;
+    URL.revokeObjectURL(url);
 
-                    selected[category].type =
-                        Math.max(
-                            0,
-                            Math.min(
-                                parsed[category].type,
-                                maxType
-                            )
-                        );
+});
 
-                    const maxVariant =
-                        options[category][selected[category].type]
-                            .variants.length - 1;
 
-                    selected[category].variant =
-                        Math.max(
-                            0,
-                            Math.min(
-                                parsed[category].variant,
-                                maxVariant
-                            )
-                        );
-                }
-            });
-        } catch (error) {
-            console.warn("Could not load saved avatar.", error);
-        }
-    }
+// ========================================
+// NAME MEMORY
+// ========================================
+
+const savedName =
+    localStorage.getItem("avatarName");
+
+if (savedName) {
+    nameInput.value = savedName;
 }
 
-/* ========================================
-   NAME AUTOSAVE
-======================================== */
+nameInput.addEventListener("input", () => {
 
-document
-    .getElementById("avatar-name")
-    .addEventListener("input", event => {
-        localStorage.setItem(
-            "avatarName",
-            event.target.value
-        );
-    });
+    localStorage.setItem(
+        "avatarName",
+        nameInput.value
+    );
 
-/* ========================================
-   START
-======================================== */
+});
 
-loadSavedAvatar();
-renderTypeMenu("body");
+
+// ========================================
+// START
+// ========================================
+
 drawAvatar();
+renderTypeMenu("body");
