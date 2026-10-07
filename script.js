@@ -1,6 +1,6 @@
 // ========================================
 // AVATAR GAME
-// Nested customization system
+// POLISHED 2.5D AVATAR ENGINE
 // ========================================
 
 
@@ -9,50 +9,15 @@
 // ========================================
 
 const selected = {
-    body: {
-        type: 0,
-        variant: 0
-    },
-
-    face: {
-        type: 0,
-        variant: 0
-    },
-
-    hair: {
-        type: 0,
-        variant: 0
-    },
-
-    eyes: {
-        type: 0,
-        variant: 0
-    },
-
-    mouth: {
-        type: 0,
-        variant: 0
-    },
-
-    tops: {
-        type: 0,
-        variant: 0
-    },
-
-    bottoms: {
-        type: 0,
-        variant: 0
-    },
-
-    shoes: {
-        type: 0,
-        variant: 0
-    },
-
-    accessories: {
-        type: 0,
-        variant: 0
-    }
+    body: { type: 0, variant: 0 },
+    face: { type: 0, variant: 0 },
+    hair: { type: 0, variant: 0 },
+    eyes: { type: 0, variant: 0 },
+    mouth: { type: 0, variant: 0 },
+    tops: { type: 0, variant: 0 },
+    bottoms: { type: 0, variant: 0 },
+    shoes: { type: 0, variant: 0 },
+    accessories: { type: 0, variant: 0 }
 };
 
 
@@ -74,7 +39,6 @@ const options = {
         }
     ],
 
-
     face: [
         {
             name: "Face Shape",
@@ -85,7 +49,6 @@ const options = {
             ]
         }
     ],
-
 
     hair: [
         {
@@ -115,7 +78,6 @@ const options = {
         }
     ],
 
-
     eyes: [
         {
             name: "Eye Style",
@@ -127,7 +89,6 @@ const options = {
             ]
         }
     ],
-
 
     mouth: [
         {
@@ -141,17 +102,10 @@ const options = {
         }
     ],
 
-
-    // ------------------------------------
-    // TOPS
-    // ------------------------------------
-
     tops: [
-
         {
             name: "Shirts",
             style: "shirt",
-
             variants: [
                 { name: "White", color: "#F7F7F7" },
                 { name: "Black", color: "#292929" },
@@ -165,7 +119,6 @@ const options = {
         {
             name: "Hoodies",
             style: "hoodie",
-
             variants: [
                 { name: "White", color: "#F3F4F5" },
                 { name: "Black", color: "#292B30" },
@@ -179,7 +132,6 @@ const options = {
         {
             name: "Sweaters",
             style: "sweater",
-
             variants: [
                 { name: "Cream", color: "#E8DCC8" },
                 { name: "Black", color: "#303238" },
@@ -192,7 +144,6 @@ const options = {
         {
             name: "Jackets",
             style: "jacket",
-
             variants: [
                 { name: "Black", color: "#292D35" },
                 { name: "Blue", color: "#476CA8" },
@@ -202,17 +153,10 @@ const options = {
         }
     ],
 
-
-    // ------------------------------------
-    // BOTTOMS
-    // ------------------------------------
-
     bottoms: [
-
         {
             name: "Jeans",
             style: "pants",
-
             variants: [
                 { name: "Light Blue", color: "#6D91C5" },
                 { name: "Blue", color: "#4269A8" },
@@ -224,7 +168,6 @@ const options = {
         {
             name: "Shorts",
             style: "shorts",
-
             variants: [
                 { name: "Black", color: "#30333A" },
                 { name: "Blue", color: "#4269A8" },
@@ -234,17 +177,10 @@ const options = {
         }
     ],
 
-
-    // ------------------------------------
-    // SHOES
-    // ------------------------------------
-
     shoes: [
-
         {
             name: "Sneakers",
             style: "sneakers",
-
             variants: [
                 {
                     name: "White",
@@ -272,7 +208,6 @@ const options = {
         {
             name: "Boots",
             style: "boots",
-
             variants: [
                 {
                     name: "Black",
@@ -288,13 +223,7 @@ const options = {
         }
     ],
 
-
-    // ------------------------------------
-    // ACCESSORIES
-    // ------------------------------------
-
     accessories: [
-
         {
             name: "None",
             style: "none",
@@ -338,7 +267,7 @@ const options = {
 
 
 // ========================================
-// DOM ELEMENTS
+// DOM
 // ========================================
 
 const avatar = document.getElementById("avatar");
@@ -358,12 +287,58 @@ const saveButton =
     document.getElementById("save-button");
 
 let currentCategory = "body";
-
 let menuLevel = "types";
 
 
 // ========================================
-// SVG
+// COLOR HELPERS
+// ========================================
+
+function hexToRgb(hex) {
+
+    hex = hex.replace("#", "");
+
+    if (hex.length === 3) {
+        hex =
+            hex[0] + hex[0] +
+            hex[1] + hex[1] +
+            hex[2] + hex[2];
+    }
+
+    return {
+        r: parseInt(hex.substring(0, 2), 16),
+        g: parseInt(hex.substring(2, 4), 16),
+        b: parseInt(hex.substring(4, 6), 16)
+    };
+}
+
+
+function rgbToHex(r, g, b) {
+
+    const clamp = value =>
+        Math.max(0, Math.min(255, Math.round(value)));
+
+    return "#" +
+        clamp(r).toString(16).padStart(2, "0") +
+        clamp(g).toString(16).padStart(2, "0") +
+        clamp(b).toString(16).padStart(2, "0");
+}
+
+
+function shadeColor(hex, amount) {
+
+    const rgb = hexToRgb(hex);
+
+    return rgbToHex(
+        rgb.r + amount,
+        rgb.g + amount,
+        rgb.b + amount
+    );
+}
+
+
+// ========================================
+// SVG WRAPPER
 // ========================================
 
 function svgElement(content) {
@@ -374,14 +349,122 @@ function svgElement(content) {
             xmlns="http://www.w3.org/2000/svg"
             aria-label="Avatar"
         >
+
+            <defs>
+
+                <linearGradient
+                    id="skinGradient"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+                    <stop
+                        offset="0%"
+                        stop-color="#fff"
+                        stop-opacity="0.32"
+                    />
+
+                    <stop
+                        offset="45%"
+                        stop-color="#fff"
+                        stop-opacity="0"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#000"
+                        stop-opacity="0.16"
+                    />
+                </linearGradient>
+
+                <linearGradient
+                    id="clothLight"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+                    <stop
+                        offset="0%"
+                        stop-color="#fff"
+                        stop-opacity="0.22"
+                    />
+
+                    <stop
+                        offset="48%"
+                        stop-color="#fff"
+                        stop-opacity="0"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#000"
+                        stop-opacity="0.18"
+                    />
+                </linearGradient>
+
+                <linearGradient
+                    id="hairLight"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+                    <stop
+                        offset="0%"
+                        stop-color="#fff"
+                        stop-opacity="0.18"
+                    />
+
+                    <stop
+                        offset="55%"
+                        stop-color="#fff"
+                        stop-opacity="0"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#000"
+                        stop-opacity="0.24"
+                    />
+                </linearGradient>
+
+                <filter
+                    id="softShadow"
+                    x="-50%"
+                    y="-50%"
+                    width="200%"
+                    height="200%"
+                >
+                    <feGaussianBlur
+                        stdDeviation="7"
+                    />
+                </filter>
+
+                <filter
+                    id="smallShadow"
+                    x="-50%"
+                    y="-50%"
+                    width="200%"
+                    height="200%"
+                >
+                    <feGaussianBlur
+                        stdDeviation="3"
+                    />
+                </filter>
+
+            </defs>
+
             ${content}
+
         </svg>
     `;
 }
 
 
 // ========================================
-// DRAW AVATAR
+// MAIN AVATAR
 // ========================================
 
 function drawAvatar() {
@@ -434,115 +517,180 @@ function drawAvatar() {
         options.accessories[selected.accessories.type];
 
     const accessory =
-        accessoryType.variants[selected.accessories.variant];
+        accessoryType.variants[
+            selected.accessories.variant
+        ];
+
+
+    const skinDark =
+        shadeColor(body.color, -24);
 
 
     avatar.innerHTML = svgElement(`
 
-        <!-- SHADOW -->
+        <!-- GROUND SHADOW -->
+
         <ellipse
             cx="200"
-            cy="565"
+            cy="563"
             rx="105"
-            ry="18"
-            fill="rgba(80,110,130,0.16)"
+            ry="17"
+            fill="#54788C"
+            opacity="0.18"
+            filter="url(#softShadow)"
+        />
+
+        <ellipse
+            cx="200"
+            cy="557"
+            rx="82"
+            ry="10"
+            fill="#5E8090"
+            opacity="0.12"
         />
 
 
         <!-- BACK HAIR -->
+
         ${drawBackHair(hair)}
 
 
         <!-- LEGS -->
-        <g>
 
-            <rect
-                x="142"
-                y="430"
-                width="42"
-                height="82"
-                rx="20"
-                fill="${body.color}"
-            />
-
-            <rect
-                x="216"
-                y="430"
-                width="42"
-                height="82"
-                rx="20"
-                fill="${body.color}"
-            />
-
-        </g>
+        ${drawLegs(body.color)}
 
 
         <!-- SHOES -->
+
         ${drawShoes(shoes, shoeType.style)}
 
 
         <!-- BOTTOMS -->
+
         ${drawBottoms(bottom, bottomType.style)}
 
 
-        <!-- TOP -->
+        <!-- TORSO -->
+
         ${drawTop(top, topType.style)}
 
 
         <!-- ARMS -->
-        <g>
 
-            <rect
-                x="96"
-                y="315"
-                width="48"
-                height="135"
-                rx="24"
-                fill="${body.color}"
-                transform="rotate(8 120 315)"
-            />
+        ${drawArms(body.color, top, topType.style)}
 
-            <rect
-                x="256"
-                y="315"
-                width="48"
-                height="135"
-                rx="24"
-                fill="${body.color}"
-                transform="rotate(-8 280 315)"
-            />
 
-        </g>
+        <!-- HANDS -->
+
+        ${drawHands(body.color)}
 
 
         <!-- NECK -->
-        <rect
-            x="175"
-            y="280"
-            width="50"
-            height="55"
-            rx="20"
+
+        <path
+            d="
+                M176 276
+                Q200 288 224 276
+                L225 325
+                Q200 340 175 325 Z
+            "
             fill="${body.color}"
+            stroke="${skinDark}"
+            stroke-width="3"
+        />
+
+        <path
+            d="
+                M181 290
+                Q200 300 219 290
+                L219 320
+                Q200 329 181 320 Z
+            "
+            fill="url(#skinGradient)"
         />
 
 
+        <!-- EARS -->
+
+        ${drawEars(body.color)}
+
+
         <!-- FACE -->
+
         ${drawFace(face, body.color)}
 
 
+        <!-- FACE LIGHT -->
+
+        <ellipse
+            cx="183"
+            cy="205"
+            rx="48"
+            ry="65"
+            fill="#fff"
+            opacity="0.07"
+        />
+
+
+        <!-- NOSE -->
+
+        <path
+            d="
+                M199 224
+                Q193 244 198 247
+                Q204 250 209 246
+            "
+            fill="none"
+            stroke="${shadeColor(body.color, -42)}"
+            stroke-width="3"
+            stroke-linecap="round"
+            opacity="0.65"
+        />
+
+
+        <!-- CHEEKS -->
+
+        <ellipse
+            cx="151"
+            cy="251"
+            rx="15"
+            ry="7"
+            fill="#E88D87"
+            opacity="0.14"
+        />
+
+        <ellipse
+            cx="249"
+            cy="251"
+            rx="15"
+            ry="7"
+            fill="#E88D87"
+            opacity="0.14"
+        />
+
+
+        <!-- EYEBROWS -->
+
+        ${drawBrows(eyes)}
+
+
         <!-- EYES -->
+
         ${drawEyes(eyes)}
 
 
         <!-- MOUTH -->
+
         ${drawMouth(mouth)}
 
 
         <!-- FRONT HAIR -->
+
         ${drawFrontHair(hair)}
 
 
         <!-- ACCESSORY -->
+
         ${drawAccessory(
             accessory,
             accessoryType.style
@@ -558,23 +706,300 @@ function drawAvatar() {
 
 
 // ========================================
+// LEGS
+// ========================================
+
+function drawLegs(skin) {
+
+    const dark = shadeColor(skin, -28);
+
+    return `
+        <path
+            d="
+                M143 425
+                Q160 417 183 427
+                L183 507
+                Q166 518 145 507
+                Z
+            "
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M217 427
+                Q240 417 257 425
+                L255 507
+                Q234 518 217 507
+                Z
+            "
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M153 438
+                Q166 430 178 437
+                L178 493
+                Q166 500 153 493 Z
+            "
+            fill="url(#skinGradient)"
+            opacity="0.7"
+        />
+
+        <path
+            d="
+                M222 437
+                Q235 430 248 438
+                L247 493
+                Q235 500 222 493 Z
+            "
+            fill="url(#skinGradient)"
+            opacity="0.7"
+        />
+    `;
+}
+
+
+// ========================================
+// ARMS
+// ========================================
+
+function drawArms(skin, top, style) {
+
+    const dark = shadeColor(skin, -30);
+
+    if (style === "hoodie") {
+
+        return `
+            <path
+                d="
+                    M145 315
+                    Q122 318 112 345
+                    L102 412
+                    Q102 432 118 437
+                    Q135 440 141 421
+                    L154 360 Z
+                "
+                fill="${top.color}"
+                stroke="#34363B"
+                stroke-width="4"
+            />
+
+            <path
+                d="
+                    M255 315
+                    Q278 318 288 345
+                    L298 412
+                    Q298 432 282 437
+                    Q265 440 259 421
+                    L246 360 Z
+                "
+                fill="${top.color}"
+                stroke="#34363B"
+                stroke-width="4"
+            />
+
+            <path
+                d="
+                    M105 408
+                    Q120 420 139 414
+                    L136 435
+                    Q119 444 105 432 Z
+                "
+                fill="${shadeColor(top.color, -25)}"
+            />
+
+            <path
+                d="
+                    M295 408
+                    Q280 420 261 414
+                    L264 435
+                    Q281 444 295 432 Z
+                "
+                fill="${shadeColor(top.color, -25)}"
+            />
+        `;
+    }
+
+    return `
+        <path
+            d="
+                M148 313
+                Q126 319 116 344
+                L106 410
+                Q104 429 119 435
+                Q135 439 141 420
+                L155 352 Z
+            "
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M252 313
+                Q274 319 284 344
+                L294 410
+                Q296 429 281 435
+                Q265 439 259 420
+                L245 352 Z
+            "
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M113 348
+                Q126 330 141 329
+                L134 410
+                Q129 420 116 414 Z
+            "
+            fill="url(#skinGradient)"
+        />
+
+        <path
+            d="
+                M287 348
+                Q274 330 259 329
+                L266 410
+                Q271 420 284 414 Z
+            "
+            fill="url(#skinGradient)"
+        />
+    `;
+}
+
+
+// ========================================
+// HANDS
+// ========================================
+
+function drawHands(skin) {
+
+    const dark = shadeColor(skin, -25);
+
+    return `
+        <ellipse
+            cx="119"
+            cy="427"
+            rx="16"
+            ry="18"
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="3"
+        />
+
+        <ellipse
+            cx="281"
+            cy="427"
+            rx="16"
+            ry="18"
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="3"
+        />
+
+        <path
+            d="M111 424 Q119 431 127 424"
+            fill="none"
+            stroke="${dark}"
+            stroke-width="2"
+            opacity="0.5"
+        />
+
+        <path
+            d="M273 424 Q281 431 289 424"
+            fill="none"
+            stroke="${dark}"
+            stroke-width="2"
+            opacity="0.5"
+        />
+    `;
+}
+
+
+// ========================================
+// EARS
+// ========================================
+
+function drawEars(skin) {
+
+    const dark = shadeColor(skin, -30);
+
+    return `
+        <ellipse
+            cx="126"
+            cy="230"
+            rx="16"
+            ry="24"
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <ellipse
+            cx="274"
+            cy="230"
+            rx="16"
+            ry="24"
+            fill="${skin}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M124 222
+                Q115 230 125 238
+            "
+            fill="none"
+            stroke="${dark}"
+            stroke-width="3"
+            opacity="0.6"
+        />
+
+        <path
+            d="
+                M276 222
+                Q285 230 275 238
+            "
+            fill="none"
+            stroke="${dark}"
+            stroke-width="3"
+            opacity="0.6"
+        />
+    `;
+}
+
+
+// ========================================
 // FACE
 // ========================================
 
 function drawFace(face, skin) {
 
     let width = 150;
-    let height = 150;
+    let height = 155;
 
     if (face.shape === "soft") {
         width = 145;
-        height = 155;
+        height = 160;
     }
 
     if (face.shape === "wide") {
-        width = 165;
-        height = 145;
+        width = 166;
+        height = 148;
     }
+
+    const dark = shadeColor(skin, -30);
 
     return `
         <ellipse
@@ -583,35 +1008,114 @@ function drawFace(face, skin) {
             rx="${width / 2}"
             ry="${height / 2}"
             fill="${skin}"
-            stroke="#513B32"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <ellipse
+            cx="200"
+            cy="230"
+            rx="${width / 2 - 5}"
+            ry="${height / 2 - 5}"
+            fill="url(#skinGradient)"
         />
     `;
 }
 
 
 // ========================================
-// HAIR
+// BROWS
+// ========================================
+
+function drawBrows(eyes) {
+
+    if (eyes.style === "sleepy") {
+
+        return `
+            <path
+                d="M154 201 Q170 194 185 201"
+                fill="none"
+                stroke="#51352C"
+                stroke-width="6"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M215 201 Q230 194 246 201"
+                fill="none"
+                stroke="#51352C"
+                stroke-width="6"
+                stroke-linecap="round"
+            />
+        `;
+    }
+
+    return `
+        <path
+            d="M154 198 Q170 190 185 197"
+            fill="none"
+            stroke="#51352C"
+            stroke-width="6"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M215 197 Q230 190 246 198"
+            fill="none"
+            stroke="#51352C"
+            stroke-width="6"
+            stroke-linecap="round"
+        />
+    `;
+}
+
+
+// ========================================
+// HAIR BACK
 // ========================================
 
 function drawBackHair(hair) {
 
+    const dark = shadeColor(hair.color, -35);
+
     if (hair.style === "messy") {
 
         return `
             <path
                 d="
-                    M120 230
-                    Q105 135 150 105
-                    Q175 70 205 92
-                    Q250 65 285 110
-                    Q315 145 290 235
-                    L270 270
-                    L125 265 Z
+                    M120 235
+                    Q101 178 120 137
+                    Q130 103 159 91
+                    Q177 69 199 91
+                    Q223 65 248 91
+                    Q286 91 298 130
+                    Q315 177 291 235
+                    L273 270
+                    L127 270 Z
                 "
                 fill="${hair.color}"
-                stroke="#241C18"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="
+                    M135 151
+                    Q157 103 191 106
+                    Q170 127 163 164
+                "
+                fill="url(#hairLight)"
+            />
+
+            <path
+                d="
+                    M238 103
+                    Q276 110 286 152
+                    Q268 130 249 126
+                "
+                fill="#fff"
+                opacity="0.08"
             />
         `;
     }
@@ -622,17 +1126,36 @@ function drawBackHair(hair) {
         return `
             <path
                 d="
-                    M115 235
-                    Q95 175 125 125
-                    Q145 80 190 92
-                    Q225 65 260 95
-                    Q305 95 300 155
-                    Q320 205 285 260
-                    L120 260 Z
+                    M112 239
+                    Q91 187 113 139
+                    Q125 93 164 91
+                    Q190 66 215 91
+                    Q248 69 274 98
+                    Q309 109 302 153
+                    Q319 198 288 250
+                    L119 263 Z
                 "
                 fill="${hair.color}"
-                stroke="#241C18"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
+            />
+
+            <path
+                d="
+                    M124 150
+                    Q143 105 181 103
+                    Q154 128 149 168
+                "
+                fill="url(#hairLight)"
+            />
+
+            <path
+                d="
+                    M250 105
+                    Q282 117 290 151
+                "
+                fill="#fff"
+                opacity="0.08"
             />
         `;
     }
@@ -641,36 +1164,70 @@ function drawBackHair(hair) {
     return `
         <path
             d="
-                M120 225
-                Q115 120 200 105
-                Q285 120 280 225
-                L270 260
-                L130 260 Z
+                M120 230
+                Q112 143 151 112
+                Q175 91 201 94
+                Q238 91 265 115
+                Q290 145 280 230
+                L267 264
+                L133 264 Z
             "
             fill="${hair.color}"
-            stroke="#241C18"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="6"
+        />
+
+        <path
+            d="
+                M139 155
+                Q155 117 195 108
+                Q169 130 163 163
+            "
+            fill="url(#hairLight)"
         />
     `;
 }
 
 
+// ========================================
+// HAIR FRONT
+// ========================================
+
 function drawFrontHair(hair) {
+
+    const dark = shadeColor(hair.color, -30);
 
     if (hair.style === "messy") {
 
         return `
             <path
                 d="
-                    M125 180
-                    Q145 115 200 120
-                    Q255 115 275 180
-                    Q250 165 230 185
-                    Q215 150 195 185
-                    Q175 150 150 185
-                    Q140 170 125 180 Z
+                    M126 180
+                    Q137 119 192 119
+                    Q220 101 251 126
+                    Q271 139 278 178
+
+                    Q258 166 240 181
+                    Q224 148 203 181
+                    Q188 143 166 182
+                    Q147 162 126 180 Z
                 "
                 fill="${hair.color}"
+                stroke="${dark}"
+                stroke-width="4"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="
+                    M145 153
+                    Q165 128 190 126
+                "
+                fill="none"
+                stroke="#fff"
+                stroke-width="6"
+                opacity="0.11"
+                stroke-linecap="round"
             />
         `;
     }
@@ -681,15 +1238,31 @@ function drawFrontHair(hair) {
         return `
             <path
                 d="
-                    M120 175
-                    Q140 110 200 120
-                    Q260 105 280 175
-                    Q255 150 235 170
-                    Q215 135 195 170
-                    Q175 135 150 170
-                    Q135 150 120 175 Z
+                    M119 177
+                    Q133 111 190 117
+                    Q215 95 244 120
+                    Q268 132 281 176
+
+                    Q258 151 238 170
+                    Q217 132 195 170
+                    Q176 133 151 170
+                    Q135 150 119 177 Z
                 "
                 fill="${hair.color}"
+                stroke="${dark}"
+                stroke-width="4"
+            />
+
+            <path
+                d="
+                    M139 146
+                    Q164 118 190 121
+                "
+                fill="none"
+                stroke="#fff"
+                stroke-width="7"
+                opacity="0.1"
+                stroke-linecap="round"
             />
         `;
     }
@@ -698,14 +1271,30 @@ function drawFrontHair(hair) {
     return `
         <path
             d="
-                M125 175
-                Q145 115 200 120
-                Q255 115 275 175
-                Q245 150 220 165
-                Q200 145 180 165
-                Q155 150 125 175 Z
+                M126 177
+                Q139 119 194 118
+                Q222 108 249 126
+                Q269 139 276 177
+
+                Q250 152 224 169
+                Q204 144 182 169
+                Q157 149 126 177 Z
             "
             fill="${hair.color}"
+            stroke="${dark}"
+            stroke-width="4"
+        />
+
+        <path
+            d="
+                M145 150
+                Q164 125 191 123
+            "
+            fill="none"
+            stroke="#fff"
+            stroke-width="6"
+            opacity="0.1"
+            stroke-linecap="round"
         />
     `;
 }
@@ -721,7 +1310,7 @@ function drawEyes(eyes) {
 
         return `
             <path
-                d="M155 225 Q170 210 185 225"
+                d="M154 225 Q169 208 185 225"
                 fill="none"
                 stroke="#302B2A"
                 stroke-width="8"
@@ -729,7 +1318,7 @@ function drawEyes(eyes) {
             />
 
             <path
-                d="M215 225 Q230 210 245 225"
+                d="M215 225 Q231 208 246 225"
                 fill="none"
                 stroke="#302B2A"
                 stroke-width="8"
@@ -743,7 +1332,7 @@ function drawEyes(eyes) {
 
         return `
             <path
-                d="M155 225 Q170 235 185 225"
+                d="M154 225 Q170 235 185 225"
                 fill="none"
                 stroke="#302B2A"
                 stroke-width="8"
@@ -751,7 +1340,7 @@ function drawEyes(eyes) {
             />
 
             <path
-                d="M215 225 Q230 235 245 225"
+                d="M215 225 Q230 235 246 225"
                 fill="none"
                 stroke="#302B2A"
                 stroke-width="8"
@@ -764,11 +1353,67 @@ function drawEyes(eyes) {
     if (eyes.style === "big") {
 
         return `
-            <circle cx="170" cy="225" r="18" fill="#302B2A"/>
-            <circle cx="230" cy="225" r="18" fill="#302B2A"/>
+            <ellipse
+                cx="169"
+                cy="225"
+                rx="19"
+                ry="22"
+                fill="#302B2A"
+            />
 
-            <circle cx="164" cy="219" r="6" fill="white"/>
-            <circle cx="224" cy="219" r="6" fill="white"/>
+            <ellipse
+                cx="231"
+                cy="225"
+                rx="19"
+                ry="22"
+                fill="#302B2A"
+            />
+
+            <ellipse
+                cx="169"
+                cy="230"
+                rx="11"
+                ry="14"
+                fill="#111"
+            />
+
+            <ellipse
+                cx="231"
+                cy="230"
+                rx="11"
+                ry="14"
+                fill="#111"
+            />
+
+            <circle
+                cx="163"
+                cy="217"
+                r="6"
+                fill="white"
+            />
+
+            <circle
+                cx="225"
+                cy="217"
+                r="6"
+                fill="white"
+            />
+
+            <circle
+                cx="176"
+                cy="232"
+                r="3"
+                fill="white"
+                opacity="0.7"
+            />
+
+            <circle
+                cx="238"
+                cy="232"
+                r="3"
+                fill="white"
+                opacity="0.7"
+            />
         `;
     }
 
@@ -777,30 +1422,46 @@ function drawEyes(eyes) {
         <ellipse
             cx="170"
             cy="225"
-            rx="12"
-            ry="17"
+            rx="13"
+            ry="18"
             fill="#302B2A"
         />
 
         <ellipse
             cx="230"
             cy="225"
-            rx="12"
-            ry="17"
+            rx="13"
+            ry="18"
             fill="#302B2A"
+        />
+
+        <ellipse
+            cx="170"
+            cy="228"
+            rx="7"
+            ry="11"
+            fill="#111"
+        />
+
+        <ellipse
+            cx="230"
+            cy="228"
+            rx="7"
+            ry="11"
+            fill="#111"
         />
 
         <circle
             cx="166"
-            cy="220"
-            r="4"
+            cy="219"
+            r="4.5"
             fill="white"
         />
 
         <circle
             cx="226"
-            cy="220"
-            r="4"
+            cy="219"
+            r="4.5"
             fill="white"
         />
     `;
@@ -817,10 +1478,19 @@ function drawMouth(mouth) {
 
         return `
             <path
-                d="M175 260 Q200 280 225 260"
+                d="M173 260 Q200 284 227 260"
                 fill="none"
                 stroke="#633E3A"
                 stroke-width="6"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M181 267 Q200 276 219 267"
+                fill="none"
+                stroke="#fff"
+                stroke-width="3"
+                opacity="0.45"
                 stroke-linecap="round"
             />
         `;
@@ -833,9 +1503,17 @@ function drawMouth(mouth) {
             <ellipse
                 cx="200"
                 cy="263"
-                rx="15"
-                ry="11"
+                rx="17"
+                ry="13"
                 fill="#633E3A"
+            />
+
+            <path
+                d="M188 258 Q200 253 212 258"
+                fill="none"
+                stroke="#F5B8B4"
+                stroke-width="3"
+                opacity="0.7"
             />
         `;
     }
@@ -845,12 +1523,12 @@ function drawMouth(mouth) {
 
         return `
             <line
-                x1="185"
+                x1="184"
                 y1="263"
-                x2="215"
+                x2="216"
                 y2="263"
                 stroke="#633E3A"
-                stroke-width="6"
+                stroke-width="5"
                 stroke-linecap="round"
             />
         `;
@@ -875,50 +1553,80 @@ function drawMouth(mouth) {
 
 function drawTop(top, style) {
 
+    const dark = shadeColor(top.color, -35);
+
     if (style === "hoodie") {
 
         return `
             <path
                 d="
                     M145 310
-                    Q160 295 180 290
-                    L200 320
-                    L220 290
-                    Q240 295 255 310
-                    L285 335
-                    L260 455
-                    L140 455
-                    L115 335 Z
+                    Q160 294 180 288
+                    L200 315
+                    L220 288
+                    Q240 294 255 310
+                    L282 336
+                    L263 454
+                    L137 454
+                    L118 336 Z
                 "
                 fill="${top.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
                 stroke-linejoin="round"
             />
 
             <path
-                d="M165 300 Q200 335 235 300"
+                d="
+                    M165 299
+                    Q200 329 235 299
+                    L228 333
+                    Q200 347 172 333 Z
+                "
+                fill="${shadeColor(top.color, -20)}"
+                opacity="0.9"
+            />
+
+            <path
+                d="
+                    M165 299 Q200 334 235 299
+                "
                 fill="none"
-                stroke="rgba(255,255,255,0.35)"
-                stroke-width="7"
+                stroke="#fff"
+                stroke-width="5"
+                opacity="0.18"
             />
 
-            <line
-                x1="185"
-                y1="350"
-                x2="185"
-                y2="420"
-                stroke="rgba(0,0,0,0.15)"
+            <path
+                d="
+                    M180 352
+                    L180 424
+                "
+                stroke="#000"
                 stroke-width="4"
+                opacity="0.12"
+                stroke-linecap="round"
             />
 
-            <line
-                x1="215"
-                y1="350"
-                x2="215"
-                y2="420"
-                stroke="rgba(0,0,0,0.15)"
+            <path
+                d="
+                    M220 352
+                    L220 424
+                "
+                stroke="#000"
                 stroke-width="4"
+                opacity="0.12"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
+                    M141 348
+                    Q157 331 169 328
+                    L161 442
+                    L141 442 Z
+                "
+                fill="url(#clothLight)"
             />
         `;
     }
@@ -929,20 +1637,52 @@ function drawTop(top, style) {
         return `
             <path
                 d="
-                    M145 310
-                    L115 340
-                    L135 455
-                    L265 455
-                    L285 340
-                    L255 310
-                    L225 300
-                    L200 325
-                    L175 300 Z
+                    M146 308
+                    L116 338
+                    L137 454
+                    L263 454
+                    L284 338
+                    L254 308
+                    L225 298
+                    L200 324
+                    L175 298 Z
                 "
                 fill="${top.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
                 stroke-linejoin="round"
+            />
+
+            <path
+                d="
+                    M143 331
+                    Q200 353 257 331
+                "
+                fill="none"
+                stroke="#fff"
+                stroke-width="5"
+                opacity="0.14"
+            />
+
+            <path
+                d="
+                    M150 355
+                    Q169 343 178 344
+                    L170 442
+                    L144 438 Z
+                "
+                fill="url(#clothLight)"
+            />
+
+            <path
+                d="
+                    M250 355
+                    Q231 343 222 344
+                    L230 442
+                    L256 438 Z
+                "
+                fill="#000"
+                opacity="0.08"
             />
         `;
     }
@@ -953,29 +1693,50 @@ function drawTop(top, style) {
         return `
             <path
                 d="
-                    M145 310
-                    L115 340
-                    L135 455
-                    L265 455
-                    L285 340
-                    L255 310
-                    L225 300
-                    L200 325
-                    L175 300 Z
+                    M146 308
+                    L116 338
+                    L137 454
+                    L263 454
+                    L284 338
+                    L254 308
+                    L225 298
+                    L200 324
+                    L175 298 Z
                 "
                 fill="${top.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
                 stroke-linejoin="round"
             />
 
-            <line
-                x1="200"
-                y1="325"
-                x2="200"
-                y2="450"
-                stroke="rgba(255,255,255,0.3)"
-                stroke-width="4"
+            <path
+                d="
+                    M200 324
+                    L200 450
+                "
+                stroke="#111"
+                stroke-width="5"
+                opacity="0.28"
+            />
+
+            <path
+                d="
+                    M201 325
+                    L201 450
+                "
+                stroke="#fff"
+                stroke-width="2"
+                opacity="0.18"
+            />
+
+            <path
+                d="
+                    M145 332
+                    Q163 321 177 315
+                    L170 442
+                    L143 438 Z
+                "
+                fill="url(#clothLight)"
             />
         `;
     }
@@ -984,20 +1745,41 @@ function drawTop(top, style) {
     return `
         <path
             d="
-                M150 310
+                M150 309
                 L120 335
-                L140 455
-                L260 455
+                L140 454
+                L260 454
                 L280 335
-                L250 310
-                L225 300
-                L200 325
-                L175 300 Z
+                L250 309
+                L225 299
+                L200 324
+                L175 299 Z
             "
             fill="${top.color}"
-            stroke="#343434"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="6"
             stroke-linejoin="round"
+        />
+
+        <path
+            d="
+                M144 338
+                Q158 322 173 318
+                L166 442
+                L143 438 Z
+            "
+            fill="url(#clothLight)"
+        />
+
+        <path
+            d="
+                M175 337
+                Q200 348 225 337
+            "
+            fill="none"
+            stroke="#fff"
+            stroke-width="4"
+            opacity="0.13"
         />
     `;
 }
@@ -1009,22 +1791,55 @@ function drawTop(top, style) {
 
 function drawBottoms(bottom, style) {
 
+    const dark = shadeColor(bottom.color, -35);
+
     if (style === "shorts") {
 
         return `
             <path
                 d="
-                    M140 425
-                    L260 425
-                    L255 485
-                    L215 485
-                    L200 450
-                    L185 485
-                    L145 485 Z
+                    M140 423
+                    L260 423
+                    L256 486
+                    L215 486
+                    L200 451
+                    L185 486
+                    L144 486 Z
                 "
                 fill="${bottom.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
+            />
+
+            <path
+                d="
+                    M146 431
+                    Q165 440 184 436
+                    L178 476
+                    L150 476 Z
+                "
+                fill="url(#clothLight)"
+            />
+
+            <path
+                d="
+                    M214 436
+                    Q235 440 253 431
+                    L250 476
+                    L221 476 Z
+                "
+                fill="#000"
+                opacity="0.09"
+            />
+
+            <line
+                x1="200"
+                y1="432"
+                x2="200"
+                y2="448"
+                stroke="#000"
+                stroke-width="3"
+                opacity="0.2"
             />
         `;
     }
@@ -1033,8 +1848,8 @@ function drawBottoms(bottom, style) {
     return `
         <path
             d="
-                M140 420
-                L260 420
+                M140 419
+                L260 419
                 L258 505
                 L215 505
                 L200 450
@@ -1042,8 +1857,39 @@ function drawBottoms(bottom, style) {
                 L142 505 Z
             "
             fill="${bottom.color}"
-            stroke="#343434"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="6"
+        />
+
+        <path
+            d="
+                M147 429
+                Q166 438 184 433
+                L178 496
+                L150 496 Z
+            "
+            fill="url(#clothLight)"
+        />
+
+        <path
+            d="
+                M215 433
+                Q235 438 253 429
+                L249 496
+                L220 496 Z
+            "
+            fill="#000"
+            opacity="0.1"
+        />
+
+        <line
+            x1="200"
+            y1="425"
+            x2="200"
+            y2="449"
+            stroke="#000"
+            stroke-width="3"
+            opacity="0.2"
         />
     `;
 }
@@ -1055,50 +1901,76 @@ function drawBottoms(bottom, style) {
 
 function drawShoes(shoes, style) {
 
+    const dark = shadeColor(shoes.color, -40);
+
     if (style === "boots") {
 
         return `
             <path
                 d="
-                    M135 485
-                    L185 485
-                    L185 525
-                    L120 525
-                    Q115 500 135 485 Z
+                    M135 483
+                    L184 483
+                    L185 524
+                    L119 524
+                    Q113 501 135 483 Z
                 "
                 fill="${shoes.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
             />
 
             <path
                 d="
-                    M215 485
-                    L265 485
-                    Q285 500 280 525
-                    L215 525 Z
+                    M216 483
+                    L265 483
+                    Q287 501 281 524
+                    L215 524 Z
                 "
                 fill="${shoes.color}"
-                stroke="#343434"
-                stroke-width="5"
+                stroke="${dark}"
+                stroke-width="6"
+            />
+
+            <path
+                d="
+                    M130 493
+                    L178 493
+                    L178 511
+                    L127 511 Z
+                "
+                fill="url(#clothLight)"
+                opacity="0.8"
+            />
+
+            <path
+                d="
+                    M222 493
+                    L270 493
+                    L273 511
+                    L222 511 Z
+                "
+                fill="url(#clothLight)"
+                opacity="0.8"
             />
 
             <line
                 x1="125"
-                y1="510"
+                y1="511"
                 x2="180"
-                y2="510"
+                y2="511"
                 stroke="${shoes.accent}"
                 stroke-width="6"
+                stroke-linecap="round"
             />
 
             <line
                 x1="220"
-                y1="510"
+                y1="511"
                 x2="275"
-                y2="510"
+                y2="511"
                 stroke="${shoes.accent}"
                 stroke-width="6"
+                stroke-linecap="round"
             />
         `;
     }
@@ -1107,40 +1979,78 @@ function drawShoes(shoes, style) {
     return `
         <path
             d="
-                M132 495
-                Q155 485 185 500
+                M132 494
+                Q154 483 185 499
                 L185 530
                 L120 530
-                Q115 510 132 495 Z
+                Q113 510 132 494 Z
             "
             fill="${shoes.color}"
-            stroke="#343434"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="6"
         />
 
         <path
             d="
-                M215 500
-                Q245 485 268 495
-                Q285 510 280 530
+                M215 499
+                Q246 483 268 494
+                Q287 510 280 530
                 L215 530 Z
             "
             fill="${shoes.color}"
-            stroke="#343434"
-            stroke-width="5"
+            stroke="${dark}"
+            stroke-width="6"
         />
 
         <path
-            d="M130 515 L178 515"
+            d="
+                M128 501
+                Q151 491 179 505
+                L179 515
+                L128 515 Z
+            "
+            fill="#fff"
+            opacity="0.18"
+        />
+
+        <path
+            d="
+                M221 505
+                Q249 491 272 501
+                L272 515
+                L221 515 Z
+            "
+            fill="#000"
+            opacity="0.08"
+        />
+
+        <path
+            d="M130 517 L178 517"
             stroke="${shoes.accent}"
             stroke-width="7"
             stroke-linecap="round"
         />
 
         <path
-            d="M222 515 L270 515"
+            d="M222 517 L270 517"
             stroke="${shoes.accent}"
             stroke-width="7"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M122 528 L182 528"
+            stroke="#fff"
+            stroke-width="4"
+            opacity="0.65"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M218 528 L278 528"
+            stroke="#fff"
+            stroke-width="4"
+            opacity="0.65"
             stroke-linecap="round"
         />
     `;
@@ -1157,13 +2067,34 @@ function drawAccessory(accessory, style) {
 
         return `
             <g
-                fill="rgba(255,255,255,0.25)"
+                fill="rgba(255,255,255,0.12)"
                 stroke="${accessory.color || "#343434"}"
                 stroke-width="5"
             >
-                <circle cx="170" cy="225" r="27"/>
-                <circle cx="230" cy="225" r="27"/>
-                <line x1="197" y1="225" x2="203" y2="225"/>
+
+                <rect
+                    x="143"
+                    y="204"
+                    width="52"
+                    height="40"
+                    rx="16"
+                />
+
+                <rect
+                    x="205"
+                    y="204"
+                    width="52"
+                    height="40"
+                    rx="16"
+                />
+
+                <line
+                    x1="195"
+                    y1="222"
+                    x2="205"
+                    y2="222"
+                />
+
             </g>
         `;
     }
@@ -1171,29 +2102,44 @@ function drawAccessory(accessory, style) {
 
     if (style === "cap") {
 
+        const dark =
+            shadeColor(accessory.color, -30);
+
         return `
             <path
                 d="
-                    M130 170
-                    Q140 105 200 105
-                    Q260 105 270 170
-                    Q235 150 200 155
-                    Q165 150 130 170 Z
+                    M128 168
+                    Q138 105 200 101
+                    Q262 105 272 168
+                    Q237 148 200 153
+                    Q163 148 128 168 Z
                 "
                 fill="${accessory.color}"
-                stroke="#343434"
+                stroke="${dark}"
+                stroke-width="6"
+            />
+
+            <path
+                d="
+                    M200 153
+                    Q251 147 286 168
+                    Q247 184 200 171 Z
+                "
+                fill="${accessory.color}"
+                stroke="${dark}"
                 stroke-width="5"
             />
 
             <path
                 d="
-                    M200 155
-                    Q250 150 285 170
-                    Q245 185 200 170 Z
+                    M148 135
+                    Q172 113 198 112
                 "
-                fill="${accessory.color}"
-                stroke="#343434"
-                stroke-width="5"
+                fill="none"
+                stroke="#fff"
+                stroke-width="6"
+                opacity="0.13"
+                stroke-linecap="round"
             />
         `;
     }
@@ -1204,32 +2150,64 @@ function drawAccessory(accessory, style) {
         return `
             <path
                 d="
+                    M124 222
+                    Q124 113 200 113
+                    Q276 113 276 222
+                "
+                fill="none"
+                stroke="#17191D"
+                stroke-width="18"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
                     M125 220
-                    Q125 115 200 115
-                    Q275 115 275 220
+                    Q125 123 200 123
+                    Q275 123 275 220
                 "
                 fill="none"
                 stroke="${accessory.color}"
-                stroke-width="14"
+                stroke-width="11"
                 stroke-linecap="round"
             />
 
             <rect
-                x="112"
-                y="205"
-                width="28"
-                height="55"
-                rx="12"
+                x="111"
+                y="204"
+                width="31"
+                height="59"
+                rx="14"
                 fill="${accessory.color}"
+                stroke="#17191D"
+                stroke-width="4"
             />
 
             <rect
-                x="260"
-                y="205"
-                width="28"
-                height="55"
-                rx="12"
+                x="258"
+                y="204"
+                width="31"
+                height="59"
+                rx="14"
                 fill="${accessory.color}"
+                stroke="#17191D"
+                stroke-width="4"
+            />
+
+            <circle
+                cx="126"
+                cy="231"
+                r="7"
+                fill="#fff"
+                opacity="0.16"
+            />
+
+            <circle
+                cx="274"
+                cy="231"
+                r="7"
+                fill="#fff"
+                opacity="0.16"
             />
         `;
     }
@@ -1240,7 +2218,7 @@ function drawAccessory(accessory, style) {
 
 
 // ========================================
-// MINI PREVIEW SVG
+// MINI PREVIEWS
 // ========================================
 
 function miniPreview(category, type, variant) {
@@ -1248,59 +2226,59 @@ function miniPreview(category, type, variant) {
     const color =
         variant.color || "#777";
 
+    const accent =
+        variant.accent || shadeColor(color, 35);
+
     let artwork = "";
 
 
-    if (
-        category === "tops" ||
-        category === "bottoms"
-    ) {
+    if (category === "body") {
 
         artwork = `
-            <path
-                d="
-                    M18 8
-                    L10 15
-                    L13 38
-                    L35 38
-                    L38 15
-                    L30 8
-                    L24 14
-                    L18 8 Z
-                "
+            <circle
+                cx="25"
+                cy="25"
+                r="17"
                 fill="${color}"
-                stroke="#454545"
+                stroke="${shadeColor(color, -30)}"
                 stroke-width="2"
+            />
+
+            <ellipse
+                cx="20"
+                cy="18"
+                rx="7"
+                ry="9"
+                fill="#fff"
+                opacity="0.14"
             />
         `;
     }
 
 
-    else if (category === "shoes") {
+    else if (category === "face") {
+
+        let rx = 16;
+        let ry = 17;
+
+        if (variant.shape === "wide") {
+            rx = 18;
+            ry = 15;
+        }
+
+        if (variant.shape === "soft") {
+            rx = 15;
+            ry = 18;
+        }
 
         artwork = `
-            <path
-                d="
-                    M7 28
-                    Q15 23 22 28
-                    L22 35
-                    L6 35
-                    Q4 31 7 28 Z
-                "
-                fill="${color}"
-                stroke="#454545"
-                stroke-width="2"
-            />
-
-            <path
-                d="
-                    M28 28
-                    Q35 23 42 28
-                    Q45 31 44 35
-                    L28 35 Z
-                "
-                fill="${color}"
-                stroke="#454545"
+            <ellipse
+                cx="25"
+                cy="25"
+                rx="${rx}"
+                ry="${ry}"
+                fill="#F2C6A0"
+                stroke="#9E715C"
                 stroke-width="2"
             />
         `;
@@ -1315,43 +2293,24 @@ function miniPreview(category, type, variant) {
                     M7 31
                     Q5 9 25 7
                     Q45 9 43 31
-                    Q34 24 25 26
-                    Q16 24 7 31 Z
+                    Q35 25 25 27
+                    Q15 25 7 31 Z
                 "
                 fill="${variant.color}"
-                stroke="#454545"
+                stroke="${shadeColor(
+                    variant.color,
+                    -30
+                )}"
                 stroke-width="2"
             />
-        `;
-    }
 
-
-    else if (category === "body") {
-
-        artwork = `
-            <circle
-                cx="25"
-                cy="25"
-                r="16"
-                fill="${color}"
-                stroke="#454545"
-                stroke-width="2"
-            />
-        `;
-    }
-
-
-    else if (category === "face") {
-
-        artwork = `
-            <ellipse
-                cx="25"
-                cy="25"
-                rx="16"
-                ry="17"
-                fill="#F2C6A0"
-                stroke="#454545"
-                stroke-width="2"
+            <path
+                d="M13 17 Q20 10 27 10"
+                fill="none"
+                stroke="#fff"
+                stroke-width="3"
+                opacity="0.12"
+                stroke-linecap="round"
             />
         `;
     }
@@ -1359,21 +2318,227 @@ function miniPreview(category, type, variant) {
 
     else if (category === "eyes") {
 
-        artwork = `
-            <circle cx="18" cy="25" r="4" fill="#292929"/>
-            <circle cx="32" cy="25" r="4" fill="#292929"/>
-        `;
+        if (variant.style === "happy") {
+
+            artwork = `
+                <path
+                    d="M12 26 Q17 19 22 26"
+                    fill="none"
+                    stroke="#292929"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M28 26 Q33 19 38 26"
+                    fill="none"
+                    stroke="#292929"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+            `;
+        }
+
+        else if (variant.style === "sleepy") {
+
+            artwork = `
+                <path
+                    d="M12 25 Q17 29 22 25"
+                    fill="none"
+                    stroke="#292929"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M28 25 Q33 29 38 25"
+                    fill="none"
+                    stroke="#292929"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+            `;
+        }
+
+        else {
+
+            const size =
+                variant.style === "big" ? 6 : 4;
+
+            artwork = `
+                <circle
+                    cx="18"
+                    cy="25"
+                    r="${size}"
+                    fill="#292929"
+                />
+
+                <circle
+                    cx="32"
+                    cy="25"
+                    r="${size}"
+                    fill="#292929"
+                />
+
+                <circle
+                    cx="17"
+                    cy="23"
+                    r="1.5"
+                    fill="white"
+                />
+
+                <circle
+                    cx="31"
+                    cy="23"
+                    r="1.5"
+                    fill="white"
+                />
+            `;
+        }
     }
 
 
     else if (category === "mouth") {
 
+        if (variant.style === "open") {
+
+            artwork = `
+                <ellipse
+                    cx="25"
+                    cy="27"
+                    rx="7"
+                    ry="5"
+                    fill="#633E3A"
+                />
+            `;
+        }
+
+        else if (variant.style === "neutral") {
+
+            artwork = `
+                <line
+                    x1="18"
+                    y1="27"
+                    x2="32"
+                    y2="27"
+                    stroke="#633E3A"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+            `;
+        }
+
+        else {
+
+            artwork = `
+                <path
+                    d="M17 26 Q25 34 33 26"
+                    fill="none"
+                    stroke="#633E3A"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+            `;
+        }
+    }
+
+
+    else if (category === "tops") {
+
         artwork = `
             <path
-                d="M18 27 Q25 34 32 27"
+                d="
+                    M17 9
+                    L11 14
+                    L14 40
+                    L36 40
+                    L39 14
+                    L33 9
+                    L25 16
+                    Z
+                "
+                fill="${color}"
+                stroke="${shadeColor(color, -35)}"
+                stroke-width="2"
+            />
+
+            <path
+                d="M14 18 Q25 23 36 18"
                 fill="none"
-                stroke="#633E3A"
-                stroke-width="3"
+                stroke="#fff"
+                stroke-width="2"
+                opacity="0.16"
+            />
+        `;
+    }
+
+
+    else if (category === "bottoms") {
+
+        artwork = `
+            <path
+                d="
+                    M11 11
+                    L39 11
+                    L37 40
+                    L28 40
+                    L25 24
+                    L22 40
+                    L13 40 Z
+                "
+                fill="${color}"
+                stroke="${shadeColor(color, -35)}"
+                stroke-width="2"
+            />
+        `;
+    }
+
+
+    else if (category === "shoes") {
+
+        artwork = `
+            <path
+                d="
+                    M6 28
+                    Q14 23 22 28
+                    L22 37
+                    L5 37
+                    Q3 32 6 28 Z
+                "
+                fill="${color}"
+                stroke="${shadeColor(color, -35)}"
+                stroke-width="2"
+            />
+
+            <path
+                d="
+                    M28 28
+                    Q36 23 44 28
+                    Q47 32 45 37
+                    L28 37 Z
+                "
+                fill="${color}"
+                stroke="${shadeColor(color, -35)}"
+                stroke-width="2"
+            />
+
+            <line
+                x1="8"
+                y1="33"
+                x2="20"
+                y2="33"
+                stroke="${accent}"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+
+            <line
+                x1="30"
+                y1="33"
+                x2="42"
+                y2="33"
+                stroke="${accent}"
+                stroke-width="2"
                 stroke-linecap="round"
             />
         `;
@@ -1385,31 +2550,35 @@ function miniPreview(category, type, variant) {
         if (type.style === "glasses") {
 
             artwork = `
-                <circle
-                    cx="18"
-                    cy="25"
-                    r="7"
+                <rect
+                    x="8"
+                    y="18"
+                    width="15"
+                    height="11"
+                    rx="4"
                     fill="none"
                     stroke="${color}"
-                    stroke-width="3"
+                    stroke-width="2.5"
                 />
 
-                <circle
-                    cx="32"
-                    cy="25"
-                    r="7"
+                <rect
+                    x="27"
+                    y="18"
+                    width="15"
+                    height="11"
+                    rx="4"
                     fill="none"
                     stroke="${color}"
-                    stroke-width="3"
+                    stroke-width="2.5"
                 />
 
                 <line
-                    x1="25"
-                    y1="25"
-                    x2="25"
-                    y2="25"
+                    x1="23"
+                    y1="23"
+                    x2="27"
+                    y2="23"
                     stroke="${color}"
-                    stroke-width="3"
+                    stroke-width="2.5"
                 />
             `;
         }
@@ -1419,13 +2588,20 @@ function miniPreview(category, type, variant) {
             artwork = `
                 <path
                     d="
-                        M8 23
-                        Q12 8 25 8
-                        Q38 8 42 23
-                        Q25 17 8 23 Z
+                        M8 22
+                        Q11 8 25 8
+                        Q39 8 42 22
+                        Q25 17 8 22 Z
                     "
                     fill="${color}"
-                    stroke="#454545"
+                    stroke="${shadeColor(color, -30)}"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M25 18 Q37 17 44 23"
+                    fill="none"
+                    stroke="${shadeColor(color, -30)}"
                     stroke-width="2"
                 />
             `;
@@ -1435,16 +2611,20 @@ function miniPreview(category, type, variant) {
 
             artwork = `
                 <path
-                    d="M10 27 Q10 8 25 8 Q40 8 40 27"
+                    d="
+                        M9 28
+                        Q9 8 25 8
+                        Q41 8 41 28
+                    "
                     fill="none"
                     stroke="${color}"
                     stroke-width="5"
                 />
 
                 <rect
-                    x="7"
+                    x="6"
                     y="23"
-                    width="6"
+                    width="7"
                     height="11"
                     rx="3"
                     fill="${color}"
@@ -1453,7 +2633,7 @@ function miniPreview(category, type, variant) {
                 <rect
                     x="37"
                     y="23"
-                    width="6"
+                    width="7"
                     height="11"
                     rx="3"
                     fill="${color}"
@@ -1466,9 +2646,9 @@ function miniPreview(category, type, variant) {
             artwork = `
                 <text
                     x="25"
-                    y="31"
+                    y="32"
                     text-anchor="middle"
-                    font-size="22"
+                    font-size="23"
                     fill="#777"
                 >—</text>
             `;
@@ -1490,13 +2670,12 @@ function miniPreview(category, type, variant) {
 
 
 // ========================================
-// MAIN MENU
+// TYPE MENU
 // ========================================
 
 function renderTypeMenu(category) {
 
     menuLevel = "types";
-
     currentCategory = category;
 
     categoryTitle.textContent =
@@ -1522,35 +2701,30 @@ function renderTypeMenu(category) {
 
 
         const previewVariant =
-            type.variants[selected[category].variant]
-            || type.variants[0];
+            type.variants[
+                selected[category].variant
+            ] || type.variants[0];
 
 
         button.innerHTML = `
-
             <div class="item-preview">
-
                 ${miniPreview(
                     category,
                     type,
                     previewVariant
                 )}
-
             </div>
 
             <span>${type.name}</span>
-
         `;
 
 
         button.addEventListener("click", () => {
 
             selected[category].type = index;
-
             selected[category].variant = 0;
 
             drawAvatar();
-
             renderVariantMenu(category);
         });
 
@@ -1561,7 +2735,7 @@ function renderTypeMenu(category) {
 
 
 // ========================================
-// VARIANT / COLOR MENU
+// VARIANT MENU
 // ========================================
 
 function renderVariantMenu(category) {
@@ -1569,17 +2743,17 @@ function renderVariantMenu(category) {
     menuLevel = "variants";
 
     const type =
-        options[category][selected[category].type];
+        options[category][
+            selected[category].type
+        ];
 
 
     categoryTitle.textContent =
-        `${type.name}`;
+        type.name;
 
 
     itemsContainer.innerHTML = "";
 
-
-    // BACK BUTTON
 
     const backButton =
         document.createElement("button");
@@ -1588,13 +2762,8 @@ function renderVariantMenu(category) {
         "item-button";
 
     backButton.innerHTML = `
-
-        <div class="item-preview">
-            ←
-        </div>
-
+        <div class="item-preview">←</div>
         <span>Back</span>
-
     `;
 
 
@@ -1606,8 +2775,6 @@ function renderVariantMenu(category) {
 
     itemsContainer.appendChild(backButton);
 
-
-    // VARIANTS
 
     type.variants.forEach(
         (variant, index) => {
@@ -1627,19 +2794,15 @@ function renderVariantMenu(category) {
 
 
             button.innerHTML = `
-
                 <div class="item-preview">
-
                     ${miniPreview(
                         category,
                         type,
                         variant
                     )}
-
                 </div>
 
                 <span>${variant.name}</span>
-
             `;
 
 
@@ -1682,10 +2845,8 @@ categoryButtons.forEach(button => {
 
         button.classList.add("active");
 
-
         currentCategory =
             button.dataset.category;
-
 
         renderTypeMenu(currentCategory);
     });
@@ -1726,7 +2887,6 @@ randomizeButton.addEventListener(
 
 
         drawAvatar();
-
         renderTypeMenu(currentCategory);
     }
 );
@@ -1821,5 +2981,4 @@ nameInput.addEventListener(
 // ========================================
 
 drawAvatar();
-
 renderTypeMenu("body");
