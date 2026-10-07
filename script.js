@@ -354,6 +354,13 @@ function shadeColor(hex, amount) {
 
 function svgElement(content) {
 
+    const skinColor = options.body[selected.body.type].variants[selected.body.variant].color;
+    const hairColor = options.hair[selected.hair.type].variants[selected.hair.variant].color;
+    const topColor = options.tops[selected.tops.type].variants[selected.tops.variant].color;
+    const bottomColor = options.bottoms[selected.bottoms.type].variants[selected.bottoms.variant].color;
+    const shoeColor = options.shoes[selected.shoes.type].variants[selected.shoes.variant].color;
+    const accessoryColor = options.accessories[selected.accessories.type].variants[selected.accessories.variant].color || "#59616E";
+
     return `
         <svg
             viewBox="0 0 400 600"
@@ -362,6 +369,51 @@ function svgElement(content) {
         >
 
             <defs>
+
+                <linearGradient id="skinVolume" x1="0" y1="0" x2="0.9" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(skinColor, 24)}"/>
+                    <stop offset="38%" stop-color="${skinColor}"/>
+                    <stop offset="76%" stop-color="${shadeColor(skinColor, -8)}"/>
+                    <stop offset="100%" stop-color="${shadeColor(skinColor, -30)}"/>
+                </linearGradient>
+
+                <linearGradient id="hairVolume" x1="0" y1="0" x2="0.8" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(hairColor, 35)}"/>
+                    <stop offset="35%" stop-color="${shadeColor(hairColor, 12)}"/>
+                    <stop offset="72%" stop-color="${hairColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(hairColor, -32)}"/>
+                </linearGradient>
+
+                <linearGradient id="clothVolume" x1="0" y1="0" x2="0.8" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(topColor, 28)}"/>
+                    <stop offset="36%" stop-color="${shadeColor(topColor, 10)}"/>
+                    <stop offset="70%" stop-color="${topColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(topColor, -28)}"/>
+                </linearGradient>
+
+                <linearGradient id="bottomVolume" x1="0" y1="0" x2="0.8" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(bottomColor, 22)}"/>
+                    <stop offset="44%" stop-color="${bottomColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(bottomColor, -26)}"/>
+                </linearGradient>
+
+                <linearGradient id="shoeVolume" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(shoeColor, 24)}"/>
+                    <stop offset="64%" stop-color="${shoeColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(shoeColor, -28)}"/>
+                </linearGradient>
+
+                <linearGradient id="accessoryVolume" x1="0" y1="0" x2="0.8" y2="1">
+                    <stop offset="0%" stop-color="${shadeColor(accessoryColor, 30)}"/>
+                    <stop offset="42%" stop-color="${accessoryColor}"/>
+                    <stop offset="100%" stop-color="${shadeColor(accessoryColor, -30)}"/>
+                </linearGradient>
+
+                <linearGradient id="lensVolume" x1="0" y1="0" x2="0.7" y2="1">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".68"/>
+                    <stop offset="45%" stop-color="#CDEBFF" stop-opacity=".20"/>
+                    <stop offset="100%" stop-color="#7DAFCB" stop-opacity=".12"/>
+                </linearGradient>
 
                 <linearGradient
                     id="skinGradient"
@@ -463,6 +515,10 @@ function svgElement(content) {
                     <feGaussianBlur
                         stdDeviation="3"
                     />
+                </filter>
+
+                <filter id="raised" x="-35%" y="-35%" width="170%" height="180%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#17202B" flood-opacity=".26"/>
                 </filter>
 
             </defs>
@@ -605,7 +661,7 @@ function drawAvatar() {
                 L225 325
                 Q200 340 175 325 Z
             "
-            fill="${body.color}"
+            fill="url(#skinVolume)"
             stroke="${skinDark}"
             stroke-width="3"
         />
@@ -733,7 +789,7 @@ function drawLegs(skin) {
                 Q166 518 145 507
                 Z
             "
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -746,7 +802,7 @@ function drawLegs(skin) {
                 Q234 518 217 507
                 Z
             "
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -796,7 +852,7 @@ function drawArms(skin, top, style) {
                     Q135 440 141 421
                     L154 360 Z
                 "
-                fill="${top.color}"
+                fill="url(#clothVolume)"
                 stroke="#34363B"
                 stroke-width="4"
             />
@@ -810,7 +866,7 @@ function drawArms(skin, top, style) {
                     Q265 440 259 421
                     L246 360 Z
                 "
-                fill="${top.color}"
+                fill="url(#clothVolume)"
                 stroke="#34363B"
                 stroke-width="4"
             />
@@ -847,7 +903,7 @@ function drawArms(skin, top, style) {
                 Q135 439 141 420
                 L155 352 Z
             "
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -861,7 +917,7 @@ function drawArms(skin, top, style) {
                 Q265 439 259 420
                 L245 352 Z
             "
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -887,8 +943,8 @@ function drawArms(skin, top, style) {
         />
 
         ${style === "shirt" ? `
-            <path d="M148 313 Q126 319 116 344 L113 365 Q126 371 143 365 L155 352 Z" fill="${top.color}" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
-            <path d="M252 313 Q274 319 284 344 L287 365 Q274 371 257 365 L245 352 Z" fill="${top.color}" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
+            <path d="M148 313 Q126 319 116 344 L113 365 Q126 371 143 365 L155 352 Z" fill="url(#clothVolume)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
+            <path d="M252 313 Q274 319 284 344 L287 365 Q274 371 257 365 L245 352 Z" fill="url(#clothVolume)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
         ` : ""}
     `;
 }
@@ -908,7 +964,7 @@ function drawHands(skin) {
             cy="427"
             rx="16"
             ry="18"
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="3"
         />
@@ -918,7 +974,7 @@ function drawHands(skin) {
             cy="427"
             rx="16"
             ry="18"
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="3"
         />
@@ -956,7 +1012,7 @@ function drawEars(skin) {
             cy="230"
             rx="16"
             ry="24"
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -966,7 +1022,7 @@ function drawEars(skin) {
             cy="230"
             rx="16"
             ry="24"
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1023,7 +1079,7 @@ function drawFace(face, skin) {
             cy="230"
             rx="${width / 2}"
             ry="${height / 2}"
-            fill="${skin}"
+            fill="url(#skinVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1109,7 +1165,7 @@ function drawBackHair(hair) {
                     L273 270
                     L127 270 Z
                 "
-                fill="${hair.color}"
+                fill="url(#hairVolume)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1151,7 +1207,7 @@ function drawBackHair(hair) {
                     Q319 198 288 250
                     L119 263 Z
                 "
-                fill="${hair.color}"
+                fill="url(#hairVolume)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -1188,7 +1244,7 @@ function drawBackHair(hair) {
                 L267 264
                 L133 264 Z
             "
-            fill="${hair.color}"
+            fill="url(#hairVolume)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -1228,7 +1284,7 @@ function drawFrontHair(hair) {
                     Q188 143 166 182
                     Q147 162 126 180 Z
                 "
-                fill="${hair.color}"
+                fill="url(#hairVolume)"
                 stroke="${dark}"
                 stroke-width="4"
                 stroke-linejoin="round"
@@ -1264,7 +1320,7 @@ function drawFrontHair(hair) {
                     Q176 133 151 170
                     Q135 150 119 177 Z
                 "
-                fill="${hair.color}"
+                fill="url(#hairVolume)"
                 stroke="${dark}"
                 stroke-width="4"
             />
@@ -1296,7 +1352,7 @@ function drawFrontHair(hair) {
                 Q204 144 182 169
                 Q157 149 126 177 Z
             "
-            fill="${hair.color}"
+            fill="url(#hairVolume)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1586,7 +1642,7 @@ function drawTop(top, style) {
                     L137 454
                     L118 336 Z
                 "
-                fill="${top.color}"
+                fill="url(#clothVolume)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1663,7 +1719,7 @@ function drawTop(top, style) {
                     L200 324
                     L175 298 Z
                 "
-                fill="${top.color}"
+                fill="url(#clothVolume)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1719,7 +1775,7 @@ function drawTop(top, style) {
                     L200 324
                     L175 298 Z
                 "
-                fill="${top.color}"
+                fill="url(#clothVolume)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1771,7 +1827,7 @@ function drawTop(top, style) {
                 L200 324
                 L175 299 Z
             "
-            fill="${top.color}"
+            fill="url(#clothVolume)"
             stroke="${dark}"
             stroke-width="6"
             stroke-linejoin="round"
@@ -1822,7 +1878,7 @@ function drawBottoms(bottom, style) {
                     L185 486
                     L144 486 Z
                 "
-                fill="${bottom.color}"
+                fill="url(#bottomVolume)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -1872,7 +1928,7 @@ function drawBottoms(bottom, style) {
                 L185 505
                 L142 505 Z
             "
-            fill="${bottom.color}"
+            fill="url(#bottomVolume)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -1930,7 +1986,7 @@ function drawShoes(shoes, style) {
                     L119 524
                     Q113 501 135 483 Z
                 "
-                fill="${shoes.color}"
+                fill="url(#shoeVolume)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -1942,7 +1998,7 @@ function drawShoes(shoes, style) {
                     Q287 501 281 524
                     L215 524 Z
                 "
-                fill="${shoes.color}"
+                fill="url(#shoeVolume)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -2001,7 +2057,7 @@ function drawShoes(shoes, style) {
                 L120 530
                 Q113 510 132 494 Z
             "
-            fill="${shoes.color}"
+            fill="url(#shoeVolume)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -2013,7 +2069,7 @@ function drawShoes(shoes, style) {
                 Q287 510 280 530
                 L215 530 Z
             "
-            fill="${shoes.color}"
+            fill="url(#shoeVolume)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -2079,118 +2135,70 @@ function drawShoes(shoes, style) {
 
 function drawAccessory(accessory, style) {
 
+    const color = accessory.color || "#4A5360";
+    const dark = shadeColor(color, -34);
+    const light = shadeColor(color, 30);
+
     if (style === "glasses") {
-
         return `
-            <g
-                fill="rgba(255,255,255,0.12)"
-                stroke="${accessory.color || "#343434"}"
-                stroke-width="5"
-            >
-
-                <rect
-                    x="143"
-                    y="204"
-                    width="52"
-                    height="40"
-                    rx="16"
-                />
-
-                <rect
-                    x="205"
-                    y="204"
-                    width="52"
-                    height="40"
-                    rx="16"
-                />
-
-                <line
-                    x1="195"
-                    y1="222"
-                    x2="205"
-                    y2="222"
-                />
-
+            <g filter="url(#raised)">
+                <path d="M151 216 Q140 211 130 218 L126 222" fill="none" stroke="${dark}" stroke-width="5" stroke-linecap="round"/>
+                <path d="M249 216 Q260 211 270 218 L274 222" fill="none" stroke="${dark}" stroke-width="5" stroke-linecap="round"/>
+                <path d="M151 211 Q151 205 158 205 L181 205 Q189 205 189 213 L186 231 Q185 239 177 240 L164 240 Q155 239 154 231 Z" fill="url(#lensVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M211 205 L234 205 Q241 205 241 211 L238 231 Q237 239 229 240 L216 240 Q207 239 206 231 L203 213 Q203 205 211 205 Z" fill="url(#lensVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M189 215 Q199 209 203 215" fill="none" stroke="${dark}" stroke-width="5" stroke-linecap="round"/>
+                <path d="M157 211 Q169 207 180 211 M210 211 Q222 207 234 211" fill="none" stroke="${light}" stroke-width="2.5" stroke-linecap="round" opacity=".72"/>
+                <path d="M159 219 Q158 226 161 230 M212 219 Q211 226 214 230" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+                <circle cx="158" cy="213" r="2" fill="${light}"/><circle cx="234" cy="213" r="2" fill="${light}"/>
             </g>
         `;
     }
 
-
     if (style === "cap") {
-
-        const dark =
-            shadeColor(accessory.color, -30);
-
         return `
-            <path
-                d="
-                    M128 168
-                    Q138 105 200 101
-                    Q262 105 272 168
-                    Q237 148 200 153
-                    Q163 148 128 168 Z
-                "
-                fill="${accessory.color}"
-                stroke="${dark}"
-                stroke-width="6"
-            />
-
-            <path
-                d="
-                    M200 153
-                    Q251 147 286 168
-                    Q247 184 200 171 Z
-                "
-                fill="${accessory.color}"
-                stroke="${dark}"
-                stroke-width="5"
-            />
-
-            <path
-                d="
-                    M148 135
-                    Q172 113 198 112
-                "
-                fill="none"
-                stroke="#fff"
-                stroke-width="6"
-                opacity="0.13"
-                stroke-linecap="round"
-            />
+            <g filter="url(#raised)">
+                <path d="M128 174 C126 145 136 117 156 99 C169 87 185 80 201 80 C231 81 255 102 267 132 C272 145 274 159 272 174 C254 165 232 159 205 158 C177 157 151 163 128 174 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M133 156 C164 145 200 143 234 149 C251 152 265 157 277 165 C268 178 251 185 229 185 C195 178 164 176 132 183 C123 178 124 164 133 156 Z" fill="${dark}"/>
+                <path d="M133 157 C165 148 198 147 231 152 C246 154 259 159 271 165 C247 168 223 164 202 162 C177 160 153 164 132 171 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="3"/>
+                <path d="M200 84 C201 106 201 132 201 157 M157 102 C169 119 179 137 183 158 M244 111 C231 126 222 141 218 159" fill="none" stroke="${dark}" stroke-width="2.5" opacity=".72"/>
+                <path d="M143 139 C151 115 169 97 190 91" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".18"/>
+                <path d="M137 167 C165 158 188 157 208 159" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".24"/>
+                <circle cx="201" cy="85" r="4" fill="${light}" stroke="${dark}" stroke-width="1.5"/>
+            </g>
         `;
     }
 
-
     if (style === "beanie") {
-        const dark = shadeColor(accessory.color, -22);
         return `
-            <g>
-                <path d="M126 185 Q124 105 162 83 Q200 62 238 83 Q276 105 274 185 L253 188 Q251 121 225 104 Q200 88 175 104 Q149 121 147 188 Z" fill="${accessory.color}" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
-                <path d="M126 171 Q200 158 274 171 L274 194 Q200 181 126 194 Z" fill="${dark}"/>
-                <path d="M154 115 Q174 92 198 91" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".14"/>
+            <g filter="url(#raised)">
+                <path d="M127 179 C125 154 128 130 137 110 C149 84 171 69 198 67 C225 66 248 80 262 104 C273 124 276 151 272 179 C249 171 226 168 200 168 C174 168 150 172 127 179 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M129 158 C151 152 176 149 200 149 C225 149 249 152 271 158 L272 184 C249 178 225 175 200 175 C175 175 151 178 127 184 Z" fill="${dark}" stroke="${dark}" stroke-width="3"/>
+                <path d="M132 160 C155 156 178 154 200 154 C223 154 246 156 268 160" fill="none" stroke="${light}" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+                <path d="M145 167 L145 180 M157 164 L157 178 M170 162 L170 176 M183 161 L183 175 M200 160 L200 175 M217 161 L217 175 M230 162 L230 176 M243 164 L243 178 M256 167 L256 180" fill="none" stroke="${shadeColor(color, -12)}" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+                <path d="M147 111 C159 89 177 78 197 77" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".19"/>
+                <path d="M200 71 C202 95 201 119 200 146" fill="none" stroke="${light}" stroke-width="2" opacity=".42"/>
             </g>
         `;
     }
 
     if (style === "headphones") {
-        const dark = shadeColor(accessory.color, -26);
         return `
-            <g>
-                <path d="M127 232 C127 150 151 111 200 111 C249 111 273 150 273 232" fill="none" stroke="${dark}" stroke-width="13" stroke-linecap="round"/>
-                <path d="M130 231 C130 154 153 119 200 119 C247 119 270 154 270 231" fill="none" stroke="${accessory.color}" stroke-width="7" stroke-linecap="round"/>
-                <rect x="112" y="208" width="28" height="45" rx="11" fill="${dark}"/>
-                <rect x="116" y="211" width="20" height="39" rx="8" fill="${accessory.color}"/>
-                <rect x="260" y="208" width="28" height="45" rx="11" fill="${dark}"/>
-                <rect x="264" y="211" width="20" height="39" rx="8" fill="${accessory.color}"/>
-                <path d="M121 216 Q126 212 131 216 M269 216 Q274 212 279 216" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".28"/>
+            <g filter="url(#raised)">
+                <path d="M126 225 C126 137 151 96 200 96 C249 96 274 137 274 225" fill="none" stroke="#17191D" stroke-width="13" stroke-linecap="round"/>
+                <path d="M128 222 C128 141 153 103 200 103 C247 103 272 141 272 222" fill="none" stroke="url(#accessoryVolume)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M133 220 C136 166 151 131 173 117" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity=".42"/>
+                <path d="M136 208 C127 203 117 205 111 213 C104 222 104 238 110 247 C116 256 129 257 138 250 C144 241 144 218 136 208 Z" fill="${dark}" stroke="#17191D" stroke-width="3"/>
+                <path d="M264 208 C273 203 283 205 289 213 C296 222 296 238 290 247 C284 256 271 257 262 250 C256 241 256 218 264 208 Z" fill="${dark}" stroke="#17191D" stroke-width="3"/>
+                <path d="M135 216 C130 211 123 212 119 218 C115 225 115 237 119 243 C123 249 130 249 135 244 C139 237 139 222 135 216 Z" fill="url(#accessoryVolume)"/>
+                <path d="M265 216 C270 211 277 212 281 218 C285 225 285 237 281 243 C277 249 270 249 265 244 C261 237 261 222 265 216 Z" fill="url(#accessoryVolume)"/>
+                <path d="M120 218 Q127 214 133 220 M267 220 Q273 214 280 218" fill="none" stroke="${light}" stroke-width="2.5" stroke-linecap="round" opacity=".72"/>
+                <circle cx="127" cy="231" r="4" fill="${light}" opacity=".8"/><circle cx="273" cy="231" r="4" fill="${light}" opacity=".8"/>
             </g>
         `;
     }
 
-
     return "";
 }
-
 
 // ========================================
 // MINI PREVIEWS
