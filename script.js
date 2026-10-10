@@ -505,8 +505,7 @@ function svgElement(content) {
                     />
                 </linearGradient>
 
-                <filter
-                    id="softShadow"
+                <radialGradient id="skinSculpt" cx="36%" cy="24%" r="92%"><stop offset="0%" stop-color="${shadeColor(skinColor, 48)}"/><stop offset="34%" stop-color="${shadeColor(skinColor, 24)}"/><stop offset="72%" stop-color="${shadeColor(skinColor, -12)}"/><stop offset="100%" stop-color="${shadeColor(skinColor, -62)}"/></radialGradient><radialGradient id="hairSculpt" cx="34%" cy="20%" r="95%"><stop offset="0%" stop-color="${shadeColor(hairColor, 76)}"/><stop offset="34%" stop-color="${shadeColor(hairColor, 34)}"/><stop offset="72%" stop-color="${shadeColor(hairColor, -8)}"/><stop offset="100%" stop-color="${shadeColor(hairColor, -72)}"/></radialGradient><radialGradient id="clothSculpt" cx="32%" cy="18%" r="100%"><stop offset="0%" stop-color="${shadeColor(topColor, 64)}"/><stop offset="38%" stop-color="${shadeColor(topColor, 26)}"/><stop offset="76%" stop-color="${shadeColor(topColor, -14)}"/><stop offset="100%" stop-color="${shadeColor(topColor, -66)}"/></radialGradient><radialGradient id="bottomSculpt" cx="34%" cy="18%" r="100%"><stop offset="0%" stop-color="${shadeColor(bottomColor, 52)}"/><stop offset="38%" stop-color="${shadeColor(bottomColor, 20)}"/><stop offset="74%" stop-color="${shadeColor(bottomColor, -12)}"/><stop offset="100%" stop-color="${shadeColor(bottomColor, -64)}"/></radialGradient><radialGradient id="shoeSculpt" cx="34%" cy="18%" r="100%"><stop offset="0%" stop-color="${shadeColor(shoeColor, 54)}"/><stop offset="42%" stop-color="${shadeColor(shoeColor, 18)}"/><stop offset="100%" stop-color="${shadeColor(shoeColor, -54)}"/></radialGradient><radialGradient id="accessorySculpt" cx="30%" cy="16%" r="100%"><stop offset="0%" stop-color="${shadeColor(accessoryColor, 64)}"/><stop offset="38%" stop-color="${shadeColor(accessoryColor, 26)}"/><stop offset="76%" stop-color="${shadeColor(accessoryColor, -12)}"/><stop offset="100%" stop-color="${shadeColor(accessoryColor, -66)}"/></radialGradient><filter id="softShadow"
                     x="-50%"
                     y="-50%"
                     width="200%"
@@ -673,7 +672,7 @@ function drawAvatar() {
                 L225 325
                 Q200 340 175 325 Z
             "
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${skinDark}"
             stroke-width="3"
         />
@@ -801,7 +800,7 @@ function drawLegs(skin) {
                 Q166 518 145 507
                 Z
             "
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -814,7 +813,7 @@ function drawLegs(skin) {
                 Q234 518 217 507
                 Z
             "
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -864,7 +863,7 @@ function drawArms(skin, top, style) {
                     Q135 440 141 421
                     L154 360 Z
                 "
-                fill="url(#clothVolume)"
+                fill="url(#clothSculpt)"
                 stroke="#34363B"
                 stroke-width="4"
             />
@@ -878,7 +877,7 @@ function drawArms(skin, top, style) {
                     Q265 440 259 421
                     L246 360 Z
                 "
-                fill="url(#clothVolume)"
+                fill="url(#clothSculpt)"
                 stroke="#34363B"
                 stroke-width="4"
             />
@@ -915,7 +914,7 @@ function drawArms(skin, top, style) {
                 Q135 439 141 420
                 L155 352 Z
             "
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -929,7 +928,7 @@ function drawArms(skin, top, style) {
                 Q265 439 259 420
                 L245 352 Z
             "
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -955,8 +954,8 @@ function drawArms(skin, top, style) {
         />
 
         ${style === "shirt" ? `
-            <path d="M148 313 Q126 319 116 344 L113 365 Q126 371 143 365 L155 352 Z" fill="url(#clothVolume)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
-            <path d="M252 313 Q274 319 284 344 L287 365 Q274 371 257 365 L245 352 Z" fill="url(#clothVolume)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
+            <path d="M148 313 Q126 319 116 344 L113 365 Q126 371 143 365 L155 352 Z" fill="url(#clothSculpt)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
+            <path d="M252 313 Q274 319 284 344 L287 365 Q274 371 257 365 L245 352 Z" fill="url(#clothSculpt)" stroke="${shadeColor(top.color, -25)}" stroke-width="4"/>
         ` : ""}
     `;
 }
@@ -976,7 +975,7 @@ function drawHands(skin) {
             cy="427"
             rx="16"
             ry="18"
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="3"
         />
@@ -986,7 +985,7 @@ function drawHands(skin) {
             cy="427"
             rx="16"
             ry="18"
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="3"
         />
@@ -1024,7 +1023,7 @@ function drawEars(skin) {
             cy="230"
             rx="16"
             ry="24"
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1034,7 +1033,7 @@ function drawEars(skin) {
             cy="230"
             rx="16"
             ry="24"
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1091,7 +1090,7 @@ function drawFace(face, skin) {
             cy="230"
             rx="${width / 2}"
             ry="${height / 2}"
-            fill="url(#skinVolume)"
+            fill="url(#skinSculpt)"
             stroke="${dark}"
             stroke-width="4"
             filter="url(#raised)"
@@ -1178,7 +1177,7 @@ function drawBackHair(hair) {
                     L273 270
                     L127 270 Z
                 "
-                fill="url(#hairVolume)"
+                fill="url(#hairSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1220,7 +1219,7 @@ function drawBackHair(hair) {
                     Q319 198 288 250
                     L119 263 Z
                 "
-                fill="url(#hairVolume)"
+                fill="url(#hairSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -1257,7 +1256,7 @@ function drawBackHair(hair) {
                 L267 264
                 L133 264 Z
             "
-            fill="url(#hairVolume)"
+            fill="url(#hairSculpt)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -1297,7 +1296,7 @@ function drawFrontHair(hair) {
                     Q188 143 166 182
                     Q147 162 126 180 Z
                 "
-                fill="url(#hairVolume)"
+                fill="url(#hairSculpt)"
                 stroke="${dark}"
                 stroke-width="4"
                 stroke-linejoin="round"
@@ -1333,7 +1332,7 @@ function drawFrontHair(hair) {
                     Q176 133 151 170
                     Q135 150 119 177 Z
                 "
-                fill="url(#hairVolume)"
+                fill="url(#hairSculpt)"
                 stroke="${dark}"
                 stroke-width="4"
             />
@@ -1365,7 +1364,7 @@ function drawFrontHair(hair) {
                 Q204 144 182 169
                 Q157 149 126 177 Z
             "
-            fill="url(#hairVolume)"
+            fill="url(#hairSculpt)"
             stroke="${dark}"
             stroke-width="4"
         />
@@ -1655,7 +1654,7 @@ function drawTop(top, style) {
                     L137 454
                     L118 336 Z
                 "
-                fill="url(#clothVolume)"
+                fill="url(#clothSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1732,7 +1731,7 @@ function drawTop(top, style) {
                     L200 324
                     L175 298 Z
                 "
-                fill="url(#clothVolume)"
+                fill="url(#clothSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1788,7 +1787,7 @@ function drawTop(top, style) {
                     L200 324
                     L175 298 Z
                 "
-                fill="url(#clothVolume)"
+                fill="url(#clothSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
                 stroke-linejoin="round"
@@ -1840,7 +1839,7 @@ function drawTop(top, style) {
                 L200 324
                 L175 299 Z
             "
-            fill="url(#clothVolume)"
+            fill="url(#clothSculpt)"
             stroke="${dark}"
             stroke-width="6"
             stroke-linejoin="round"
@@ -1891,7 +1890,7 @@ function drawBottoms(bottom, style) {
                     L185 460
                     L144 460 Z
                 "
-                fill="url(#bottomVolume)"
+                fill="url(#bottomSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -1941,7 +1940,7 @@ function drawBottoms(bottom, style) {
                 L185 505
                 L142 505 Z
             "
-            fill="url(#bottomVolume)"
+            fill="url(#bottomSculpt)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -1999,7 +1998,7 @@ function drawShoes(shoes, style) {
                     L128 517
                     Q120 515 122 507 Q129 491 145 483 Z
                 "
-                fill="url(#shoeVolume)"
+                fill="url(#shoeSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -2011,7 +2010,7 @@ function drawShoes(shoes, style) {
                     Q271 491 278 507 Q280 515 272 517
                     L233 517 Z
                 "
-                fill="url(#shoeVolume)"
+                fill="url(#shoeSculpt)"
                 stroke="${dark}"
                 stroke-width="6"
             />
@@ -2070,7 +2069,7 @@ function drawShoes(shoes, style) {
                 L120 530
                 Q113 510 132 494 Z
             "
-            fill="url(#shoeVolume)"
+            fill="url(#shoeSculpt)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -2082,7 +2081,7 @@ function drawShoes(shoes, style) {
                 Q287 510 280 530
                 L215 530 Z
             "
-            fill="url(#shoeVolume)"
+            fill="url(#shoeSculpt)"
             stroke="${dark}"
             stroke-width="6"
         />
@@ -2170,7 +2169,7 @@ function drawAccessory(accessory, style) {
         if (style === "backwardsCap") {
         return `
             <g filter="url(#raised)">
-                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessorySculpt)" stroke="${dark}" stroke-width="4" stroke-linejoin="round"/>
                 <path d="M200 90 C200 112 201 132 201 154 M153 107 C165 122 174 138 178 156 M248 111 C235 126 227 140 223 156" fill="none" stroke="${dark}" stroke-width="2" opacity=".58"/>
                 <path d="M145 139 C152 119 167 103 186 97" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity=".14"/>
                 <path d="M132 161 C165 155 198 154 230 157 C247 159 260 162 270 165 L268 170 C245 166 222 165 200 165 C176 165 153 167 134 171 Z" fill="${dark}" stroke="${dark}" stroke-width="2"/>
@@ -2186,9 +2185,9 @@ function drawAccessory(accessory, style) {
 if (style === "cap") {
         return `
             <g filter="url(#raised)">
-                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessorySculpt)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
                 <path d="M132 157 C162 147 196 144 230 149 C249 151 266 157 276 165 C272 173 259 178 241 178 C209 172 174 171 139 179 C130 176 126 166 132 157 Z" fill="${dark}"/>
-                <path d="M132 161 C165 155 198 154 230 157 C247 159 260 162 270 165 L268 170 C245 166 222 165 200 165 C176 165 153 167 134 171 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="3"/>
+                <path d="M132 161 C165 155 198 154 230 157 C247 159 260 162 270 165 L268 170 C245 166 222 165 200 165 C176 165 153 167 134 171 Z" fill="url(#accessorySculpt)" stroke="${dark}" stroke-width="3"/>
                 <path d="M200 90 C200 112 201 132 201 154 M153 107 C165 122 174 138 178 156 M248 111 C235 126 227 140 223 156" fill="none" stroke="${dark}" stroke-width="2.5" opacity=".72"/>
                 <path d="M145 139 C152 119 167 103 186 97" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".18"/>
                 <path d="M139 166 C167 158 190 157 211 159" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".24"/>
@@ -2200,7 +2199,7 @@ if (style === "cap") {
     if (style === "beanie") {
         return `
             <g filter="url(#raised)">
-                <path d="M130 169 C128 149 132 128 143 111 C156 91 176 80 199 80 C221 80 241 91 255 108 C267 124 273 146 270 167 C249 160 225 156 200 156 C174 156 151 160 130 169 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M130 169 C128 149 132 128 143 111 C156 91 176 80 199 80 C221 80 241 91 255 108 C267 124 273 146 270 167 C249 160 225 156 200 156 C174 156 151 160 130 169 Z" fill="url(#accessorySculpt)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
                 <path d="M130 153 C151 149 176 147 200 147 C224 147 248 149 270 153 L271 174 C249 169 225 166 200 166 C175 166 151 169 129 174 Z" fill="${dark}" stroke="${dark}" stroke-width="3"/>
                 <path d="M133 155 C155 152 178 150 200 150 C223 150 246 152 267 155" fill="none" stroke="${light}" stroke-width="4" stroke-linecap="round" opacity=".8"/>
                 <path d="M146 157 L146 171 M160 154 L160 169 M176 152 L176 167 M200 151 L200 166 M224 152 L224 167 M240 154 L240 169 M254 157 L254 171" fill="none" stroke="${shadeColor(color, -12)}" stroke-width="2" stroke-linecap="round" opacity=".72"/>
@@ -2214,12 +2213,12 @@ if (style === "cap") {
         return `
             <g filter="url(#raised)">
                 <path d="M137 220 C136 151 159 115 200 115 C241 115 264 151 263 220" fill="none" stroke="#17191D" stroke-width="13" stroke-linecap="round"/>
-                <path d="M138 219 C138 153 160 120 200 120 C240 120 262 153 262 219" fill="none" stroke="url(#accessoryVolume)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M138 219 C138 153 160 120 200 120 C240 120 262 153 262 219" fill="none" stroke="url(#accessorySculpt)" stroke-width="8" stroke-linecap="round"/>
                 <path d="M133 220 C136 166 151 131 173 117" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity=".42"/>
                 <path d="M138 210 C131 205 122 207 116 214 C110 222 109 238 115 247 C120 254 131 255 139 249 C144 240 144 220 138 210 Z" fill="${dark}" stroke="#17191D" stroke-width="3"/>
                 <path d="M262 210 C269 205 278 207 284 214 C290 222 291 238 285 247 C280 254 269 255 261 249 C256 240 256 220 262 210 Z" fill="${dark}" stroke="#17191D" stroke-width="3"/>
-                <path d="M136 217 C131 213 125 214 121 219 C117 226 117 237 121 242 C125 247 132 248 137 243 C141 236 141 223 136 217 Z" fill="url(#accessoryVolume)"/>
-                <path d="M264 217 C269 213 275 214 279 219 C283 226 283 237 279 242 C275 247 268 248 263 243 C259 236 259 223 264 217 Z" fill="url(#accessoryVolume)"/>
+                <path d="M136 217 C131 213 125 214 121 219 C117 226 117 237 121 242 C125 247 132 248 137 243 C141 236 141 223 136 217 Z" fill="url(#accessorySculpt)"/>
+                <path d="M264 217 C269 213 275 214 279 219 C283 226 283 237 279 242 C275 247 268 248 263 243 C259 236 259 223 264 217 Z" fill="url(#accessorySculpt)"/>
                 <path d="M120 218 Q127 214 133 220 M267 220 Q273 214 280 218" fill="none" stroke="${light}" stroke-width="2.5" stroke-linecap="round" opacity=".72"/>
                 <circle cx="127" cy="231" r="4" fill="${light}" opacity=".8"/><circle cx="273" cy="231" r="4" fill="${light}" opacity=".8"/>
             </g>
