@@ -529,7 +529,7 @@ function svgElement(content) {
                 </filter>
 
                 <filter id="raised" x="-35%" y="-35%" width="170%" height="180%">
-                    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="surface"/><feSpecularLighting in="surface" surfaceScale="6" specularConstant=".42" specularExponent="16" lighting-color="#FFFFFF" result="specular"><feDistantLight azimuth="225" elevation="52"/></feSpecularLighting><feComposite in="specular" in2="SourceAlpha" operator="in" result="surfaceHighlight"/><feDropShadow in="SourceAlpha" dx="0" dy="5" stdDeviation="4" flood-color="#243447" flood-opacity=".24" result="softShadow"/><feMerge><feMergeNode in="softShadow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="surfaceHighlight"/></feMerge>
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="surface"/><feSpecularLighting in="surface" surfaceScale="3.5" specularConstant=".18" specularExponent="20" lighting-color="#FFFFFF" result="specular"><feDistantLight azimuth="225" elevation="52"/></feSpecularLighting><feComposite in="specular" in2="SourceAlpha" operator="in" result="surfaceHighlight"/><feDropShadow in="SourceAlpha" dx="0" dy="4" stdDeviation="4" flood-color="#243447" flood-opacity=".20" result="softShadow"/><feMerge><feMergeNode in="softShadow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="surfaceHighlight"/></feMerge>
                 </filter>
 
             </defs>
