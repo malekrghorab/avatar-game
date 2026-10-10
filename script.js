@@ -253,7 +253,18 @@ const options = {
             ]
         },
 
-        {
+                {
+            name: "Backwards Cap",
+            style: "backwardsCap",
+            variants: [
+                { name: "Black", color: "#292929" },
+                { name: "Blue", color: "#46658F" },
+                { name: "Red", color: "#C95353" },
+                { name: "Green", color: "#4D6957" }
+            ]
+        },
+
+{
             name: "Beanie",
             style: "beanie",
             variants: [
@@ -620,7 +631,7 @@ function drawAvatar() {
 
         <!-- BACK HAIR -->
 
-        ${accessoryType.style === "cap" || accessoryType.style === "beanie" ? "" : drawBackHair(hair)}
+        ${drawBackHair(hair)}
 
 
         <!-- LEGS -->
@@ -754,7 +765,7 @@ function drawAvatar() {
 
         <!-- FRONT HAIR -->
 
-        ${accessoryType.style === "cap" || accessoryType.style === "beanie" ? "" : drawFrontHair(hair)}
+        ${drawFrontHair(hair)}
 
 
         <!-- ACCESSORY -->
@@ -2156,7 +2167,23 @@ function drawAccessory(accessory, style) {
         `;
     }
 
-    if (style === "cap") {
+        if (style === "backwardsCap") {
+        return `
+            <g filter="url(#raised)">
+                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M200 90 C200 112 201 132 201 154 M153 107 C165 122 174 138 178 156 M248 111 C235 126 227 140 223 156" fill="none" stroke="${dark}" stroke-width="2" opacity=".58"/>
+                <path d="M145 139 C152 119 167 103 186 97" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity=".14"/>
+                <path d="M134 157 C165 149 197 148 229 152 C247 155 260 159 272 165 C249 167 226 163 202 161 C177 159 153 162 133 170 Z" fill="${dark}" stroke="${dark}" stroke-width="2"/>
+                <path d="M166 158 C188 155 213 155 236 158 L236 166 C213 163 189 163 166 166 Z" fill="${color}" stroke="${dark}" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M190 157 L210 157 L210 165 L190 165 Z" fill="${dark}" stroke="${light}" stroke-width="1.5"/>
+                <path d="M194 159 L206 159 L206 163 L194 163 Z" fill="none" stroke="${light}" stroke-width="1" opacity=".8"/>
+                <circle cx="201" cy="85" r="4" fill="${light}" stroke="${dark}" stroke-width="1.5"/>
+            </g>
+        `;
+    }
+
+
+if (style === "cap") {
         return `
             <g filter="url(#raised)">
                 <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
