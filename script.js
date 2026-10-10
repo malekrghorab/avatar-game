@@ -529,7 +529,7 @@ function svgElement(content) {
                 </filter>
 
                 <filter id="raised" x="-35%" y="-35%" width="170%" height="180%">
-                    <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#17202B" flood-opacity=".32"/>
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="surface"/><feSpecularLighting in="surface" surfaceScale="6" specularConstant=".42" specularExponent="16" lighting-color="#FFFFFF" result="specular"><feDistantLight azimuth="225" elevation="52"/></feSpecularLighting><feComposite in="specular" in2="SourceAlpha" operator="in" result="surfaceHighlight"/><feDropShadow in="SourceAlpha" dx="0" dy="5" stdDeviation="4" flood-color="#243447" flood-opacity=".24" result="softShadow"/><feMerge><feMergeNode in="softShadow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="surfaceHighlight"/></feMerge>
                 </filter>
 
             </defs>
@@ -630,37 +630,37 @@ function drawAvatar() {
 
         <!-- BACK HAIR -->
 
-        ${drawBackHair(hair)}
+        <g filter="url(#raised)">${drawBackHair(hair)}</g>
 
 
         <!-- LEGS -->
 
-        ${drawLegs(body.color)}
+        <g filter="url(#raised)">${drawLegs(body.color)}</g>
 
 
         <!-- SHOES -->
 
-        ${drawShoes(shoes, shoeType.style)}
+        <g filter="url(#raised)">${drawShoes(shoes, shoeType.style)}</g>
 
 
         <!-- BOTTOMS -->
 
-        ${drawBottoms(bottom, bottomType.style)}
+        <g filter="url(#raised)">${drawBottoms(bottom, bottomType.style)}</g>
 
 
         <!-- TORSO -->
 
-        ${drawTop(top, topType.style)}
+        <g filter="url(#raised)">${drawTop(top, topType.style)}</g>
 
 
         <!-- ARMS -->
 
-        ${drawArms(body.color, top, topType.style)}
+        <g filter="url(#raised)">${drawArms(body.color, top, topType.style)}</g>
 
 
         <!-- HANDS -->
 
-        ${drawHands(body.color)}
+        <g filter="url(#raised)">${drawHands(body.color)}</g>
 
 
         <!-- NECK -->
@@ -690,7 +690,7 @@ function drawAvatar() {
 
         <!-- EARS -->
 
-        ${drawEars(body.color)}
+        <g filter="url(#raised)">${drawEars(body.color)}</g>
 
 
         <!-- FACE -->
@@ -764,7 +764,7 @@ function drawAvatar() {
 
         <!-- FRONT HAIR -->
 
-        ${drawFrontHair(hair)}
+        <g filter="url(#raised)">${drawFrontHair(hair)}</g>
 
 
         <!-- ACCESSORY -->
