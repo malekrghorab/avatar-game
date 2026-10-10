@@ -254,7 +254,7 @@ const options = {
         },
 
                 {
-            name: "Backwards Cap",
+            name: "Backward Cap",
             style: "backwardsCap",
             variants: [
                 { name: "Black", color: "#292929" },
@@ -2772,7 +2772,7 @@ function renderTypeMenu(category) {
 // VARIANT MENU
 // ========================================
 
-function renderCapStyleMenu(category, capIndex) { menuLevel = "capStyles"; categoryTitle.textContent = "Cap"; itemsContainer.innerHTML = ""; const back = document.createElement("button"); back.className = "item-button"; back.innerHTML = `<div class="item-preview">←</div><span>Back</span>`; back.addEventListener("click", () => renderTypeMenu(category)); itemsContainer.appendChild(back); [capIndex, options[category].findIndex(item => item.style === "backwardsCap")].forEach(index => { const type = options[category][index]; const button = document.createElement("button"); button.className = "item-button"; button.innerHTML = `<div class="item-preview">${miniPreview(category, type, type.variants[0])}</div><span>${type.name}</span>`; button.addEventListener("click", () => { selected[category].type = index; selected[category].variant = 0; drawAvatar(); renderVariantMenu(category); }); itemsContainer.appendChild(button); }); } function renderVariantMenu(category) {
+function renderCapStyleMenu(category, capIndex) { menuLevel = "capStyles"; categoryTitle.textContent = "Cap"; itemsContainer.innerHTML = ""; const back = document.createElement("button"); back.className = "item-button"; back.innerHTML = `<div class="item-preview">←</div><span>Back</span>`; back.addEventListener("click", () => renderTypeMenu(category)); itemsContainer.appendChild(back); const capType = options[category][capIndex]; capType.variants.forEach((variant, index) => { const button = document.createElement("button"); button.className = "item-button"; if (selected[category].type === capIndex && selected[category].variant === index) button.classList.add("selected"); button.innerHTML = `<div class="item-preview">${miniPreview(category, capType, variant)}</div><span>${variant.name} Cap</span>`; button.addEventListener("click", () => { selected[category].type = capIndex; selected[category].variant = index; drawAvatar(); renderCapStyleMenu(category, capIndex); }); itemsContainer.appendChild(button); }); const backwardsIndex = options[category].findIndex(item => item.style === "backwardsCap"); const backwardsType = options[category][backwardsIndex]; const backwardsButton = document.createElement("button"); backwardsButton.className = "item-button"; if (selected[category].type === backwardsIndex) backwardsButton.classList.add("selected"); backwardsButton.innerHTML = `<div class="item-preview">${miniPreview(category, backwardsType, backwardsType.variants[0])}</div><span>Backward Cap</span>`; backwardsButton.addEventListener("click", () => { selected[category].type = backwardsIndex; selected[category].variant = 0; drawAvatar(); renderVariantMenu(category); }); itemsContainer.appendChild(backwardsButton); } function renderVariantMenu(category) {
 
     menuLevel = "variants";
 
