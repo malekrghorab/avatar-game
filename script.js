@@ -2159,12 +2159,12 @@ function drawAccessory(accessory, style) {
     if (style === "cap") {
         return `
             <g filter="url(#raised)">
-                <path d="M128 174 C126 145 136 117 156 99 C169 87 185 80 201 80 C231 81 255 102 267 132 C272 145 274 159 272 174 C254 165 232 159 205 158 C177 157 151 163 128 174 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
-                <path d="M133 156 C164 145 200 143 234 149 C251 152 265 157 277 165 C268 178 251 185 229 185 C195 178 164 176 132 183 C123 178 124 164 133 156 Z" fill="${dark}"/>
-                <path d="M133 157 C165 148 198 147 231 152 C246 154 259 159 271 165 C247 168 223 164 202 162 C177 160 153 164 132 171 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="3"/>
-                <path d="M200 84 C201 106 201 132 201 157 M157 102 C169 119 179 137 183 158 M244 111 C231 126 222 141 218 159" fill="none" stroke="${dark}" stroke-width="2.5" opacity=".72"/>
-                <path d="M143 139 C151 115 169 97 190 91" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".18"/>
-                <path d="M137 167 C165 158 188 157 208 159" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".24"/>
+                <path d="M130 166 C128 146 134 124 148 108 C161 93 180 86 201 86 C224 86 244 98 258 117 C268 132 273 149 270 166 C249 159 226 155 202 155 C176 155 151 159 130 166 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M132 157 C162 147 196 144 230 149 C249 151 266 157 276 165 C272 173 259 178 241 178 C209 172 174 171 139 179 C130 176 126 166 132 157 Z" fill="${dark}"/>
+                <path d="M134 157 C165 149 197 148 229 152 C247 155 260 159 272 165 C249 167 226 163 202 161 C177 159 153 162 133 170 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="3"/>
+                <path d="M200 90 C200 112 201 132 201 154 M153 107 C165 122 174 138 178 156 M248 111 C235 126 227 140 223 156" fill="none" stroke="${dark}" stroke-width="2.5" opacity=".72"/>
+                <path d="M145 139 C152 119 167 103 186 97" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".18"/>
+                <path d="M139 166 C167 158 190 157 211 159" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".24"/>
                 <circle cx="201" cy="85" r="4" fill="${light}" stroke="${dark}" stroke-width="1.5"/>
             </g>
         `;
@@ -2173,12 +2173,12 @@ function drawAccessory(accessory, style) {
     if (style === "beanie") {
         return `
             <g filter="url(#raised)">
-                <path d="M127 179 C125 154 128 130 137 110 C149 84 171 69 198 67 C225 66 248 80 262 104 C273 124 276 151 272 179 C249 171 226 168 200 168 C174 168 150 172 127 179 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
-                <path d="M129 158 C151 152 176 149 200 149 C225 149 249 152 271 158 L272 184 C249 178 225 175 200 175 C175 175 151 178 127 184 Z" fill="${dark}" stroke="${dark}" stroke-width="3"/>
-                <path d="M132 160 C155 156 178 154 200 154 C223 154 246 156 268 160" fill="none" stroke="${light}" stroke-width="4" stroke-linecap="round" opacity=".8"/>
-                <path d="M145 167 L145 180 M157 164 L157 178 M170 162 L170 176 M183 161 L183 175 M200 160 L200 175 M217 161 L217 175 M230 162 L230 176 M243 164 L243 178 M256 167 L256 180" fill="none" stroke="${shadeColor(color, -12)}" stroke-width="2" stroke-linecap="round" opacity=".72"/>
-                <path d="M147 111 C159 89 177 78 197 77" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".19"/>
-                <path d="M200 71 C202 95 201 119 200 146" fill="none" stroke="${light}" stroke-width="2" opacity=".42"/>
+                <path d="M130 169 C128 149 132 128 143 111 C156 91 176 80 199 80 C221 80 241 91 255 108 C267 124 273 146 270 167 C249 160 225 156 200 156 C174 156 151 160 130 169 Z" fill="url(#accessoryVolume)" stroke="${dark}" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M130 153 C151 149 176 147 200 147 C224 147 248 149 270 153 L271 174 C249 169 225 166 200 166 C175 166 151 169 129 174 Z" fill="${dark}" stroke="${dark}" stroke-width="3"/>
+                <path d="M133 155 C155 152 178 150 200 150 C223 150 246 152 267 155" fill="none" stroke="${light}" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+                <path d="M146 157 L146 171 M160 154 L160 169 M176 152 L176 167 M200 151 L200 166 M224 152 L224 167 M240 154 L240 169 M254 157 L254 171" fill="none" stroke="${shadeColor(color, -12)}" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+                <path d="M149 119 C159 99 177 87 197 86" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".19"/>
+                <path d="M200 84 C201 105 201 126 200 145" fill="none" stroke="${light}" stroke-width="2" opacity=".42"/>
             </g>
         `;
     }
